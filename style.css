@@ -1,0 +1,49 @@
+/* html{
+  background-image: url("./copper.jpeg");
+  background-repeat: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */
+
+/* img {
+  max-height: 100%;
+  width: auto;
+} */
+
+.splash{
+  padding: 20px 10px;
+}
+
+.splash h3{
+  font-size: 34px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  font-family: 'Adobe Caslon Pro', serif;
+  margin-top: 100%;
+  margin-bottom: 50%;
+}
+
+.encyclopedia-item{
+  padding: 20px 10px;
+}
+
+.text-date{
+  font-family: 'Adobe Caslon Pro', serif;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+p{
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 2px;
+  margin-bottom: 0px;
+}
+
+.text-loc{
+  font-weight: bolder;
+}
