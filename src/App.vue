@@ -5,7 +5,15 @@
 </template>
 
 <script>
+
 import EncyclopediaItem from './components/EncyclopediaItem.vue'
+
+
+
+print("test dev branch")
+
+
+
 let data =  {
     timeline: [
       { date: 'April 22, 2036', location: 'Rogers Street Park', description: 'Trees planted 20 years earlier have now matured to provide cooling canopy of shade on this hot spring day.'},
@@ -13,6 +21,9 @@ let data =  {
       { date: 'April 12, 2020', location: 'North Point', description: 'Cambridge Crossing Park built to provide neighborhood cooling and flood water storage.'}
     ]
   };
+
+
+
 export default {
   name: 'app',
   components: {
