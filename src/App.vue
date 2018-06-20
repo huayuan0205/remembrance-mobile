@@ -1,18 +1,19 @@
 <template>
   <div id="app">
+    <div class="splash-img">
+      <div class="splash-txt">
+        <h3>cambridge<br>acclimation<br>society</h3>
+      </div>
+    </div>
+    <div class="encyclopedia">
       <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
+    </div>
   </div>
 </template>
 
 <script>
 
 import EncyclopediaItem from './components/EncyclopediaItem.vue'
-
-
-
-print("test dev branch")
-
-
 
 let data =  {
     timeline: [
@@ -35,24 +36,59 @@ export default {
 </script>
 
 <style>
+
+body, html{
+  height: 100%;
+}
+
+/* @font-face{
+  font-family: 'Adobe Caslon SC';
+  src: url('./assets/fonts/Adobe_Caslon_Regular_Small_Caps__Oldstyle_Figures.ttf') format('truetype');
+}
+
+@font-face{
+  font-family: 'Trade Gothic Condensed';
+  src: url('./assets/fonts/Trade Gothic LT Condensed No. 18.ttf') format('truetype');
+} */
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
-}
-.splash{
-  padding: 20px 10px;
+  height: 100%;
 }
 
-.splash h3{
+.splash-img{
+  background-image: url("./assets/copper2.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin: -8px -8px;
+}
+
+.splash-txt{
+  position: absolute;
+  top: 50%;
+  left: 20px;
   font-size: 34px;
   line-height: 1.2;
   letter-spacing: 1px;
-  font-family: 'Adobe Caslon Pro', serif;
-  margin-top: 100%;
-  margin-bottom: 50%;
+  color: white;
+}
+
+.encyclopedia{
+  margin-top: 40px;
+}
+
+.text-date{
+
+}
+
+.text-desc{
+
 }
 </style>

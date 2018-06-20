@@ -2,7 +2,6 @@
   <div class="encyclopedia-item">
     <h3 class="text-date">{{ encyclopedia.date }}</h3>
       <p class="text-desc">{{ encyclopedia.location }}. {{ encyclopedia.description }}</p>
-
   </div>
 </template>
 
