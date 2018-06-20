@@ -1,6 +1,17 @@
 <template>
   <div id="app">
-      <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
+  <sui-grid :columns="3">
+    <sui-grid-row stretched>
+       <sui-grid-column>
+       </sui-grid-column>
+      <sui-grid-column>
+        <sui-segment>
+          <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
+          </sui-segment>
+      </sui-grid-column>
+    </sui-grid-row>
+  </sui-grid>
+      
   </div>
 </template>
 
