@@ -1,13 +1,23 @@
 <template>
   <div id="app">
-    <div class="splash-img">
-      <div class="splash-txt">
-        <h3>cambridge<br>acclimation<br>society</h3>
-      </div>
-    </div>
-    <div class="encyclopedia">
-      <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
-    </div>
+
+<div class="splash-img">
+  <div class="splash-txt">
+    <h3>cambridge<br>acclimation<br>society</h3>
+  </div>
+</div>
+  <sui-grid :columns="3">
+    <sui-grid-row stretched>
+       <sui-grid-column>
+       </sui-grid-column>
+      <sui-grid-column>
+        <sui-segment>
+          <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
+          </sui-segment>
+      </sui-grid-column>
+    </sui-grid-row>
+  </sui-grid>
+
   </div>
 </template>
 
