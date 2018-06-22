@@ -1,16 +1,16 @@
 <template>
-  
-     
-        <div class="encyclopedia-item">
-            <h3 class="text-date">{{ encyclopedia.date }}</h3>
-              <p class="text-desc">{{ encyclopedia.location }}. {{ encyclopedia.description }}</p>
-          </div>
-  
+  <div class="ui vertical segment snap-item">
+    <div class="encyclopedia-item">
+      <h3 class="text-date">{{ encyclopedia.date }}</h3>
+      <p class="text-desc">{{ encyclopedia.location }}. {{ encyclopedia.description }}</p>
+    </div>
+  </div>
+
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'EncyclopediaItem',
   props: ["encyclopedia"]
 }
 </script>
@@ -31,9 +31,24 @@ export default {
 a {
   color: #42b983;
 }
-/* .encyclopedia-item{
-  padding: 20px 10px;
-} */
+
+.snap-item{
+  -webkit-scroll-snap-coordinate: 0vw -10vh;
+  -ms-scroll-snap-coordinate: 0vw -10vh;
+  scroll-snap-coordinate: 0vw -10vh;
+}
+
+.encyclopedia-item{
+  padding: 40px 20px 40px 20px;
+}
+
+.text-date{
+  font-size: 24px;
+}
+
+.text-desc{
+
+}
 
 /* .text-date{
   font-family: 'Adobe Caslon Pro', serif;
