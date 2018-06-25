@@ -1,44 +1,57 @@
 <template>
   <div id="app">
-    <div class="splash-img">
+
+    <!-- <router-view></router-view> -->
+
+
+    
+    <!-- <div class="splash-img">
       <div class="splash-txt">
         <h3>cambridge<br>acclimation<br>society</h3>
       </div>
     </div>
+
+      
     <div class="intro">
+      <p>
+ 
+      </p>
       <p>
         Established in 2120, the society serves to document, and keep in memory, significant climate events of our local past, that we may not repeat our mistakes and act more mindfully of our climatic impact.
       </p>
     </div>
-    <!-- <div class="encyclopedia"> -->
-      <encyclopedia-item v-for="item in timeline" v-bind:encyclopedia="item"> </encyclopedia-item>
-    <!-- </div> -->
+      <encyclopedia-item 
+        v-for="item in timeline" 
+        v-bind:encyclopedia="item"
+        v-bind:key="item.date"
+        > </encyclopedia-item> -->
+        
+        <router-view/>
   </div>
+  
 </template>
 
 <script>
 
-import EncyclopediaItem from './components/EncyclopediaItem.vue'
+// import HomeView from '@/components/HomeView.vue'
 
-let data =  {
-    timeline: [
-      { date: '10 mar 2040', location: 'New Tobin School', description: 'Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use.'},
-      { date: '22 apr 2036', location: 'Rogers Street Park', description: 'Trees planted 20 years earlier have now matured to provide cooling canopy of shade on this hot spring day.'},
-      { date: '1 jul 2035', location: '119 Windsor Street', description: 'Site of The Port Resilience Hub, which first started to train neighborhood residents to prepare their homes for the coming hurricane season.'},
-      { date: '1 dec 2025', location: '60 Broadway', description: 'Cambridge Research Center (first to develop a solar energy system that is 50% efficient) established at 60 Broadway to develop solutions to climate change effects.'},
-      { date: '12 apr 2020', location: 'North Point', description: 'Cambridge Crossing Park built to provide neighborhood cooling and flood water storage.'},
-      { date: '2018', location: 'Ground Round Rotary', description: 'Construction completed of berm at Fresh Pond built to prevent flood waters from entering adjacent neighborhood.'}
-    ]
-  };
 
 
 
 export default {
   name: 'app',
-  components: {
-    EncyclopediaItem
-  },
-  data: function(){return data}
+  // components: {
+  //   HomeView
+  // },
+  // // data: function(){return data},
+  //  computed: {
+  //   itemname () {
+  //     // We will see what `params` is shortly
+  //     // console.log(this)
+  //     return this.$route.params.name
+  //   }
+  // }
+  
 
 }
 </script>
