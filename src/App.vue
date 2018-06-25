@@ -22,16 +22,14 @@ import EncyclopediaItem from './components/EncyclopediaItem.vue'
 
 let data =  {
     timeline: [
-      { date: '10 mar 2040', location: 'New Tobin School', description: 'Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use.'},
-      { date: '22 apr 2036', location: 'Rogers Street Park', description: 'Trees planted 20 years earlier have now matured to provide cooling canopy of shade on this hot spring day.'},
-      { date: '1 jul 2035', location: '119 Windsor Street', description: 'Site of The Port Resilience Hub, which first started to train neighborhood residents to prepare their homes for the coming hurricane season.'},
-      { date: '1 dec 2025', location: '60 Broadway', description: 'Cambridge Research Center (first to develop a solar energy system that is 50% efficient) established at 60 Broadway to develop solutions to climate change effects.'},
-      { date: '12 apr 2020', location: 'North Point', description: 'Cambridge Crossing Park built to provide neighborhood cooling and flood water storage.'},
-      { date: '2018', location: 'Ground Round Rotary', description: 'Construction completed of berm at Fresh Pond built to prevent flood waters from entering adjacent neighborhood.'}
+      { date: '10 mar 2040', title: 'Floodwater Cistern Built', location: 'New Tobin School', description: 'Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use.', linkText: null, link: null},
+      { date: '22 apr 2036', title: 'Matured Trees Create Shade', location: 'Rogers Street Park', description: 'Trees planted 20 years earlier have now matured to provide cooling canopy of shade on this hot spring day.', linkText: null, link: null},
+      { date: '1 jul 2035', title: 'Hurricane Training', location: '119 Windsor Street', description: 'Site of The Port Resilience Hub, which first started to train neighborhood residents to prepare their homes for the coming hurricane season.', linkText: 'Port Resilience Hub', link: 'http://www.cambridgema.gov/CDD/Projects/Climate/~/media/CF3F5FD163FD46CB9B2F2EFFB72EE72D.ashx'},
+      { date: '1 dec 2025', title: 'Research Center Built', location: '60 Broadway', description: 'Cambridge Research Center (first to develop a solar energy system that is 50% efficient) established at 60 Broadway to develop solutions to climate change effects.', linkText: null, link: null},
+      { date: '12 apr 2020', title: 'Park For Climate Support', location: 'North Point', description: 'Cambridge Crossing Park built to provide neighborhood cooling and flood water storage.', linkText: null, link: null},
+      { date: '2018', title: 'Fresh Pond Berm', location: 'Ground Round Rotary', description: 'Construction completed of berm at Fresh Pond built to prevent flood waters from entering adjacent neighborhood.', linkText: null, link: null}
     ]
   };
-
-
 
 export default {
   name: 'app',
@@ -39,8 +37,24 @@ export default {
     EncyclopediaItem
   },
   data: function(){return data}
-
+  // computed: {
+  //   descWithLink: function() {
+  //     console.log('I run');
+  //     let newDesc;
+  //     if(this.linkText !== null){
+  //       const index = this.description.indexOf(this.linkText);
+  //       const spanStart = '<a href='+this.link+'>';
+  //       const spanEnd = '</a>';
+  //       newDesc = [this.description.slice(0, index), spanStart, this.description.slice(index, index+this.linkText.length), spanEnd, this.description.slice(index+this.linkText.length)].join('');
+  //     }else{
+  //       newDesc = this.description;
+  //     }
+  //     // console.log(newDesc);
+  //     return newDesc;
+  //   }
+  // }
 }
+
 </script>
 
 <style>
@@ -97,7 +111,7 @@ body, html{
 }
 
 .splash-img{
-  background-image: url("./assets/copper2.jpeg");
+  background-image: url("./assets/alluminium.jpeg");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
