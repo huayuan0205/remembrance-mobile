@@ -4,30 +4,16 @@
       <h3 class="text-date">{{ encyclopedia.date }}</h3>
       <p class="text-desc">{{ encyclopedia.location }}. {{ encyclopedia.description }}</p>
     </div>
+
   </div>
 
 </template>
 
 <script>
+
 export default {
   name: 'EncyclopediaItem',
-  props: ['encyclopedia']
-  // computed: {
-  //   descWithLink: function() {
-  //     console.log('I run');
-  //     let newDesc;
-  //     if(this.linkText !== null){
-  //       const index = this.description.indexOf(this.linkText);
-  //       const spanStart = '<a href='+this.link+'>';
-  //       const spanEnd = '</a>';
-  //       newDesc = [this.description.slice(0, index), spanStart, this.description.slice(index, index+this.linkText.length), spanEnd, this.description.slice(index+this.linkText.length)].join('');
-  //     }else{
-  //       newDesc = this.description;
-  //     }
-  //     // console.log(newDesc);
-  //     return newDesc;
-  //   }
-  // }
+  props: ["encyclopedia","id"]
 }
 
 // insert hyperlinks in description
