@@ -4,14 +4,16 @@
       <h3 class="text-date">{{ encyclopedia.date }}</h3>
       <p class="text-desc">{{ encyclopedia.location }}. {{ encyclopedia.description }}</p>
     </div>
+    
   </div>
 
 </template>
 
 <script>
+
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia"]
+  props: ["encyclopedia","id"]
 }
 </script>
 
