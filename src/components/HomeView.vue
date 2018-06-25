@@ -4,12 +4,7 @@
       <div class="splash-txt">
         <h3>cambridge<br>acclimation<br>society</h3>
       </div>
-    </div>
-    <!-- <h1>Scroll Behavior</h1>
-      <ul>
-        <li><router-link to="/home">/</router-link></li>
-      </ul> -->
-      
+    </div>  
     <div class="intro">
       <p>
  
@@ -18,10 +13,7 @@
         Established in 2120, the society serves to document, and keep in memory, significant climate events of our local past, that we may not repeat our mistakes and act more mindfully of our climatic impact.
       </p>
     </div>
-    <!-- <div class="encyclopedia"> -->
       <encyclopedia-view></encyclopedia-view>
-    <!-- </div> -->
-    <!-- <router-view></router-view> -->
   </div>
   
 </template>

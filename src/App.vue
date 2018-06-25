@@ -1,58 +1,15 @@
 <template>
   <div id="app">
-
-    <!-- <router-view></router-view> -->
-
-
-    
-    <!-- <div class="splash-img">
-      <div class="splash-txt">
-        <h3>cambridge<br>acclimation<br>society</h3>
-      </div>
-    </div>
-
-      
-    <div class="intro">
-      <p>
- 
-      </p>
-      <p>
-        Established in 2120, the society serves to document, and keep in memory, significant climate events of our local past, that we may not repeat our mistakes and act more mindfully of our climatic impact.
-      </p>
-    </div>
-      <encyclopedia-item 
-        v-for="item in timeline" 
-        v-bind:encyclopedia="item"
-        v-bind:key="item.date"
-        > </encyclopedia-item> -->
-        
-        <router-view/>
+    <router-view/>
   </div>
   
 </template>
 
 <script>
 
-// import HomeView from '@/components/HomeView.vue'
-
-
-
 
 export default {
-  name: 'app',
-  // components: {
-  //   HomeView
-  // },
-  // // data: function(){return data},
-  //  computed: {
-  //   itemname () {
-  //     // We will see what `params` is shortly
-  //     // console.log(this)
-  //     return this.$route.params.name
-  //   }
-  // }
-  
-
+  name: 'app'
 }
 </script>
 
@@ -61,13 +18,6 @@ export default {
 body, html{
   height: 100%;
 }
-
-/* @font-face{
-  font-family: 'Caslon';
-  src: url('assets/fonts/caslon.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 700;
-} */
 
 @font-face{
   font-family: 'PlayfairSC';
