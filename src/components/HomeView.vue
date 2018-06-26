@@ -19,19 +19,8 @@
 </template>
 <script>
 
-
-let data =  {
-    timeline: [
-      {id:1, date: '10 mar 2040', location: 'New Tobin School', description: 'ZFloodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use. ZFloodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first useZFloodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use. Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use/ Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use'},
-      {id: 2, date: '14 mar 2040', location: 'New Tobin School', description: 'ZFloodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use. Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use/ Floodwater cistern built beneath the New Tobin School to keep neighborhood dry during high precipitation storms. Date of first use/. '},
-      { id: 3, date: '22 apr 2036', location: 'Rogers Street Park', description: 'Trees planted 20 years earlier have now matured to provide cooling canopy of shade on this hot spring day.'},
-      { id: 4, date: '1 jul 2035', location: '119 Windsor Street', description: 'Site of The Port Resilience Hub, which first started to train neighborhood residents to prepare their homes for the coming hurricane season.'},
-      { id:5, date: '1 dec 2025', location: '60 Broadway', description: 'Cambridge Research Center (first to develop a solar energy system that is 50% efficient) established at 60 Broadway to develop solutions to climate change effects.'},
-      { id:6, date: '12 apr 2020', location: 'North Point', description: 'Cambridge Crossing Park built to provide neighborhood cooling and flood water storage.'},
-      {id:7, date: '2018', location: 'Ground Round Rotary', description: 'Construction completed of berm at Fresh Pond built to prevent flood waters from entering adjacent neighborhood.'}
-    ]
-  };
 import EncyclopediaView from '@/views/EncyclopediaView.vue'
+import * as d3 from 'd3v4/build/d3.js'
 
 export default {
   name: 'HomeView',
@@ -40,6 +29,16 @@ export default {
     EncyclopediaView
   },
   data: function(){
-    return data}
+    return {items:[]}
+  },
+   mounted: function () {
+     
+        var self = this;
+        d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
+          self.items = d
+
+        })
+        
+    }
 }
 </script>
