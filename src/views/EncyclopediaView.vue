@@ -21,26 +21,25 @@ export default {
   components: {
     EncyclopediaItem
   },
-  data: function(){
-      console.log(this.$parent.timeline)
-      return {encyclopedia: this.$parent.timeline}
-  },
   methods:{
-     getRouteParam: function() {
-         console.log("called a function ");
-         console.log(this.$route.params);
+     someFunction: function() {
          }
      },
      beforeMount(){
-        this.getRouteParam();
+        // someFunction()
+        
+        
      },
-     mounted(){
-
-         console.log("aftermount");
+     computed: {
+         encyclopedia: function (){
+               return this.$parent.items;
+         }
+        
+         
      },
      created(){
 
-         console.log("created");
+        
      }
 }
 </script>
