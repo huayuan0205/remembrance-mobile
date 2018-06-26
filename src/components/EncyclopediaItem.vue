@@ -13,19 +13,25 @@
 
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia","id"]
+  props: ["encyclopedia","id"],
+  computed: {
+    descWithLink() {
+      console.log('I run');
+      let newDesc;
+      // if(this.linkText !== null){
+      //   const index = this.description.indexOf(this.linkText);
+      //   const spanStart = '<a href='+this.link+'>';
+      //   const spanEnd = '</a>';
+      //   newDesc = [this.description.slice(0, index), spanStart, this.description.slice(index, index+this.linkText.length), spanEnd, this.description.slice(index+this.linkText.length)].join('');
+      // }else{
+      //   newDesc = this.description;
+      // }
+      newDesc = encyclopedia.description;
+      // console.log(newDesc);
+      return newDesc;
+    }
+  }
 }
-
-// insert hyperlinks in description
-// function addLinks(){
-//   if(encyclopedia.linkText !== null){
-//     const index = encyclopedia.description.indexOf(encyclopedia.linkText);
-//     const spanStart = '<a href='+encyclopedia.link+'>';
-//     const spanEnd = '</a>';
-//     const newDesc = [encyclopedia.description.slice(0, index), spanStart, encyclopedia.description.slice(index, index+encyclopedia.linkText.length), spanEnd, encyclopedia.description.slice(index+encyclopedia.linkText.length)].join('');
-//     return newDesc;
-//   }
-// }
 
 
 
