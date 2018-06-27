@@ -2,7 +2,7 @@
   <div id="app">
     <router-view/>
   </div>
-  
+
 </template>
 
 <script>
@@ -11,6 +11,7 @@
 export default {
   name: 'app'
 }
+
 </script>
 
 <style>
@@ -60,7 +61,7 @@ body, html{
 }
 
 .splash-img{
-  background-image: url("./assets/copper2.jpeg");
+  background-image: url("./assets/alluminium.jpeg");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
