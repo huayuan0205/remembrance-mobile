@@ -13,24 +13,7 @@
 
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia","id"],
-  computed: {
-    descWithLink() {
-      console.log('I run');
-      let newDesc;
-      // if(this.linkText !== null){
-      //   const index = this.description.indexOf(this.linkText);
-      //   const spanStart = '<a href='+this.link+'>';
-      //   const spanEnd = '</a>';
-      //   newDesc = [this.description.slice(0, index), spanStart, this.description.slice(index, index+this.linkText.length), spanEnd, this.description.slice(index+this.linkText.length)].join('');
-      // }else{
-      //   newDesc = this.description;
-      // }
-      newDesc = encyclopedia.description;
-      // console.log(newDesc);
-      return newDesc;
-    }
-  }
+  props: ["encyclopedia","id"]
 }
 
 
