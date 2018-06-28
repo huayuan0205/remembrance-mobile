@@ -13,7 +13,7 @@
         Installed in 2120, these spots serve to keep in memory significant climate events of the city's past.
       </p>
     </div>
-      <encyclopedia-view></encyclopedia-view>
+      <encyclopedia-view ></encyclopedia-view>
   </div>
 
 </template>
@@ -40,4 +40,5 @@ export default {
   }
 
 }
+
 </script>

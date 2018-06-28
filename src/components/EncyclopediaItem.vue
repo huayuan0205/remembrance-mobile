@@ -1,8 +1,10 @@
 <template>
   <div class="ui vertical segment snap-item">
-    <div class="encyclopedia-item">
+    <div v-on:click="onClick" class="encyclopedia-item">
       <h3 class="text-date">{{ formatDate }}</h3>
       <p class="text-desc">{{ encyclopedia.location }}. <span v-html="descWithLink"></span></p>
+      <sui-dimmer v-if="encyclopedia.title==this.$route.params.id" deactive :inverted="true"/>
+<sui-dimmer v-else active :inverted="true"/>
 
     </div>
 
@@ -20,6 +22,12 @@ export default {
   // components: {
   //   LinkElement
   // },
+   methods: {
+    onClick: function(event){
+      // console.log(this.encyclopedia.title)
+      this.$router.push(this.encyclopedia.title)
+    }
+  },
   computed: {
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
