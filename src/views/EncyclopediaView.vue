@@ -1,19 +1,23 @@
 <template>
   <div class="ui vertical segment snap-item">
+     
         <div class="encyclopedia-item">
             <encyclopedia-item
         v-for="item in encyclopedia"
         v-bind:encyclopedia="item"
         :key="item.id"
         > </encyclopedia-item>
+        
         </div>
-    </div>
+        </div>
 </template>
 
 <script>
 
 // @ is an alias to /src
 import EncyclopediaItem from '@/components/EncyclopediaItem.vue'
+import * as $ from 'jquery'
+window['jQuery'] = window['$'] = $;
 
 export default {
   name: 'encyclopedia',
@@ -21,11 +25,12 @@ export default {
   components: {
     EncyclopediaItem
   },
-   methods:{
-     someFunction: function() {
-         }
-   },
+ 
    mounted: function () {
+    //  console.log( $('.encyclopedia-item'));
+    //    $('.encyclopedia-item')
+    //   .dimmer('toggle')
+    // ;
 
    },
    beforeMount(){
