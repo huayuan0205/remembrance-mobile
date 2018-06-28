@@ -71,7 +71,7 @@ a {
 }
 
 .encyclopedia-item{
-  padding: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 60px;
 }
 
 .text-date{

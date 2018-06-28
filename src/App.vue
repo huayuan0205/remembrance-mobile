@@ -72,7 +72,7 @@ body, html{
 .splash-txt{
   position: absolute;
   top: 50%;
-  left: 20px;
+  left: 60px;
   color: white;
 }
 
@@ -83,7 +83,7 @@ body, html{
 }
 
 .intro{
-  padding: 40px 20px 80px 20px;
+  padding: 40px 20px 80px 60px;
 }
 
 .encyclopedia{
