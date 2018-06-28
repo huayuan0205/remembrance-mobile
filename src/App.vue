@@ -73,13 +73,13 @@ body, html{
   position: absolute;
   top: 50%;
   left: 20px;
-  line-height: 1.2;
-  letter-spacing: 1px;
   color: white;
 }
 
 .splash-txt h3{
-  font-size: 34px;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 1.6px;
 }
 
 .intro{
