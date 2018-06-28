@@ -2,7 +2,7 @@
   <div id="home-view">
     <div class="splash-img">
       <div class="splash-txt">
-        <h3>cambridge<br>acclimation<br>society</h3>
+        <h3>cambridge<br>memory<br>spot</h3>
       </div>
     </div>
     <div class="intro">
@@ -10,7 +10,7 @@
 
       </p>
       <p>
-        Established in 2120, the society serves to document, and keep in memory, significant climate events of our local past, that we may not repeat our mistakes and act more mindfully of our climatic impact.
+        Installed in 2120, these spots serve to keep in memory significant climate events of the city's past.
       </p>
     </div>
       <encyclopedia-view></encyclopedia-view>
