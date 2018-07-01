@@ -16,8 +16,6 @@
 
 // @ is an alias to /src
 import EncyclopediaItem from '@/components/EncyclopediaItem.vue'
-import * as $ from 'jquery'
-window['jQuery'] = window['$'] = $;
 
 export default {
   name: 'encyclopedia',
@@ -27,6 +25,7 @@ export default {
   },
  
    mounted: function () {
+    //  console.log(this.)
     //  console.log( $('.encyclopedia-item'));
     //    $('.encyclopedia-item')
     //   .dimmer('toggle')
