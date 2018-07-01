@@ -7,7 +7,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/encyclopedia-item/Trees Create Canopy' },
+    { path: '/', redirect: '/encyclopedia-item/Berm%20Prevents%20Flood' },
     {
       path: '/',
       name: 'home',

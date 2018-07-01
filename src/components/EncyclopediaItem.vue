@@ -1,10 +1,10 @@
 <template>
   <div class="ui vertical segment snap-item">
-    <div v-on:click="onClick" class="encyclopedia-item">
+    <div v-on:click="onClick" class="encyclopedia-item" v-bind:id="encyclopedia.title">
       <h3 class="text-date">{{ formatDate }}</h3>
       <p class="text-desc">{{ encyclopedia.location }}. <span v-html="descWithLink"></span></p>
-      <sui-dimmer v-if="encyclopedia.title==this.$route.params.id" deactive :inverted="true"/>
-<sui-dimmer v-else active :inverted="true"/>
+      <sui-dimmer v-if="encyclopedia.title==this.$route.params.id" :active="false" :inverted="true"/>
+      <sui-dimmer v-else active :inverted="true"/>
 
     </div>
 
@@ -15,10 +15,29 @@
 <script>
 import LinkElement from '@/components/LinkElement.vue'
 import moment from 'moment'
+import * as $ from 'jquery'
+window['jQuery'] = window['$'] = $;
+let options = {
+    container: '#app',
+    easing: 'ease',
+    offset: 0,
+    cancelable: true,
+    onStart: function(element) {
+      // scrolling started
+    },
+    onDone: function(element) {
+      // scrolling is done
+    },
+    onCancel: function() {
+      // scrolling has been interrupted
+    },
+    x: false,
+    y: true
+}
 
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia","id"],
+  props: ["encyclopedia"],
   // components: {
   //   LinkElement
   // },
@@ -29,6 +48,9 @@ export default {
     }
   },
   computed: {
+    id: function (){
+      return this.encyclopedia.id
+    },
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
         let  index = this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link);
@@ -47,6 +69,13 @@ export default {
         return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY MMM DD');
       }
     }
+  },
+  mounted: function(){
+    let element = this.$el
+    let cancelScroll = this.$scrollTo(element, 4, options)
+ 
+// to cancel scrolling you can call the returned function
+    // cancelScroll()
   }
 
 }
