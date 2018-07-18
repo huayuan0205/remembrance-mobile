@@ -1,8 +1,8 @@
 <template>
   <div class="ui vertical segment snap-item">
-    <div v-on:click="onClick" class="encyclopedia-item" v-bind:id="encyclopedia.event">
-      <h3 class="text-date">{{ formatDate }}</h3>
-      <p class="text-desc">{{ encyclopedia.spot }}. <span v-html="descWithLink"></span></p>
+    <div v-on:click="onClick" class="encyclopedia-item" >
+      <h3 class="text-date" v-bind:id="slug_event"></h3>
+      <p class="text-desc" v-bind:id="fixid">{{ encyclopedia.spot }}. <span v-html="descWithLink"></span></p>
       <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="false" :inverted="true"/>
       <sui-dimmer v-else active :inverted="true"/>
 
@@ -16,6 +16,7 @@
 import LinkElement from '@/components/LinkElement.vue'
 import moment from 'moment'
 import * as $ from 'jquery'
+import * as d3 from 'd3v4/build/d3.js'
 window['jQuery'] = window['$'] = $;
 let options = {
     container: '#app',
@@ -42,14 +43,54 @@ export default {
   //   LinkElement
   // },
    methods: {
+     sanitizeTitle: function(title) {
+      var slug = "";
+      // Change to lower case
+      var titleLower = title.toLowerCase();
+      // Letter "e"
+      slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e');
+      // Letter "a"
+      slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a');
+      // Letter "o"
+      slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o');
+      // Letter "u"
+      slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u');
+      // Letter "d"
+      slug = slug.replace(/đ/gi, 'd');
+      // Trim the last whitespace
+      slug = slug.replace(/\s*$/g, '');
+      // Change whitespace to "-"
+      slug = slug.replace(/\s+/g, '-');
+      
+      return slug;
+    },
     onClick: function(event){
       // console.log(this.encyclopedia.title)
       this.$router.push(this.encyclopedia.event)
+    },
+    formatDater: function(date){
+      if(date.length == 4){
+        return moment(date, 'YYYY').format('YYYY');
+      } else {
+        return moment(date, 'MM/DD/YYYY').format('YYYY MMM DD');
+      }
     }
   },
   computed: {
+    slug_event: function() {
+      var slug = this.sanitizeTitle(this.$props.encyclopedia.event);
+      return slug;
+    },
+    slug_spot: function() {
+      var slug = this.sanitizeTitle(this.$props.encyclopedia.spot);
+      return slug;
+    },
     id: function (){
       return this.encyclopedia.id
+    },
+
+    fixid: function (){
+      return "fix"+this.encyclopedia.id
     },
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
@@ -71,9 +112,31 @@ export default {
     }
   },
   mounted: function(){
-    let element = this.$el
+    const self = this;
+    console.log(self)
+    let element = self.$el
     let cancelScroll = this.$scrollTo(element, 4, options)
- 
+    let d3el = d3.select("#"+self.slug_event)
+    console.log(d3el)
+    let formatedDate = self.formatDater(self.$props.encyclopedia.date)
+    console.log(formatedDate)
+    // d3el.remove("text")
+    d3el.append("text").text("")
+    d3el.text(function(){
+      return formatedDate;
+    })
+
+
+    let t = d3.transition()
+    .duration(1750)
+    .ease(d3.easeLinear);
+
+
+    let d3spotel = d3.select("#fix"+self.encyclopedia.id)
+    console.log(d3spotel)
+    d3spotel.style("opacity",.4)
+    // d3spotel.transition(t);
+    t.select("#fix"+self.encyclopedia.id).style("opacity",1)
 // to cancel scrolling you can call the returned function
     // cancelScroll()
   }
