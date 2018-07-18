@@ -1,9 +1,9 @@
 <template>
   <div class="ui vertical segment snap-item">
-    <div v-on:click="onClick" class="encyclopedia-item" v-bind:id="encyclopedia.title">
+    <div v-on:click="onClick" class="encyclopedia-item" v-bind:id="encyclopedia.event">
       <h3 class="text-date">{{ formatDate }}</h3>
-      <p class="text-desc">{{ encyclopedia.location }}. <span v-html="descWithLink"></span></p>
-      <sui-dimmer v-if="encyclopedia.title==this.$route.params.id" :active="false" :inverted="true"/>
+      <p class="text-desc">{{ encyclopedia.spot }}. <span v-html="descWithLink"></span></p>
+      <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="false" :inverted="true"/>
       <sui-dimmer v-else active :inverted="true"/>
 
     </div>
@@ -44,7 +44,7 @@ export default {
    methods: {
     onClick: function(event){
       // console.log(this.encyclopedia.title)
-      this.$router.push(this.encyclopedia.title)
+      this.$router.push(this.encyclopedia.event)
     }
   },
   computed: {

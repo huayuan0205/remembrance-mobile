@@ -25,21 +25,27 @@ export default {
   },
  
    mounted: function () {
-    //  console.log(this.)
-    //  console.log( $('.encyclopedia-item'));
-    //    $('.encyclopedia-item')
-    //   .dimmer('toggle')
-    // ;
+     
 
    },
    beforeMount(){
       // someFunction()
+     
 
 
    },
    computed: {
        encyclopedia: function (){
-             return this.$parent.items;
+            
+      const this_item = this.$parent.items.filter((value, index, array) => {
+              return value.event == this.$route.params.id;
+            })
+            
+            const three_items= this.$parent.items.filter((value, index, array) => {
+              return (value.id == +this_item[0].id || value.id  == (+this_item[0].id - 1) || value.id == (+this_item[0].id + 1));
+            })
+            //  return this.$parent.items;
+            return three_items;
        }
 
    },
