@@ -19,7 +19,8 @@
     "serve-static": "^1.13.2",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
-    "vue-scrollto": "^2.11.0"
+    "vue-scrollto": "^2.11.0",
+    "vue-slugify": "^0.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
