@@ -1,10 +1,10 @@
 <template>
-  <div class="ui vertical segment snap-item">
+  <div class="item">
     <div v-on:click="onClick" class="encyclopedia-item" >
       <h3 class="text-date" v-bind:id="slug_event"></h3>
       <p class="text-desc" v-bind:id="fixid">{{ encyclopedia.spot }}. <span v-html="descWithLink"></span></p>
-      <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="false" :inverted="true"/>
-      <sui-dimmer v-else active :inverted="true"/>
+      <!-- <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="false" :inverted="true"/> -->
+      <!-- <sui-dimmer v-else active :inverted="true"/> -->
 
     </div>
 
@@ -113,13 +113,13 @@ export default {
   },
   mounted: function(){
     const self = this;
-    console.log(self)
+    // console.log(self)
     let element = self.$el
     let cancelScroll = this.$scrollTo(element, 4, options)
     let d3el = d3.select("#"+self.slug_event)
-    console.log(d3el)
+    // console.log(d3el)
     let formatedDate = self.formatDater(self.$props.encyclopedia.date)
-    console.log(formatedDate)
+    // console.log(formatedDate)
     // d3el.remove("text")
     d3el.append("text").text("")
     d3el.text(function(){
@@ -133,8 +133,8 @@ export default {
 
 
     let d3spotel = d3.select("#fix"+self.encyclopedia.id)
-    console.log(d3spotel)
-    d3spotel.style("opacity",.4)
+    // console.log(d3spotel)
+    // d3spotel.style("opacity",.4)
     // d3spotel.transition(t);
     t.select("#fix"+self.encyclopedia.id).style("opacity",1)
 // to cancel scrolling you can call the returned function
@@ -165,9 +165,9 @@ a {
 }
 
 .snap-item{
-  -webkit-scroll-snap-coordinate: 0vw -10vh;
+  /* -webkit-scroll-snap-coordinate: 0vw -10vh;
   -ms-scroll-snap-coordinate: 0vw -10vh;
-  scroll-snap-coordinate: 0vw -10vh;
+  scroll-snap-coordinate: 0vw -10vh; */
 }
 
 .encyclopedia-item{
@@ -182,7 +182,7 @@ a {
 
 }
 
-/* .text-date{
+.text-date{
   font-family: 'Adobe Caslon Pro', serif;
   font-size: 18px;
   margin-top: 0px;
@@ -195,7 +195,7 @@ p{
   line-height: 1.2;
   margin-top: 2px;
   margin-bottom: 0px;
-} */
+}
 
 /* .text-loc{
   font-weight: bolder;
