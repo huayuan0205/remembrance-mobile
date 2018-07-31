@@ -40,8 +40,7 @@ export default {
   },
   computed:{
     fixStyleBack: function(){
-      
-      let r_img_bk = Math.sqrt(Math.pow($(window)[0].screen.availHeight,2) + Math.pow($(window)[0].screen.availWidth, 2))
+      let r_img_bk = this.$parent.r_img_bk;
       let height_img_bk = r_img_bk * 2
       let width_img_bk = r_img_bk * 2 
       return {
@@ -52,8 +51,7 @@ export default {
       
     }},
     fixStyle: function(){
-      let availHeightorWidth = Math.max($(window)[0].screen.availHeight, $(window)[0].screen.availWidth)
-      let r_img = $(window)[0].screen.availHeight / 2 //availHeightorWidth / 2
+      let r_img = this.$parent.r_img
       return {
       height: `${r_img * 2  }px`,
       width: `${r_img * 2  }px`,
@@ -68,7 +66,7 @@ export default {
           self.items = d
 
         })
-      whenScroll('every 200px', function () {
+      whenScroll('every 100px', function () {
 
       // this.$router.push(this.encyclopedia.event)
       // console.log(self.$route.params.id)

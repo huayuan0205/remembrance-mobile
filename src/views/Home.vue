@@ -16,6 +16,16 @@ export default {
   components: {
     HomeView
   },
+  computed:{
+    r_img_bk: function(){
+      return Math.sqrt(Math.pow($(window)[0].screen.availHeight,2) + Math.pow($(window)[0].screen.availWidth, 2))
+    },
+    r_img: function(){
+      // let availHeightorWidth = Math.max($(window)[0].screen.availHeight, $(window)[0].screen.availWidth)
+      let r_img = $(window)[0].screen.availHeight / 2 //availHeightorWidth / 2
+      return r_img
+    }
+  },
   methods:{
    
   },

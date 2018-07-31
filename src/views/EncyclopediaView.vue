@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="phantom-list" :style="phStyles">
+  <div class="container" >
      
 
 <!--
@@ -7,14 +7,14 @@
     will use d3
     
  -->
-
+  <div id="main-items">
             <encyclopedia-item
-        v-for="item in encyclopediaph"
+        v-for="item in encyclopedia"
         v-bind:encyclopedia="item"
         :key="item.id"
         > </encyclopedia-item>
-
-
+  </div>
+<div id="phantom-list" :style="phStyles"></div>
 
 
   </div>
@@ -77,12 +77,19 @@ export default {
    computed: {
 
       phStyles: function(){
-        console.log("is phStyle",this.$parent.items.length)
+        console.log("is phStyle",this.$parent)
         return {
         height: `${this.$parent.items.length * 400}px`,
         // position: 'relative'  
       }
         
+      },
+      mainItemsStyles: function(){
+         //
+        return {
+          top: `${this.$parent.$parent.r_img}px`
+        }
+
       },
        encyclopedia: function (){
             
@@ -90,10 +97,14 @@ export default {
               return value.event == this.$route.params.id;
             })
             
-            const three_items= this.$parent.items.filter((value, index, array) => {
+            let three_items= this.$parent.items.filter((value, index, array) => {
               return (value.id == +this_item[0].id || value.id  == (+this_item[0].id - 1) || value.id == (+this_item[0].id + 1));
             })
             //  return this.$parent.items;
+            three_items.forEach(function(each){
+              each["style_param"] = this_item[0]["id"];
+            })
+              
             return three_items;
        },
         encyclopediaph: function (){

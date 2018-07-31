@@ -108,7 +108,9 @@ background: url("./assets/alluminium.jpeg");
   /* z-index: 9999; */
 }
 
-
+#main-items {
+  position: fixed;
+}
 .splash-txt{
   position: absolute;
   top: 50%;
@@ -162,7 +164,7 @@ background: url("./assets/alluminium.jpeg");
   top: .18vh;
   left: -50vw;
   z-index: -5999;
-  -webkit-filter: blur(2.5px); /* Safari 6.0 - 9.0 */
+  -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
     filter: blur(10px);
 }
 
