@@ -1,6 +1,10 @@
 <template>
   <div id="app">
+    <!-- <div class="background-image">
+      </div> -->
+      <div class="app-content"
     <router-view/>
+  </div>
   </div>
 
 </template>
@@ -16,7 +20,7 @@ export default {
 
 <style>
 
-body, html{
+body{
   height: 100%;
 }
 
@@ -32,25 +36,65 @@ body, html{
   font-weight: 700;
 }
 
+html{
+  /* height: 100%; */
+  
+  /* background-image: url("./assets/alluminium.png"); */
+  /* height: 100vh; */
+  /* width: 400px; */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-size: 100vh; */
+  /* position: relative; */
+  /* background-position: right; */
+  /* transform: rotate(20deg); */
+  /* -webkit-filter: blur(5px);  */
+  /* Safari 6.0 - 9.0 */
+    /* filter: blur(5px); */
+}
+
 #app {
   font-family: 'PlayfairSC', 'Trade', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  height: 100%;
-  width: 100vw;
-
+  
   scroll-snap-destination: 0vw 0vh;
   -webkit-scroll-snap-type: proximity;
   -ms-scroll-snap-type: proximity;
   scroll-snap-type: proximity;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   overflow-y: auto;
+  /* z-index: -9999; */
 
 }
 
+.background-image{
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  /* width: 100vw; */
+background: url("./assets/alluminium.jpeg"); 
+  color: #fff; 
+  background-attachment: fixed;
+  /* background-size:50%; */
+  background-repeat: no-repeat;
+  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+    filter: blur(5px);
+    z-index: -999999;
+
+}
+.app-content{
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+
+}
 #app h3{
   font-family: 'PlayfairSC';
 }
@@ -59,16 +103,14 @@ body, html{
   font-family: 'Trade';
   font-size: 20px;
 }
-
-.splash-img{
-  background-image: url("./assets/alluminium.jpeg");
-  height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+.home {
+  /* overflow: hidden; */
+  /* z-index: 9999; */
 }
 
+#main-items {
+  position: fixed;
+}
 .splash-txt{
   position: absolute;
   top: 50%;
@@ -87,14 +129,45 @@ body, html{
 }
 
 .encyclopedia{
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-snap-destination: 0vw 0vh;
-  -webkit-scroll-snap-type: mandatory;
-  -ms-scroll-snap-type: mandatory;
-  scroll-snap-type: mandatory;
-	scroll-behavior: smooth;
+  /* height: 100vh; */
+  /* overflow-x: hidden; */
+  /* overflow-y: scroll; */
+  /* scroll-snap-destination: 0vw 0vh; */
+  /* -webkit-scroll-snap-type: mandatory; */
+  /* -ms-scroll-snap-type: mandatory; */
+  /* scroll-snap-type: mandatory; */
+	/* scroll-behavior: smooth; */
 }
+
+.splash-img { 
+  position: fixed; 
+  /* width: 15%; */
+  /* height: auto;  */
+  width: auto;
+  height: 500px;
+  /* width: 400px; */
+  top: .18vh;
+  left: -50vw;
+  z-index: -1999;
+  opacity: .2;
+    filter: sepia(100%) saturate(300%) brightness(0%) hue-rotate(180deg);
+    
+}
+
+.backgrear-img { 
+  position: fixed; 
+  /* width: 15%; */
+  /* height: auto;  */
+  width: auto;
+  height: 260vh;
+  /* width: 400px; */
+  top: .18vh;
+  left: -50vw;
+  z-index: -5999;
+  -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
+    filter: blur(10px);
+}
+
+
 
 </style>
