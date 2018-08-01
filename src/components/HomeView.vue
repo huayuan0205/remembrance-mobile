@@ -1,7 +1,7 @@
 <template>
   <div id="home-view">
     
-    <div >
+    <div>
       <img src="../assets/alluminium.png" class="backgrear-img" alt id="backgear"  :style="fixStyleBack">
       <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       

@@ -32,8 +32,13 @@ body{
 @font-face{
   font-family: 'Trade';
   src: url('assets/fonts/trade.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 700;
+  font-weight: normal;
+}
+
+@font-face{
+  font-family: 'Trade';
+  src: url('assets/fonts/trade-condensed.ttf') format('truetype');
+  font-weight: bold;
 }
 
 html{
@@ -58,7 +63,7 @@ html{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  color: #2c3e50;
+  /* color: #2c3e50; */
   
   scroll-snap-destination: 0vw 0vh;
   -webkit-scroll-snap-type: proximity;
@@ -95,14 +100,26 @@ background: url("./assets/alluminium.jpeg");
   z-index: 9999;
 
 }
-#app h3{
+#app h1{
   font-family: 'PlayfairSC';
+  color: #fff;
+}
+
+#app h3{
+  font-family: 'Trade';
+  color: #000;
 }
 
 #app p{
   font-family: 'Trade';
-  font-size: 20px;
+  color: #fff;
 }
+
+#app a {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .home {
   /* overflow: hidden; */
   /* z-index: 9999; */
@@ -154,6 +171,10 @@ background: url("./assets/alluminium.jpeg");
     
 }
 
+.splash-img {
+
+}
+
 .backgrear-img { 
   position: fixed; 
   /* width: 15%; */
@@ -164,8 +185,8 @@ background: url("./assets/alluminium.jpeg");
   top: .18vh;
   left: -50vw;
   z-index: -5999;
-  -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
-    filter: blur(10px);
+  -webkit-filter: blur(4px); /* Safari 6.0 - 9.0 */
+    filter: blur(4px);
 }
 
 

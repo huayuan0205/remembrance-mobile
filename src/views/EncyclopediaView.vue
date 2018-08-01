@@ -34,7 +34,7 @@ export default {
     EncyclopediaItem,
   },
    mounted: function(){
-    const self = this;
+    let self = this;
     console.log("home",self.encyclopedia)
     let element = self.$el
     console.log("elemnts", element);
@@ -49,9 +49,8 @@ export default {
     // d3el.remove("text")
     // d3el.append("text").text("")
     // d3el.text(function(){
-      // return formatedDate;
+    //   return formatedDate;
     // })
-
 
     // let t = d3.transition()
     // .duration(1750)
@@ -63,6 +62,7 @@ export default {
     // d3spotel.style("opacity",.4)
     // d3spotel.transition(t);
     // t.select("#fix"+self.encyclopedia.id).style("opacity",1)
+
 // to cancel scrolling you can call the returned function
     // cancelScroll()
   },
@@ -93,7 +93,7 @@ export default {
       },
        encyclopedia: function (){
             
-      const this_item = this.$parent.items.filter((value, index, array) => {
+            const this_item = this.$parent.items.filter((value, index, array) => {
               return value.event == this.$route.params.id;
             })
             

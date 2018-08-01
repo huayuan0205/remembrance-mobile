@@ -1,8 +1,12 @@
 <template>
   <div class="item" :style="itemStyle">
     <div v-on:click="onClick" class="encyclopedia-item" >
-      <h3 class="text-date" v-bind:id="slug_event"></h3>
-      <p class="text-desc" v-bind:id="fixid">{{ encyclopedia.spot }}. <span v-html="descWithLink"></span></p>
+      <h1 class="text-head">{{ encyclopedia.event }}</h1>
+      <div class="date">
+        <h3 class="text-date" v-html="formatDate"></h3>
+        <h3 class="text-year" v-html="formatYear"></h3>
+      </div>
+      <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
         <!-- <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="true" :inverted="true"/>
         <sui-dimmer v-else active :inverted="true"/> -->
 
@@ -79,6 +83,7 @@ export default {
   computed: {
     slug_event: function() {
       var slug = this.sanitizeTitle(this.$props.encyclopedia.event);
+      console.log('slug='+slug);
       return slug;
     },
     slug_spot: function() {
@@ -90,7 +95,8 @@ export default {
     },
 
     fixid: function (){
-      return "fix"+this.encyclopedia.id
+      console.log(this.encyclopedia.id);
+      return "fix"+this.encyclopedia.id;
     },
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
@@ -104,28 +110,36 @@ export default {
       }
     },
     formatDate: function(){
-      if(this.$props.encyclopedia.date.length == 4){
-        return moment(this.$props.encyclopedia.date, 'YYYY').format('YYYY');
-      } else {
-        return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY MMM DD');
-      }
+      return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('MMM DD');
+    },
+    formatYear: function(){
+      return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY');
     },
     itemStyle: function() {
       console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
       if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         return {
+          // display: `none`,
+          // visibility: `hidden`,
           // top: `0px`,
-          // position: `absolute`
+          top: `-100vh`,
+          position: `absolute`
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
+          // display: `none`,
+          // visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          // position: `absolute`
+          top: `100vh`,
+          position: `absolute`
         }
       } else {
         return {
+          // display: `block`,
+          // visibility: `visible`,
           // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-          // position: `absolute`
+          top: `40vh`,
+          position: `absolute`
         }
       }
     }
@@ -179,9 +193,6 @@ export default {
   display: inline-block;
   margin: 0 10px;
 } */
-a {
-  color: #42b983;
-}
 
 .snap-item{
   /* -webkit-scroll-snap-coordinate: 0vw -10vh;
@@ -190,33 +201,48 @@ a {
 }
 
 .encyclopedia-item{
-  padding: 20px 20px 20px 60px;
+  /* padding: 20px 60px 20px 20px; */
+  padding-left: 20px;
+  width: 80vw;
 }
 
-.text-date{
+.text-head{
   font-size: 24px;
+  letter-spacing: 3px;
+  text-transform: lowercase;
 }
 
-.text-desc{
-
+.date{
+  width: 100%;
+  display: inline-block;
 }
 
 .text-date{
-  font-family: 'Adobe Caslon Pro', serif;
+  float: left;
+  text-align: left;
+  margin-bottom: 0px;
+  font-weight: normal;
+  text-transform: uppercase;
+  /* font-family: 'Adobe Caslon Pro', serif;
   font-size: 18px;
   margin-top: 0px;
-  margin-bottom: 2px;
+  margin-bottom: 2px; */
+}
+
+.text-year{
+  float: right;
+  text-align: right;
+  margin-top: 0px;
+  font-weight: bold;
 }
 
 p{
-  font-family: sans-serif;
+  width: 80%;
+  display: inline-block;
+  /* font-family: sans-serif; */
   font-size: 18px;
   line-height: 1.2;
   margin-top: 2px;
   margin-bottom: 0px;
 }
-
-/* .text-loc{
-  font-weight: bolder;
-} */
 </style>
