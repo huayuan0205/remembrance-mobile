@@ -69,7 +69,7 @@ export default {
           self.items = d
 
         })
-      whenScroll('every 100px', function () {
+      whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
       // console.log(self.$route.params.id)

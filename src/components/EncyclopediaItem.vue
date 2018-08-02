@@ -1,5 +1,5 @@
 <template>
-  <div class="item" :style="itemStyle">
+  <div class="item" v-bind:style="activeStyle">
     <div v-on:click="onClick" class="encyclopedia-item" >
       <h1 class="text-head">{{ encyclopedia.event }}</h1>
       <div class="date">
@@ -78,12 +78,38 @@ export default {
       } else {
         return moment(date, 'MM/DD/YYYY').format('YYYY MMM DD');
       }
+    },
+    activeStyle: function() {
+      if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
+        return {
+          // display: `none`,
+          visibility: `hidden`,
+          // top: `0px`,
+          top: `-100vh`,
+          position: `absolute`
+        }
+      } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
+         return {
+          // display: `none`,
+          visibility: `hidden`,
+          // top: `${this.$parent.mainItemsStyles['top']}px`,
+          top: `100vh`,
+          position: `absolute`
+        }
+      } else {
+        return {
+          // display: `block`,
+          visibility: `visible`,
+          // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
+          top: `40vh`,
+          position: `absolute`
+        }
+      }
     }
   },
   computed: {
     slug_event: function() {
       var slug = this.sanitizeTitle(this.$props.encyclopedia.event);
-      console.log('slug='+slug);
       return slug;
     },
     slug_spot: function() {
@@ -118,6 +144,7 @@ export default {
     itemStyle: function() {
       console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
       if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
+        console.log(+this.$props.encyclopedia.id)
         return {
           // display: `none`,
           // visibility: `hidden`,
@@ -205,6 +232,8 @@ export default {
   padding-left: 20px;
   padding-right: 20px;
   width: 50vh;
+  height: 100vh;
+  padding-top: 45vh;
 }
 
 .text-head{
