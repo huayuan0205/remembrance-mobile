@@ -30,6 +30,11 @@ body{
 }
 
 @font-face{
+  font-family: 'CaslonSC';
+  src: url('assets/fonts/caslon.otf') format('opentype');
+}
+
+@font-face{
   font-family: 'Trade';
   src: url('assets/fonts/trade.ttf') format('truetype');
   font-weight: normal;
@@ -101,8 +106,9 @@ background: url("./assets/alluminium.jpeg");
 
 }
 #app h1{
-  font-family: 'PlayfairSC';
+  font-family: 'CaslonSC';
   color: #fff;
+  font-weight: normal;
 }
 
 #app h3{
@@ -171,8 +177,16 @@ background: url("./assets/alluminium.jpeg");
     
 }
 
-.splash-img {
+svg {
+  position: fixed; 
+  height: 100vh;
+  width: 100vw;
+  top: 8vh;
+}
 
+.backgrear-cr {
+  fill: #333;
+  opacity: .25;
 }
 
 .backgrear-img { 

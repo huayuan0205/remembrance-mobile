@@ -203,13 +203,15 @@ export default {
 .encyclopedia-item{
   /* padding: 20px 60px 20px 20px; */
   padding-left: 20px;
-  width: 80vw;
+  padding-right: 20px;
+  width: 50vh;
 }
 
 .text-head{
-  font-size: 24px;
-  letter-spacing: 3px;
+  font-size: 30px;
+  letter-spacing: 2px;
   text-transform: lowercase;
+  line-height: 1;
 }
 
 .date{
@@ -221,6 +223,7 @@ export default {
   float: left;
   text-align: left;
   margin-bottom: 0px;
+  font-size: 20px;
   font-weight: normal;
   text-transform: uppercase;
   /* font-family: 'Adobe Caslon Pro', serif;
@@ -233,6 +236,7 @@ export default {
   float: right;
   text-align: right;
   margin-top: 0px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -240,7 +244,7 @@ p{
   width: 80%;
   display: inline-block;
   /* font-family: sans-serif; */
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.2;
   margin-top: 2px;
   margin-bottom: 0px;

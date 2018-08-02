@@ -3,7 +3,10 @@
     
     <div>
       <img src="../assets/alluminium.png" class="backgrear-img" alt id="backgear"  :style="fixStyleBack">
-      <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle">
+      <!-- <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle"> -->
+      <svg>
+        <circle class="backgrear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" />
+      </svg>
       
       <!-- <div class="splash-txt"> -->
         <!-- <h3>cambridge<br>memory<br>spot</h3> -->
