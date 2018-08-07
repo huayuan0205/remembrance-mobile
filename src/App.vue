@@ -184,12 +184,12 @@ svg {
   top: 8vh;
 }
 
-.backgrear-cr {
+.backgear-cr {
   fill: #333;
   opacity: .25;
 }
 
-.backgrear-img { 
+.backgear-img { 
   position: fixed; 
   /* width: 15%; */
   /* height: auto;  */

@@ -72,13 +72,6 @@ export default {
       // console.log(this.encyclopedia.title)
       this.$router.push(this.encyclopedia.event)
     },
-    formatDater: function(date){
-      if(date.length == 4){
-        return moment(date, 'YYYY').format('YYYY');
-      } else {
-        return moment(date, 'MM/DD/YYYY').format('YYYY MMM DD');
-      }
-    },
     activeStyle: function() {
       if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         return {
@@ -121,7 +114,6 @@ export default {
     },
 
     fixid: function (){
-      console.log(this.encyclopedia.id);
       return "fix"+this.encyclopedia.id;
     },
     descWithLink: function() {
@@ -142,9 +134,9 @@ export default {
       return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY');
     },
     itemStyle: function() {
-      console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
+      // console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
       if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
-        console.log(+this.$props.encyclopedia.id)
+        // console.log(+this.$props.encyclopedia.id)
         return {
           // display: `none`,
           // visibility: `hidden`,
@@ -173,7 +165,7 @@ export default {
   },
   mounted: function(){
     // const self = this;
-    // // console.log(self)
+    // console.log(self);
     // let element = self.$el
     // let cancelScroll = this.$scrollTo(element, 4, options)
     // let d3el = d3.select("#"+self.slug_event)

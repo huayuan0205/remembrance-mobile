@@ -2,10 +2,10 @@
   <div id="home-view">
     
     <div>
-      <img src="../assets/alluminium.png" class="backgrear-img" alt id="backgear"  :style="fixStyleBack">
-      <!-- <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle"> -->
-      <svg>
-        <circle class="backgrear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" />
+      <img src="../assets/alluminium.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
+        <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle">
+      <svg id="svg">
+        <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
       
       <!-- <div class="splash-txt"> -->
@@ -61,14 +61,23 @@ export default {
       top: `${$(window)[0].screen.availHeight / 18  }px`,
       left: `-${r_img }px`,
       
-    }}
+    }},
+
   },
    mounted: function () {
-        var self = this;
-        d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
-          self.items = d
-
+      var self = this;
+      const dateArr = [];
+      d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
+        self.items = d
+        d.forEach(function(event){
+          const value = new Date(event.date);
+          dateArr.push({date: value});
         })
+      })
+      dateArr.sort(function(a,b){
+        return a.date - b.date; // doesn't work
+      });
+      console.log(dateArr);
       whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
@@ -113,9 +122,9 @@ if (scrollDirection > 0){
   self.scrollDir = 0;
 }
 self.offset = offset;
-	offset     = offset * .1;
+	offset = offset * .1;
   // add css transform with the offset variable
-  $('#backgear').css({
+  $('#leftgear').css({
     '-moz-transform': 'rotate(' + offset + 'deg)',
     '-webkit-transform': 'rotate(' + offset + 'deg)',
     '-o-transform': 'rotate(' + offset + 'deg)',

@@ -35,11 +35,11 @@ export default {
   },
    mounted: function(){
     let self = this;
-    console.log("home",self.encyclopedia)
+    // console.log("home",self.encyclopedia)
     let element = self.$el
-    console.log("elemnts", element);
+    // console.log("elemnts", element);
     let d3all = d3.select(element);
-    console.log(d3all)
+    // console.log(d3all)
     // d3all.style("opacity",.4)
     // let cancelScroll = this.$scrollTo(element, 4, options)
     // let d3el = d3.select("#"+self.slug_event)
@@ -77,7 +77,7 @@ export default {
    computed: {
 
       phStyles: function(){
-        console.log("is phStyle",this.$parent)
+        // console.log("is phStyle",this.$parent)
         return {
         height: `${this.$parent.items.length * 400}px`,
         // position: 'relative'  
