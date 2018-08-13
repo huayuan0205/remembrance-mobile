@@ -62,22 +62,38 @@ export default {
       left: `-${r_img }px`,
       
     }},
+    sorted_items: function(){
+      var self = this;
+      let dateArr = [];
+      self.items.forEach(function(event){
+          const value = new Date(event.date);
+          dateArr.push({date: value});
+        })
+        dateArr = dateArr.sort(self.sortByDateAscending);
+        return dateArr;
+     
+    }
 
+  },
+  methods:{
+    sortByDateAscending: function (a, b) {
+    // Dates will be cast to numbers automagically:
+    console.log(a.date - b.date)
+        return a.date - b.date;
+    }
+   
   },
    mounted: function () {
       var self = this;
-      const dateArr = [];
+      // let dateArr = [];
       d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
         self.items = d
         d.forEach(function(event){
           const value = new Date(event.date);
-          dateArr.push({date: value});
         })
       })
-      dateArr.sort(function(a,b){
-        return a.date - b.date; // doesn't work
-      });
-      console.log(dateArr);
+      
+
       whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
