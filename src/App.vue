@@ -87,7 +87,7 @@ html{
   right: 0;
   height: 100vh;
   /* width: 100vw; */
-background: url("./assets/alluminium.jpeg"); 
+  background: url("./assets/alluminium.jpeg"); 
   color: #fff; 
   background-attachment: fixed;
   /* background-size:50%; */

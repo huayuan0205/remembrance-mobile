@@ -47,7 +47,7 @@ export default {
   //   LinkElement
   // },
    methods: {
-     sanitizeTitle: function(title) {
+    sanitizeTitle: function(title) {
       var slug = "";
       // Change to lower case
       var titleLower = title.toLowerCase();
