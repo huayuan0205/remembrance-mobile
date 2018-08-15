@@ -6,7 +6,6 @@
         <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       <svg id="svg">
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
-
       </svg>
       
       <!-- <div class="splash-txt"> -->
@@ -39,10 +38,37 @@ export default {
   components: {
     EncyclopediaView
   },
-  data: function(){
-    return {items:[]}
+  // data: function(){
+  //   return {items:[]}
+  // },
+  methods: {
+    sortA: function(a,b){
+        return a.date - b.date; // doesn't work
+      }
   },
   computed:{
+    items: function(){
+      var self = this;
+      let dateArr = [];
+      self.$parent.items.forEach(function(event){
+          const value = new Date(event.date);
+          dateArr.push({
+                date: value,
+                coord_lat: event.coord_lat,
+                coord_lon: event.coord_lon,
+                event: event.event,
+                description: event.description,
+                id: event.id,
+                link: event.link,
+                linkText: event.linkText,
+                spot: event.spot
+              
+              });
+        })
+      dateArr = dateArr.sort(self.sortA);
+      // console.log("soer?", dateArr)
+      return dateArr
+    },
     fixStyleBack: function(){
       let r_img_bk = this.$parent.r_img_bk;
       let height_img_bk = r_img_bk * 2
@@ -63,102 +89,24 @@ export default {
       left: `-${r_img }px`,
       
     }},
-    sorted_items: function(){
-      var self = this;
-      let dateArr = [];
-      self.items.forEach(function(event){
-          const value = new Date(event.date);
-          dateArr.push({date: value});
-      })
-      dateArr = dateArr.sort(self.sortByDateAscending());
-      return dateArr;
-    }
 
-  },
-  methods:{
-    sortByDateAscending: function (a, b) {
-        return a.date - b.date;
-    },
-    getScale: function () {
-      const scaleYear = d3.scaleTime();
-      const domainExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians
-      const dateArr = this.sorted_items;
-      const rangeExtent = [dateArr[0],dateArr[dateArr.length-1]]
-      scaleYear
-        .domain(domainExtent)
-        .range(rangeExtent);
-      return scaleYear;
-    },
-   convertAngleToPosition: function (year, axis) {
-      const rImg = this.$parent.r_img;
-      const rAdd = 12;
-
-     	// find angle
-      const scale = this.getScale(); // does this work?
-      const theta = scale(year);
-      
-      // find r
-      // treats function like "forEach" with assignment to currYear, prevYear, and i
-      currYear = year;
-      if(prevYear == null){ let prevYear = year; }
-      if(currYear != prevYear){ let i = 1; }
-      else if(currYear == prevYear){ i++; } // stacks dots of events with same year
-      const r = rImg + (i * rAdd);
-      
-      // convert to position using theta and r
-      let position;
-      if(axis == 'x'){ position = r * Math.cos(theta); }
-      else if(axis == 'y'){ position = r * Math.sin(theta); }
-      
-      // update prevYear and return position
-      prevYear = year;
-      return position;
-   },
-   appendTimeline: function () {
-     let i = 1,
-	      currYear,
-	      prevYear;
-
-    d3.select('#svg')
-      .selectAll('.dots')
-      .data(this.sorted_items) // does this work?
-      .enter()
-      .append('circle')
-      .attr('class','dots')
-      .attr('id',function(d){
-        const id = d.date.getFullYear() + '-' + d.date.getMonth() + '-' + d.date.getYear();
-        return id;
-      })
-      .attr('cx',function(d){
-        const position = this.angleToPosition(d.date.getFullYear(),'x'); // does this work?
-        return position;
-      })
-      .attr('cy',function(d){
-        const position = this.angleToPosition(d.date.getFullYear(),'y'); // does this work?
-        return position;
-      })
-      .attr('r',4) // will change for active item
-      .style('fill','white'); // will change for active item
-   },
-   test: function () {
-     console.log('test function runs');
-     const data = this.sorted_items;
-     console.log(data);
-   }
   },
    mounted: function () {
       var self = this;
-      // let dateArr = [];
-      d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
-        self.items = d
-        // d.forEach(function(event){
-        //   const value = new Date(event.date);
-        // })
-      })
+      // const dateArr = [];
+      // d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
+      //   self.items = d
+      //   d.forEach(function(event){
+      //     const value = new Date(event.date);
+      //     dateArr.push({date: value});
+      //   })
+      // })
 
-      // this.appendTimeline();
-      this.test();
-
+      // dateArr.sort(function(a,b){
+      //   return a.date - b.date; // doesn't work
+      // });
+      
+      // console.log(dateArr);
       whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
