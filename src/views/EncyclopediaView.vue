@@ -92,9 +92,9 @@ export default {
 
       },
        encyclopedia: function (){
-            console.log("this.$parent.items ",this.$parent.items, this.$parent)
+            // console.log("this.$parent.items ",this.$parent.items, this.$parent)
             const this_item = this.$parent.items.filter((value, index, array) => {
-              console.log("this.$route.params.id; ",this.$route.params.id, value)
+              // console.log("this.$route.params.id; ",this.$route.params.id, value)
               return value.event == this.$route.params.id;
             })
             

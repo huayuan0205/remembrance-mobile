@@ -181,7 +181,6 @@ svg {
   position: fixed; 
   height: 100vh;
   width: 100vw;
-  top: 8vh;
 }
 
 .backgear-cr {

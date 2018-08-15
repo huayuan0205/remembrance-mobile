@@ -44,7 +44,98 @@ export default {
   methods: {
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
+    },
+    getScale: function () {
+      const scaleYear = d3.scaleTime();
+      const rangeExtent = [-Math.PI/2,Math.PI/2]; // semi-circle in radians, top to bottom
+      const dateArr = this.items;
+      const domainExtent = [dateArr[0].date.getFullYear(),dateArr[dateArr.length-1].date.getFullYear()];
+      scaleYear
+        .domain(domainExtent)
+        .range(rangeExtent);
+      return scaleYear;
+    },
+    convertAngleToPosition: function (d, axis) {
+      const year = d.date.getFullYear();
+      const rImg = this.$parent.r_img;
+      const rAdd = 12;
+
+     	// find angle
+      const scale = this.getScale();
+      const theta = scale(year);
+
+      // stacks dots of events with same year
+      let count = 1;
+      let i = this.items.map(function(e) { return e.date; }).indexOf(d.date);
+      let iYear;
+      do{
+        i--;
+        if(i >= 0){
+          iYear = this.items[i].date.getFullYear();
+        }else{
+          iYear = null;
+        }
+        if(iYear == year){ count++; }
       }
+      while(iYear == year);
+
+      // calculate r
+      const r = rImg + (count * rAdd);
+      
+      // convert to position using theta and r
+      let position;
+      if(axis == 'x'){ position = r * Math.cos(theta); }
+      else if(axis == 'y'){ position = r * Math.sin(theta); }
+
+      return position;
+   },
+   appendTimeline: function () {
+      const self = this;
+      const rImg = self.$parent.r_img;
+      const style = self.fixStyle;
+
+      d3.select('#svg')
+        .append('g')
+        .attr('id','timeline')
+        .attr('transform',function(){
+          const yShift = rImg + parseInt(style.top, 10);
+          return `translate(0,${yShift})`;
+        });
+
+      d3.select('#timeline')
+        .append('circle')
+        .attr('id','position-reference')
+        .attr('cx',0)
+        .attr('cy',0)
+        .attr('r',rImg)
+        .style('fill','none');
+        // .style('stroke-width','1px')
+        // .style('stroke','white');
+
+      d3.select('#timeline')
+        .selectAll('.dots')
+        .data(this.items) // does this work?
+        .enter()
+        .append('circle')
+        .attr('class','dots')
+        .attr('id',function(d){
+          const id = d.date.getFullYear() + '-' + d.date.getMonth() + '-' + d.date.getDate();
+          return id;
+        })
+        .attr('cx',function(d){
+          const position = self.convertAngleToPosition(d,'x'); // does this work?
+          return position;
+        })
+        .attr('cy',function(d){
+          const position = self.convertAngleToPosition(d,'y'); // does this work?
+          return position;
+        })
+        .attr('r',2) // will change for active item
+        .style('fill','white'); // will change for active items
+   },
+   test: function(){
+
+   }
   },
   computed:{
     items: function(){
@@ -92,21 +183,10 @@ export default {
 
   },
    mounted: function () {
-      var self = this;
-      // const dateArr = [];
-      // d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
-      //   self.items = d
-      //   d.forEach(function(event){
-      //     const value = new Date(event.date);
-      //     dateArr.push({date: value});
-      //   })
-      // })
-
-      // dateArr.sort(function(a,b){
-      //   return a.date - b.date; // doesn't work
-      // });
+      const self = this;
       
-      // console.log(dateArr);
+      self.appendTimeline();
+
       whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
