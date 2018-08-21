@@ -1,5 +1,5 @@
 <template>
-  <div class="item" v-bind:style="activeStyle">
+  <div class="item" v-bind:style="mstyle">
     <div v-on:click="onClick" class="encyclopedia-item" >
       <div class="item-head">
         <h2 class="text-id">spot id</h2>
@@ -47,10 +47,24 @@ let options = {
 
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia"],
+  props: ["encyclopedia","currentSpot","mstyle"],
   // components: {
   //   LinkElement
   // },
+  data () {
+    return {
+      // we have a local value that represents the user's selected region
+      currentSpot: this.$parent.currentSpot,
+    }},
+    watch: {
+  '$route.params.id': {
+    handler () {
+      this.currentSpot = this.$route.params.id;
+      this.mstyle = this.activeStyle();
+    },
+    immediate: true,
+  },
+},
    methods: {
     sanitizeTitle: function(title) {
       var slug = "";
@@ -78,28 +92,20 @@ export default {
       this.$router.push(this.encyclopedia.event)
     },
     activeStyle: function() {
-      if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
+      if (this.encyclopedia.event == this.currentSpot){
         return {
           // display: `none`,
-          visibility: `hidden`,
-          // top: `0px`,
-          top: `-100vh`,
-          position: `absolute`
-        }
-      } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
-         return {
-          // display: `none`,
-          visibility: `hidden`,
+          visibility: `visible`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `100vh`,
+          top: `10vh`,
           position: `absolute`
         }
       } else {
         return {
           // display: `block`,
-          visibility: `visible`,
+          visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-          top: `40vh`,
+          top: `100vh`,
           position: `absolute`
         }
       }
@@ -169,6 +175,19 @@ export default {
     }
   },
   mounted: function(){
+    let self = this;
+
+
+this.$nextTick(function () {
+    this.mstyle = this.activeStyle();
+})
+
+
+    this.currentSpot = this.$route.params.id
+    this.$nextTick(function () {
+      self.$parent.$parent.appendTimeline();
+      
+    })
     // const self = this;
     // console.log(self);
     // let element = self.$el

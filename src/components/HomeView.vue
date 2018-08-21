@@ -34,13 +34,24 @@ import * as whenScroll from 'when-scroll'
 
 export default {
   name: 'HomeView',
-  props: ["encyclopedia"],
+  props: ["items"],
   components: {
     EncyclopediaView
   },
-  // data: function(){
-  //   return {items:[]}
-  // },
+   data () {
+    return {
+      // we have a local value that represents the user's selected region
+      currentSpot: null,
+    }},
+    watch: {
+  '$route.params.id': {
+    handler () {
+      this.currentSpot = this.$route.params.id;
+      // this.style = this.activeStyle();
+    },
+    immediate: true,
+  },
+},
   methods: {
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
@@ -107,24 +118,24 @@ export default {
           return `translate(0,${yShift})`;
         });
 
-      // d3.select('#timeline')
-      //   .append('circle')
-      //   .attr('id','position-reference')
-      //   .attr('cx',0)
-      //   .attr('cy',0)
-      //   .attr('r',rImg)
-      //   .style('fill','none')
-      //   .style('stroke-width','1px')
-      //   .style('stroke','white');
+      d3.select('#timeline')
+        .append('circle')
+        .attr('id','position-reference')
+        .attr('cx',0)
+        .attr('cy',0)
+        .attr('r',rImg)
+        .style('fill','none')
+        .style('stroke-width','1px')
+        .style('stroke','white');
 
-      // d3.select('#timeline')
-      //   .append('line')
-      //   .attr('y1',0)
-      //   .attr('y2',0)
-      //   .attr('x1',-rImg)
-      //   .attr('x2',rImg)
-      //   .style('stroke-width','1px')
-      //   .style('stroke','white');
+      d3.select('#timeline')
+        .append('line')
+        .attr('y1',0)
+        .attr('y2',0)
+        .attr('x1',-rImg)
+        .attr('x2',rImg)
+        .style('stroke-width','1px')
+        .style('stroke','white');
 
       d3.select('#timeline')
         .selectAll('.dots')
@@ -196,7 +207,10 @@ export default {
               });
         })
       dateArr = dateArr.sort(self.sortA);
-      // console.log("soer?", dateArr)
+      for (var j=1;j < dateArr.length; j=j+1){
+        dateArr[j].id = j;
+      }
+      console.log("soer?", dateArr)
       return dateArr
     },
     fixStyleBack: function(){
@@ -221,12 +235,42 @@ export default {
     }},
 
   },
+  watch:{
+    
+     items: function(newItems,oldItems){
+      var self = this;
+      let dateArr = [];
+      self.$parent.items.forEach(function(event){
+          const value = new Date(event.date);
+          dateArr.push({
+                date: value,
+                coord_lat: event.coord_lat,
+                coord_lon: event.coord_lon,
+                event: event.event,
+                description: event.description,
+                id: event.id,
+                link: event.link,
+                linkText: event.linkText,
+                spot: event.spot
+              
+              });
+        })
+      dateArr = dateArr.sort(self.sortA);
+      // console.log("soer?", dateArr)
+      return dateArr
+    }
+   },
    mounted: function () {
-      const self = this;
-      
-      self.appendTimeline();
+     let self = this;
 
-      whenScroll('every 400px', function () {
+     this.$nextTick(function () {
+    // Code that will run only after the
+    // entire view has been rendered
+    
+      
+      // self.appendTimeline();
+
+      whenScroll('every 100px', function () {
 
       // this.$router.push(this.encyclopedia.event)
       // console.log(self.$route.params.id)
@@ -285,6 +329,10 @@ self.offset = offset;
     'transform': 'rotate(' + offset + 'deg)',
   });
 });
+  })
+
+
+      
   }
 
 }

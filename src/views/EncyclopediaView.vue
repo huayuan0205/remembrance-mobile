@@ -30,6 +30,20 @@ window['jQuery'] = window['$'] = $;
 export default {
   name: 'encyclopedia',
   props:["timeline"],
+  data () {
+    return {
+      // we have a local value that represents the user's selected region
+      currentSpot: this.$parent.currentSpot,
+    }},
+    watch: {
+  '$route.params.id': {
+    handler () {
+      this.currentSpot = this.$route.params.id;
+      // this.style = this.activeStyle();
+    },
+    immediate: true,
+  },
+},
   components: {
     EncyclopediaItem,
   },
