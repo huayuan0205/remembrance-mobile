@@ -111,6 +111,12 @@ html{
   font-weight: normal;
 }
 
+#app h2{
+  font-family: 'CaslonSC';
+  color: #fff;
+  font-weight: normal;
+}
+
 #app h3{
   font-family: 'Trade';
   color: #000;

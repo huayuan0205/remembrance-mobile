@@ -1,12 +1,17 @@
 <template>
   <div class="item" v-bind:style="activeStyle">
     <div v-on:click="onClick" class="encyclopedia-item" >
-      <h1 class="text-head">{{ encyclopedia.event }}</h1>
-      <div class="date">
-        <h3 class="text-date" v-html="formatDate"></h3>
-        <h3 class="text-year" v-html="formatYear"></h3>
+      <div class="item-head">
+        <h2 class="text-id">spot id</h2>
+        <h1 class="text-head">{{ encyclopedia.event }}</h1>
       </div>
-      <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
+      <div class="item-body">
+        <div class="date">
+          <h3 class="text-date" v-html="formatDate"></h3>
+          <h3 class="text-year" v-html="formatYear"></h3>
+        </div>
+        <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
+      </div>
         <!-- <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="true" :inverted="true"/>
         <sui-dimmer v-else active :inverted="true"/> -->
 
@@ -139,7 +144,7 @@ export default {
         // console.log(+this.$props.encyclopedia.id)
         return {
           // display: `none`,
-          // visibility: `hidden`,
+          visibility: `hidden`,
           // top: `0px`,
           top: `-100vh`,
           position: `absolute`
@@ -147,7 +152,7 @@ export default {
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
           // display: `none`,
-          // visibility: `hidden`,
+          visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           top: `100vh`,
           position: `absolute`
@@ -155,9 +160,9 @@ export default {
       } else {
         return {
           // display: `block`,
-          // visibility: `visible`,
+          visibility: `visible`,
           // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-          top: `40vh`,
+          top: `0vh`,
           position: `absolute`
         }
       }
@@ -222,17 +227,41 @@ export default {
 .encyclopedia-item{
   /* padding: 20px 60px 20px 20px; */
   padding-left: 20px;
-  padding-right: 20px;
   width: 50vh;
   height: 100vh;
-  padding-top: 45vh;
+}
+
+.item-head{
+  /*position: absolute;
+  top: 0vh;*/
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.item-body{
+ /* position: absolute;
+  top: 50vh;*/
+  padding-right: 20px;
+}
+
+.text-id{
+  /*align-self: flex-end;*/
+  margin-bottom: 0px;
+  /*padding-bottom: 20px;*/
 }
 
 .text-head{
+  /*align-self: flex-end;*/
   font-size: 30px;
   letter-spacing: 2px;
   text-transform: lowercase;
   line-height: 1;
+  margin-top: 0px;
 }
 
 .date{

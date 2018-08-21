@@ -90,9 +90,14 @@ export default {
       return position;
    },
    appendTimeline: function () {
+      // console.log('append timeline runs');
       const self = this;
       const rImg = self.$parent.r_img;
       const style = self.fixStyle;
+      // console.log(this.items);
+
+      d3.selectAll('.item-head')
+        .style('margin-top',(3*parseInt(style.top, 10)/5)+'px');
 
       d3.select('#svg')
         .append('g')
@@ -102,39 +107,73 @@ export default {
           return `translate(0,${yShift})`;
         });
 
-      d3.select('#timeline')
-        .append('circle')
-        .attr('id','position-reference')
-        .attr('cx',0)
-        .attr('cy',0)
-        .attr('r',rImg)
-        .style('fill','none');
-        // .style('stroke-width','1px')
-        // .style('stroke','white');
+      // d3.select('#timeline')
+      //   .append('circle')
+      //   .attr('id','position-reference')
+      //   .attr('cx',0)
+      //   .attr('cy',0)
+      //   .attr('r',rImg)
+      //   .style('fill','none')
+      //   .style('stroke-width','1px')
+      //   .style('stroke','white');
+
+      // d3.select('#timeline')
+      //   .append('line')
+      //   .attr('y1',0)
+      //   .attr('y2',0)
+      //   .attr('x1',-rImg)
+      //   .attr('x2',rImg)
+      //   .style('stroke-width','1px')
+      //   .style('stroke','white');
 
       d3.select('#timeline')
         .selectAll('.dots')
-        .data(this.items) // does this work?
+        .data(self.items)
         .enter()
         .append('circle')
         .attr('class','dots')
         .attr('id',function(d){
-          const id = d.date.getFullYear() + '-' + d.date.getMonth() + '-' + d.date.getDate();
+          const id = 'd' + d.date.getFullYear() + '-' + d.date.getMonth() + '-' + d.date.getDate();
           return id;
         })
         .attr('cx',function(d){
-          const position = self.convertAngleToPosition(d,'x'); // does this work?
+          const position = self.convertAngleToPosition(d,'x');
           return position;
         })
         .attr('cy',function(d){
-          const position = self.convertAngleToPosition(d,'y'); // does this work?
+          const position = self.convertAngleToPosition(d,'y');
           return position;
         })
         .attr('r',2) // will change for active item
         .style('fill','white'); // will change for active items
    },
-   test: function(){
+   rotateTimeline: function(event){
+    // const date = 'd' + event.date.getFullYear() + '-' + event.date.getMonth() + '-' + event.date.getDate();
+    const year = event.date.getFullYear();
+    // const cx = d3.select(`#${date}`).attr('cx');
+    // const cy = d3.select(`#${date}`).attr('cy');
+    const scale = this.getScale();
+    const theta = scale(year);
+    const degree = theta * 180 / Math.PI;
+    const rImg = self.$parent.r_img;
+    const style = self.fixStyle;
+    d3.select('#timeline')
+      .attr('transform',function(){
+        const yShift = rImg + parseInt(style.top, 10);
+        return `translate(0,${yShift}) rotate(${degree})`;
+        });
 
+    d3.selectAll('.dots')
+      .attr('r',function(d){
+        if(d.date.getTime() == event.date.getTime()){
+          return 4;
+        }else{ return 2; }
+      })
+      .style('fill',function(d){
+        if(d.date.getTime() == event.date.getTime()){
+          return 'black';
+        }else{ return 'white'; }
+      });
    }
   },
   computed:{
@@ -212,8 +251,13 @@ export default {
             })
 
       // console.log("this_item",this_item)
-      // console.log("to_item", to_item)
-      self.$router.push(to_item[0].event)
+      // console.log("to_item", to_item[0]);
+      self.$router.push(to_item[0].event);
+
+      // rotate timeline
+      // if(to_item[0].event !== null){
+      //   self.rotateTimeline(to_item[0]);
+      // }
 });
 
 
