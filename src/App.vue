@@ -178,8 +178,8 @@ html{
   top: .18vh;
   left: -50vw;
   z-index: -1999;
-  opacity: .2;
-    filter: sepia(100%) saturate(300%) brightness(0%) hue-rotate(180deg);
+  opacity: .4;
+    filter: sepia(30%) saturate(200%) brightness(70%) hue-rotate(180deg);
     
 }
 

@@ -101,13 +101,46 @@ export default {
           position: `absolute`
         }
       } else {
+        if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
+        // console.log(+this.$props.encyclopedia.id)
         return {
-          // display: `block`,
-          visibility: `hidden`,
-          // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-          top: `100vh`,
-          position: `absolute`
+          // display: `none`,
+          opacity:0.2,
+          visibility: `visible`,
+          // top: `-5px`,
+          top: `0vh`,
+          position: `absolute`,
+          transform: 'rotate(-45deg)',
+          '-webkit-transform': 'rotate(-45deg)',
+          '-o-transform': 'rotate(-45deg)',
+          '-webkit-transform-origin-x': '-15vw'
         }
+      } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
+         return {
+          // display: `none`,
+          opacity:0.2,
+          visibility: `visible`,
+          // top: `${this.$parent.mainItemsStyles['top']}px`,
+          top: `25vh`,
+          position: `absolute`,
+          transform: 'rotate(45deg)',
+           '-webkit-transform-origin-x': '-10vw'
+        }
+      }
+
+      else {
+        return {
+          // display: `none`,
+          opacity:0.2,
+          visibility: `visible`,
+          // top: `${this.$parent.mainItemsStyles['top']}px`,
+          top: `25vh`,
+          position: `absolute`,
+          transform: 'rotate(45deg)',
+           '-webkit-transform-origin-x': '-10vw'
+        }
+      }
+        
       }
     }
   },
@@ -144,35 +177,35 @@ export default {
     formatYear: function(){
       return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY');
     },
-    itemStyle: function() {
-      // console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
-      if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
-        // console.log(+this.$props.encyclopedia.id)
-        return {
-          // display: `none`,
-          visibility: `hidden`,
-          // top: `0px`,
-          top: `-100vh`,
-          position: `absolute`
-        }
-      } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
-         return {
-          // display: `none`,
-          visibility: `hidden`,
-          // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `100vh`,
-          position: `absolute`
-        }
-      } else {
-        return {
-          // display: `block`,
-          visibility: `visible`,
-          // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-          top: `0vh`,
-          position: `absolute`
-        }
-      }
-    }
+    // itemStyle: function() {
+    //   // console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
+    //   if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
+    //     // console.log(+this.$props.encyclopedia.id)
+    //     return {
+    //       // display: `none`,
+    //       visibility: `hidden`,
+    //       // top: `0px`,
+    //       top: `-100vh`,
+    //       position: `absolute`
+    //     }
+    //   } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
+    //      return {
+    //       // display: `none`,
+    //       visibility: `hidden`,
+    //       // top: `${this.$parent.mainItemsStyles['top']}px`,
+    //       top: `100vh`,
+    //       position: `absolute`
+    //     }
+    //   } else {
+    //     return {
+    //       // display: `block`,
+    //       visibility: `visible`,
+    //       // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
+    //       top: `0vh`,
+    //       position: `absolute`
+    //     }
+    //   }
+    // }
   },
   mounted: function(){
     let self = this;
