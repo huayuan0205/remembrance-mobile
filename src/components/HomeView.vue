@@ -34,7 +34,7 @@ import * as whenScroll from 'when-scroll'
 
 export default {
   name: 'HomeView',
-  props: ["items"],
+  // props: ["items"],
   components: {
     EncyclopediaView
   },
@@ -43,16 +43,17 @@ export default {
       // we have a local value that represents the user's selected region
       currentSpot: null,
     }},
-    watch: {
-  '$route.params.id': {
-    handler () {
-      this.currentSpot = this.$route.params.id;
-      // this.style = this.activeStyle();
-    },
-    immediate: true,
-  },
-},
+//     watch: {
+//   '$route.params.id': {
+//     handler () {
+//       this.currentSpot = this.$route.params.id;
+//       // this.style = this.activeStyle();
+//     },
+//     immediate: true,
+//   },
+// },
   methods: {
+      
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
     },
@@ -207,7 +208,7 @@ export default {
               });
         })
       dateArr = dateArr.sort(self.sortA);
-      for (var j=1;j < dateArr.length; j=j+1){
+      for (var j=0;j < dateArr.length; j=j+1){
         dateArr[j].id = j;
       }
       console.log("soer?", dateArr)
