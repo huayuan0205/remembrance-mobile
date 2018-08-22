@@ -1,5 +1,5 @@
 <template>
-  <div class="item" v-bind:style="mstyle">
+  <div class="item" v-bind:style="activeStyle()" >
     <div v-on:click="onClick" class="encyclopedia-item" >
       <div class="item-head">
         <h2 class="text-id">{{ encyclopedia.spot_id }}</h2>
@@ -47,20 +47,23 @@ let options = {
 
 export default {
   name: 'EncyclopediaItem',
-  props: ["encyclopedia","currentSpot","mstyle"],
+  props: ["encyclopedia","mstyle"],
   // components: {
   //   LinkElement
   // },
   data () {
     return {
       // we have a local value that represents the user's selected region
-      currentSpot: this.$parent.currentSpot,
+      currentSpot: null//this.$parent.currentSpot,
     }},
     watch: {
   '$route.params.id': {
     handler () {
       this.currentSpot = this.$route.params.id;
-      this.mstyle = this.activeStyle();
+      // let val = 
+      let val = this.activeStyle();
+      // this.mstyle = this.activeStyle();   
+      this.$emit('updatemstyle', this.currentSpot)
     },
     immediate: true,
   },
@@ -92,10 +95,12 @@ export default {
       this.$router.push(this.encyclopedia.event)
     },
     activeStyle: function() {
+      // console.log("active this",this)
       if (this.encyclopedia.event == this.currentSpot){
         return {
           // display: `none`,
           visibility: `visible`,
+          opacity:1,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           // top: `10vh`,
           top: `0vh`,
@@ -127,6 +132,8 @@ export default {
           top: `25vh`,
           position: `absolute`,
           transform: 'rotate(45deg)',
+          '-webkit-transform': 'rotate(45deg)',
+          '-o-transform': 'rotate(45deg)',
            '-webkit-transform-origin-x': '-10vw'
         }
       }
@@ -135,11 +142,12 @@ export default {
         return {
           // display: `none`,
           opacity:0.2,
-          visibility: `visible`,
+          visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           top: `25vh`,
-          position: `absolute`,
           transform: 'rotate(45deg)',
+          '-webkit-transform': 'rotate(45deg)',
+          '-o-transform': 'rotate(45deg)',
            '-webkit-transform-origin-x': '-10vw'
         }
       }
@@ -156,9 +164,9 @@ export default {
       var slug = this.sanitizeTitle(this.$props.encyclopedia.spot);
       return slug;
     },
-    id: function (){
-      return this.encyclopedia.id
-    },
+    // id: function (){
+    //   return this.encyclopedia.id
+    // },
 
     fixid: function (){
       return "fix"+this.encyclopedia.id;
@@ -214,14 +222,14 @@ export default {
     let self = this;
 
 
-    this.$nextTick(function () {
-        this.mstyle = this.activeStyle();
-    })
 
-    this.currentSpot = this.$route.params.id
+    // this.currentSpot = this.$route.params.id
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();
       self.$parent.$parent.rotateTimeline(this.$route.params.id);
+      //  this.mstyle = this.activeStyle();
+
+      
     })
     // const self = this;
     // console.log(self);
@@ -271,7 +279,9 @@ export default {
   display: inline-block;
   margin: 0 10px;
 } */
-
+.item {
+  opacity: 0;
+}
 .snap-item{
   /* -webkit-scroll-snap-coordinate: 0vw -10vh;
   -ms-scroll-snap-coordinate: 0vw -10vh;

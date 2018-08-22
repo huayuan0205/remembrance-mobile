@@ -7,11 +7,13 @@
     will use d3
     
  -->
-  <div id="main-items">
+  <div id="main-items" >
             <encyclopedia-item
+            v-on:updatemstyle="metstyle()"
         v-for="item in encyclopedia"
         v-bind:encyclopedia="item"
         :key="item.id"
+        
         > </encyclopedia-item>
   </div>
 <div id="phantom-list" :style="phStyles"></div>
@@ -30,20 +32,22 @@ window['jQuery'] = window['$'] = $;
 export default {
   name: 'encyclopedia',
   props:["timeline"],
-  data () {
+  data(){
     return {
-      // we have a local value that represents the user's selected region
-      currentSpot: this.$parent.currentSpot,
-    }},
-    watch: {
-  '$route.params.id': {
-    handler () {
-      this.currentSpot = this.$route.params.id;
-      // this.style = this.activeStyle();
-    },
-    immediate: true,
+      mstyle: null
+    }
   },
-},
+ 
+    
+    
+  methods: {
+    metstyle: function(){
+       console.log("mstyle in encyclo view but currently is just a place holder to see how this get s called becuase the child emits an event")
+       
+       
+     }
+   
+  },
   components: {
     EncyclopediaItem,
   },
@@ -89,7 +93,7 @@ export default {
 
    },
    computed: {
-
+     
       phStyles: function(){
         // console.log("is phStyle",this.$parent)
         return {
@@ -111,16 +115,15 @@ export default {
               // console.log("this.$route.params.id; ",this.$route.params.id, value)
               return value.event == this.$route.params.id;
             })
-            
-            let three_items= this.$parent.items.filter((value, index, array) => {
-              return (value.id == +this_item[0].id || value.id  == (+this_item[0].id - 1) || value.id == (+this_item[0].id + 1));
-            })
-            //  return this.$parent.items;
-            three_items.forEach(function(each){
+            this.$parent.items.forEach(function(each){
               each["style_param"] = this_item[0]["id"];
             })
+            
+            // let three_items= [];
+             return this.$parent.items;
+            
               
-            return three_items;
+            // return three_items;
        },
         encyclopediaph: function (){
             
