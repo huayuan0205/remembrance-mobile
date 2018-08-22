@@ -2,7 +2,7 @@
   <div class="item" v-bind:style="mstyle">
     <div v-on:click="onClick" class="encyclopedia-item" >
       <div class="item-head">
-        <h2 class="text-id">spot id</h2>
+        <h2 class="text-id">{{ encyclopedia.spot_id }}</h2>
         <h1 class="text-head">{{ encyclopedia.event }}</h1>
       </div>
       <div class="item-body">
@@ -97,7 +97,8 @@ export default {
           // display: `none`,
           visibility: `visible`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `10vh`,
+          // top: `10vh`,
+          top: `0vh`,
           position: `absolute`
         }
       } else {
@@ -106,7 +107,8 @@ export default {
         return {
           // display: `none`,
           opacity:0.2,
-          visibility: `visible`,
+          // visibility: `visible`,
+          visibility: `hidden`,
           // top: `-5px`,
           top: `0vh`,
           position: `absolute`,
@@ -119,7 +121,8 @@ export default {
          return {
           // display: `none`,
           opacity:0.2,
-          visibility: `visible`,
+          // visibility: `visible`,
+          visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           top: `25vh`,
           position: `absolute`,
@@ -211,15 +214,14 @@ export default {
     let self = this;
 
 
-this.$nextTick(function () {
-    this.mstyle = this.activeStyle();
-})
-
+    this.$nextTick(function () {
+        this.mstyle = this.activeStyle();
+    })
 
     this.currentSpot = this.$route.params.id
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();
-      
+      self.$parent.$parent.rotateTimeline(this.$route.params.id);
     })
     // const self = this;
     // console.log(self);
@@ -304,6 +306,7 @@ this.$nextTick(function () {
 .text-id{
   /*align-self: flex-end;*/
   margin-bottom: 0px;
+  text-transform: lowercase;
   /*padding-bottom: 20px;*/
 }
 
