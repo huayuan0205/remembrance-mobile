@@ -1,7 +1,7 @@
 <template>
   <div class="item" v-bind:style="activeStyle()" >
-    <div v-on:click="onClick" class="encyclopedia-item" >
-      <div class="item-head">
+    <div v-on:click="onClick" class="encyclopedia-item" v-bind:style="itemWidth()" >
+      <div class="item-head" v-bind:style="headStyle()">
         <h2 class="text-id">{{ encyclopedia.spot_id }}</h2>
         <h1 class="text-head">{{ encyclopedia.event }}</h1>
       </div>
@@ -153,6 +153,22 @@ export default {
       }
         
       }
+    },
+    itemWidth: function() {
+      let r_img = this.$parent.$parent.$parent.r_img;
+      console.log(r_img);
+      return {
+        width: `${r_img}px`
+      }
+    },
+    headStyle: function() {
+      let r_img = this.$parent.$parent.$parent.r_img;
+      let style = this.$parent.$parent.fixStyle;
+      let top_offset = parseInt(style.top, 10)-13;
+      return {
+        'margin-top': `${top_offset}px`,
+        height: `${r_img}px`
+      }
     }
   },
   computed: {
@@ -226,7 +242,8 @@ export default {
     // this.currentSpot = this.$route.params.id
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();
-      self.$parent.$parent.rotateTimeline(this.$route.params.id);
+      // console.log(self.$route.params.id);
+      self.$parent.$parent.rotateTimeline(self.$route.params.id);
       //  this.mstyle = this.activeStyle();
 
       
@@ -297,14 +314,14 @@ export default {
 
 .item-head{
   /*position: absolute;
-  top: 0vh;*/
-  height: 50vh;
+  top: 0vh;
+  height: 50vh;*/
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-right: 20px;
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .item-body{
@@ -317,12 +334,13 @@ export default {
   /*align-self: flex-end;*/
   margin-bottom: 0px;
   text-transform: lowercase;
+  font-size: 20px;
   /*padding-bottom: 20px;*/
 }
 
 .text-head{
   /*align-self: flex-end;*/
-  font-size: 30px;
+  font-size: 34px;
   letter-spacing: 2px;
   text-transform: lowercase;
   line-height: 1;
@@ -356,7 +374,7 @@ export default {
 }
 
 p{
-  width: 80%;
+  width: 90%;
   display: inline-block;
   /* font-family: sans-serif; */
   font-size: 20px;

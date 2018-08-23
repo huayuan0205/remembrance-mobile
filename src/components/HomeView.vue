@@ -62,6 +62,8 @@ export default {
       const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
       const dateArr = this.items;
       const domainExtent = [dateArr[0].date.getFullYear(),dateArr[dateArr.length-1].date.getFullYear()];
+      console.log(rangeExtent);
+      console.log(domainExtent);
       scaleYear
         .domain(domainExtent)
         .range(rangeExtent);
@@ -258,31 +260,31 @@ export default {
     }},
 
   },
-  watch:{
+  // watch:{
     
-     items: function(newItems,oldItems){
-      var self = this;
-      let dateArr = [];
-      self.$parent.items.forEach(function(event){
-          const value = new Date(event.date);
-          dateArr.push({
-                date: value,
-                coord_lat: event.coord_lat,
-                coord_lon: event.coord_lon,
-                event: event.event,
-                description: event.description,
-                id: event.id,
-                link: event.link,
-                linkText: event.linkText,
-                spot: event.spot
+  //    items: function(newItems,oldItems){
+  //     var self = this;
+  //     let dateArr = [];
+  //     self.$parent.items.forEach(function(event){
+  //         const value = new Date(event.date);
+  //         dateArr.push({
+  //               date: value,
+  //               coord_lat: event.coord_lat,
+  //               coord_lon: event.coord_lon,
+  //               event: event.event,
+  //               description: event.description,
+  //               id: event.id,
+  //               link: event.link,
+  //               linkText: event.linkText,
+  //               spot: event.spot
               
-              });
-        })
-      dateArr = dateArr.sort(self.sortA);
-      // console.log("soer?", dateArr)
-      return dateArr
-    }
-   },
+  //             });
+  //       })
+  //     dateArr = dateArr.sort(self.sortA);
+  //     console.log("soer?", dateArr)
+  //     return dateArr
+  //   }
+  //  },
    mounted: function () {
      let self = this;
 
@@ -292,8 +294,9 @@ export default {
     
       
       // self.appendTimeline();
+      // self.rotateTimeline(self.$route.params.id); // I get event is undefined
 
-      whenScroll('every 100px', function () {
+      whenScroll('every 400px', function () {
 
       // this.$router.push(this.encyclopedia.event)
       // console.log(self.$route.params.id)
@@ -322,9 +325,9 @@ export default {
       self.$router.push(to_item[0].event);
 
       // rotate timeline
-      // if(to_item[0].event !== null){
-      //   self.rotateTimeline(to_item[0]);
-      // }
+      if(to_item[0].event !== null){
+        self.rotateTimeline(to_item[0].event);
+      }
 });
 
 
