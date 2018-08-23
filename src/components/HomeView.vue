@@ -3,7 +3,7 @@
     
     <div>
       <img src="../assets/alluminium.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
-        <img src="../assets/alluminium.png" class="splash-img" alt id="leftgear" :style="fixStyle">
+        <img src="../assets/alluminium_blurred_10.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       <svg id="svg">
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
@@ -59,11 +59,9 @@ export default {
     },
     getScale: function () {
       const scaleYear = d3.scaleTime();
-      const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
+      const rangeExtent = [3*Math.PI/2, 5*Math.PI/2]; // semi-circle in radians, top to bottom
       const dateArr = this.items;
       const domainExtent = [dateArr[0].date.getFullYear(),dateArr[dateArr.length-1].date.getFullYear()];
-      console.log(rangeExtent);
-      console.log(domainExtent);
       scaleYear
         .domain(domainExtent)
         .range(rangeExtent);
@@ -296,7 +294,7 @@ export default {
       // self.appendTimeline();
       // self.rotateTimeline(self.$route.params.id); // I get event is undefined
 
-      whenScroll('every 400px', function () {
+      whenScroll('every 300px', function () {
 
       // this.$router.push(this.encyclopedia.event)
       // console.log(self.$route.params.id)

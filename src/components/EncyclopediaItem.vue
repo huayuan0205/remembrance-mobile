@@ -99,8 +99,17 @@ export default {
       if (this.encyclopedia.event == this.currentSpot){
         return {
           // display: `none`,
-          visibility: `visible`,
-          opacity:1,
+          '-webkit-transition': 'all 1s',/* Safari */
+          transition: 'all 1s',
+          // 'transition-delay': '0.5s',
+          'transition-timing-function': 'ease',
+          //visibility: `visible`,
+          // transition: transform ease;
+          transform: 'rotate(0deg)',
+          '-webkit-transform': 'rotate(0deg)',
+          '-o-transform': 'rotate(0deg)',
+          '-webkit-transform-origin-x': '0vw',
+          opacity: 1,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           // top: `10vh`,
           top: `0vh`,
@@ -110,45 +119,66 @@ export default {
         if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         // console.log(+this.$props.encyclopedia.id)
         return {
+          '-webkit-transition': 'all 1s',/* Safari */
+          transition: 'all 1s',
+          'transition-delay': '0.1s',
+          'transition-timing-function': 'ease',
           // display: `none`,
-          opacity:0.2,
+          opacity: 0,
           // visibility: `visible`,
-          visibility: `hidden`,
+          // visibility: `hidden`,
           // top: `-5px`,
           top: `0vh`,
           position: `absolute`,
-          transform: 'rotate(-45deg)',
-          '-webkit-transform': 'rotate(-45deg)',
-          '-o-transform': 'rotate(-45deg)',
-          '-webkit-transform-origin-x': '-15vw'
+          transform: 'rotate(-180deg)',
+          '-webkit-transform': 'rotate(-180deg)',
+          '-o-transform': 'rotate(-180deg)',
+          '-webkit-transform-origin-x': '0vw'
+          // transform: 'rotate(-45deg)',
+          // '-webkit-transform': 'rotate(-45deg)',
+          // '-o-transform': 'rotate(-45deg)',
+          // '-webkit-transform-origin-x': '-15vw'
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
+          '-webkit-transition': 'all 1s',/* Safari */
+          transition: 'all 1s',
+          'transition-delay': '0.1s',
+          'transition-timing-function': 'ease',
           // display: `none`,
-          opacity:0.2,
+          opacity: 0,
           // visibility: `visible`,
-          visibility: `hidden`,
+          // visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `25vh`,
+          // top: `25vh`,
+          top: `0vh`,
           position: `absolute`,
-          transform: 'rotate(45deg)',
-          '-webkit-transform': 'rotate(45deg)',
-          '-o-transform': 'rotate(45deg)',
-           '-webkit-transform-origin-x': '-10vw'
+          transform: 'rotate(180deg)',
+          '-webkit-transform': 'rotate(180deg)',
+          '-o-transform': 'rotate(180deg)',
+          '-webkit-transform-origin-x': '0vw'
+          // transform: 'rotate(45deg)',
+          // '-webkit-transform': 'rotate(45deg)',
+          // '-o-transform': 'rotate(45deg)',
+          // '-webkit-transform-origin-x': '-10vw'
         }
       }
 
       else {
         return {
+          // '-webkit-transition': 'all 1s',/* Safari */
+          // transition: 'all 1s',
+          // 'transition-timing-function': 'ease',
           // display: `none`,
-          opacity:0.2,
-          visibility: `hidden`,
+          opacity: 0,
+          // visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `25vh`,
-          transform: 'rotate(45deg)',
-          '-webkit-transform': 'rotate(45deg)',
-          '-o-transform': 'rotate(45deg)',
-           '-webkit-transform-origin-x': '-10vw'
+          // top: `25vh`,
+          top: `0vh`,
+          transform: 'rotate(180deg)',
+          '-webkit-transform': 'rotate(180deg)',
+          '-o-transform': 'rotate(180deg)',
+          '-webkit-transform-origin-x': '0vw'
         }
       }
         

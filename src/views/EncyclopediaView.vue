@@ -8,8 +8,8 @@
     
  -->
   <div id="main-items" >
-            <encyclopedia-item
-            v-on:updatemstyle="metstyle()"
+        <encyclopedia-item
+        v-on:updatemstyle="metstyle()"
         v-for="item in encyclopedia"
         v-bind:encyclopedia="item"
         :key="item.id"
@@ -97,7 +97,7 @@ export default {
       phStyles: function(){
         // console.log("is phStyle",this.$parent)
         return {
-        height: `${this.$parent.items.length * 400}px`,
+        height: `${this.$parent.items.length * 500}px`,
         // position: 'relative'  
       }
         

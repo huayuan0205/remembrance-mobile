@@ -87,7 +87,6 @@ html{
   right: 0;
   height: 100vh;
   /* width: 100vw; */
-  background: url("./assets/alluminium.jpeg"); 
   color: #fff; 
   background-attachment: fixed;
   /* background-size:50%; */
@@ -178,9 +177,13 @@ html{
   top: .18vh;
   left: -50vw;
   z-index: -1999;
-  opacity: .4;
-    filter: sepia(30%) saturate(200%) brightness(70%) hue-rotate(180deg);
-    
+  opacity: 0.8;
+  -webkit-filter: blur(.1px); /* Safari 6.0 - 9.0 */
+  filter: blur(.1px);
+  filter: /*sepia(30%) saturate(100%)*/ brightness(75%) /*hue-rotate(180deg)*/;
+  
+  
+  
 }
 
 svg {
@@ -200,10 +203,12 @@ svg {
   /* height: auto;  */
   width: auto;
   height: 260vh;
+  opacity: .85;
   /* width: 400px; */
   top: .18vh;
   left: -50vw;
   z-index: -5999;
+  /*filter: sepia(10%) saturate(100%) brightness(10%) ;*/
   -webkit-filter: blur(4px); /* Safari 6.0 - 9.0 */
     filter: blur(4px);
 }
