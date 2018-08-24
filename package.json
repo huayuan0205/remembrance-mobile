@@ -2,6 +2,7 @@
   "name": "rememberbabel",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sarahsoup.github.io/remembrance-mobile",
   "scripts": {
     "start": "node app.js",
     "monitor": "nodemon app.js",
@@ -27,6 +28,7 @@
     "@vue/cli-plugin-babel": "^3.0.0-beta.15",
     "@vue/cli-plugin-eslint": "^3.0.0-beta.15",
     "@vue/cli-service": "^3.0.0-beta.15",
+    "push-dir": "^0.4.1",
     "vue-template-compiler": "^2.5.16"
   },
   "eslintConfig": {
