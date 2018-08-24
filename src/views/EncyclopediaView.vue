@@ -97,7 +97,7 @@ export default {
       phStyles: function(){
         // console.log("is phStyle",this.$parent)
         return {
-        height: `${this.$parent.items.length * 400}px`,
+        height: `${this.$parent.items.length * 500}px`,
         // position: 'relative'  
       }
         
