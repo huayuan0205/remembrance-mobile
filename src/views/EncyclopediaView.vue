@@ -16,7 +16,19 @@
         
         > </encyclopedia-item>
   </div>
-<div id="phantom-list" :style="phStyles"></div>
+
+<full-page ref="fullpage" :options="options" id="fullpage">
+  <div class="section" id="phantom-list">
+  </div>
+      <!-- <section v-for="item in encyclopedia" v-bind:id="item.spot_id" :style="phSectionStyles"></section> -->
+      <link-element v-for="item in encyclopedia" :key="item.id" v-bind:id="item.spot_id" :style="phSectionStyles"></link-element>
+
+<!-- </div> -->
+<!-- <div class="section" id="phantom-list"></div> -->
+<!-- <div class="section" id="phantom-list"></div> -->
+</full-page>
+
+
 
 
   </div>
@@ -25,38 +37,70 @@
 <script>
 
 import EncyclopediaItem from '@/components/EncyclopediaItem.vue'
+import LinkElement from '@/components/LinkElement.vue'
+
 import * as $ from 'jquery'
 import * as d3 from 'd3v4/build/d3.js'
+import ScrollSnap from 'scroll-snap'
+
 window['jQuery'] = window['$'] = $;
 
 export default {
   name: 'encyclopedia',
   props:["timeline"],
   data(){
+    // const self = this;
+    
     return {
-      mstyle: null
+      mstyle: null,
+      sectionheight: 1500,
+      fullpaged: null
+      
+      
     }
   },
  
     
     
   methods: {
-    metstyle: function(){
-       console.log("mstyle in encyclo view but currently is just a place holder to see how this get s called becuase the child emits an event")
-       
-       
-     }
-   
-  },
-  components: {
-    EncyclopediaItem,
-  },
-   mounted: function(){
-    let self = this;
+    afterLoad() {
+          // console.log("Emitted 'after load' event.");
+          let self = this;
+    
+    this.encyclopedia.forEach(function(d)
+    {
+      // console.log("yyhyihoiry")
+      
+      let section = document.createElement('div');
+    section.className = 'section';
+    section.id = d.spot_id;
+    // section.innerHTML = '<h3></h3>';
+  // console.log($(self.$el).children()[1])
+    //adding section
+    let elm = document.getElementById("phantom-list")
+    // console.log("elm",elm)
+    elm.appendChild(section);
+      // self.options.anchors.push(d.spot_id)
+      console.log(self.$refs.fullpage)
+    // self.$refs.fullpage.build();
+      })
+    //  console.log(self.$refs.fullpage)
+    // self.$refs.fullpage.build();
+    
+
+    //where --> var vm = new Vue({...}) if calling it from outside.
+    // vm.$refs.fullpage.build();
+
+    //or, when calling it from inside the Vue component methods:
+    
     // console.log("home",self.encyclopedia)
-    let element = self.$el
+    // let element = self.$el
     // console.log("elemnts", element);
-    let d3all = d3.select(element);
+    // let d3all = d3.select(element);
+     
+    
+    
+    
     // console.log(d3all)
     // d3all.style("opacity",.4)
     // let cancelScroll = this.$scrollTo(element, 4, options)
@@ -83,21 +127,81 @@ export default {
 
 // to cancel scrolling you can call the returned function
     // cancelScroll()
+    
+        },
+    metstyle: function(){
+      //  console.log("mstyle in encyclo view but currently is just a place holder to see how this get s called becuase the child emits an event")
+       
+       
+     }
+   
   },
-   beforeMount(){
-    //  const self = this;
-      // someFunction()
-      // console.log("before mount",self.encyclopedia)
+  components: {
+    EncyclopediaItem,
+    LinkElement
+  },
+  updated: function(){
+    if (this.fullpaged === null){
+      this.$refs.fullpage.build()
+      this.fullpaged = 'set'
+    }
+    
+  },
+   mounted: function(){
+     let self = this;
+    //  let fullsection = document.createElement('div')
+    //   fullsection.innerHTML = ''
+    //   self.$el.appendChild(fullsection)
+    // self.$refs.fullpage.build()
+     this.$nextTick(function () {
+      //  self.afterLoad()
+      // self.$refs.fullpage.build()
+       
+       
+      
      
-
-
-   },
+})
+    
+  },
+   
    computed: {
-     
+     options:  function(){
+       let self = this;
+       return {
+        // menu: '.section',
+        lazyLoading: false,
+
+        controlArrows: false,
+          scrollBar: false,
+          autoScrolling:true,
+        anchors: self.anchors,
+        onLeave: function(origin, destination, direction){
+          // console.log(origin,destination,direction)
+          self.$router.push(destination.anchor);
+          self.$parent.rotateTimeline(self.$route.params.id);
+        },
+	afterAnchor: function(origin, destination, direction){},
+      }},
+      anchors: function(){
+        let self = this;
+        let anchor = []
+    self.$parent.items.forEach(function(d){
+      anchor.push(d.spot_id)
+    })
+    return anchor
+      },
+      phSectionStyles: function(){
+        // console.log("is phStyle",this.$parent)
+        return {
+        height: `${this.sectionheight}px`,
+        // position: 'relative'  
+      }
+        
+      },
       phStyles: function(){
         // console.log("is phStyle",this.$parent)
         return {
-        height: `${this.$parent.items.length * 500}px`,
+        height: `${this.$parent.items.length * this.sectionheight}px`,
         // position: 'relative'  
       }
         
@@ -113,7 +217,7 @@ export default {
             // console.log("this.$parent.items ",this.$parent.items, this.$parent)
             const this_item = this.$parent.items.filter((value, index, array) => {
               // console.log("this.$route.params.id; ",this.$route.params.id, value)
-              return value.event == this.$route.params.id;
+              return value.spot_id == this.$route.params.id;
             })
             this.$parent.items.forEach(function(each){
               each["style_param"] = this_item[0]["id"];

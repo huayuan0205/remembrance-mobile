@@ -10,6 +10,8 @@
 import HomeView from '@/components/HomeView.vue'
 import * as $ from 'jquery'
 import * as d3 from 'd3v4/build/d3.js'
+import ScrollSnap from 'scroll-snap'
+
 window['jQuery'] = window['$'] = $;
 export default {
   name: 'home',
@@ -39,6 +41,7 @@ export default {
         self.items = d
        
       })
+      
 
 
   //  let self = this;

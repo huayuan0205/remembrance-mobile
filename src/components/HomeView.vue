@@ -21,7 +21,7 @@
         Installed in 2120, these spots serve to keep in memory significant climate events of the city's past.
       </p>
     </div> -->
-      <encyclopedia-view ></encyclopedia-view>
+      <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
     </div>
   </div>
 
@@ -31,6 +31,8 @@
 import EncyclopediaView from '@/views/EncyclopediaView.vue'
 import * as d3 from 'd3v4/build/d3.js'
 import * as whenScroll from 'when-scroll'
+import * as $ from 'jquery'
+
 
 export default {
   name: 'HomeView',
@@ -53,7 +55,11 @@ export default {
 //   },
 // },
   methods: {
-      
+    afterLoad: function(){
+      console.log("this.$children",this.$children)
+      // this.appendTimeline()
+      this.$children[0].afterLoad()
+    },
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
     },
@@ -62,8 +68,8 @@ export default {
       const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
       const dateArr = this.items;
       const domainExtent = [dateArr[0].date.getFullYear(),dateArr[dateArr.length-1].date.getFullYear()];
-      console.log(rangeExtent);
-      console.log(domainExtent);
+      // console.log(rangeExtent);
+      // console.log(domainExtent);
       scaleYear
         .domain(domainExtent)
         .range(rangeExtent);
@@ -171,7 +177,7 @@ export default {
     if(id !== null){
       // find event in array that matches id
       const dateArr = this.items;
-      index = dateArr.map(function(d) { return d.event; }).indexOf(id);
+      index = dateArr.map(function(d) { return d.spot_id; }).indexOf(id);
       event = dateArr[index];
     }
     // const date = 'd' + event.date.getFullYear() + '-' + event.date.getMonth() + '-' + event.date.getDate();
@@ -192,6 +198,15 @@ export default {
         const yShift = rImg + parseInt(style.top, 10);
         return `translate(0,${yShift}) rotate(${-degree})`;
         });
+
+    $('#leftgear').css({
+      transition: 'all 2s',
+    '-moz-transform': 'rotate(' + degree + 'deg)',
+    '-webkit-transform': 'rotate(' + degree + 'deg)',
+    '-o-transform': 'rotate(' + degree + 'deg)',
+    '-ms-transform': 'rotate(' + degree + 'deg)',
+    'transform': 'rotate(' + degree + 'deg)',
+  });
 
     d3.selectAll('.dots')
       .transition()
@@ -285,6 +300,7 @@ export default {
   //     return dateArr
   //   }
   //  },
+  
    mounted: function () {
      let self = this;
 
@@ -296,65 +312,42 @@ export default {
       // self.appendTimeline();
       // self.rotateTimeline(self.$route.params.id); // I get event is undefined
 
-      whenScroll('every 400px', function () {
+//       whenScroll('every 400px', function () {
 
-      // this.$router.push(this.encyclopedia.event)
-      // console.log(self.$route.params.id)
-      // console.log(self)
-      const this_item = self.items.filter((value, index, array) => {
-              return value.event == self.$route.params.id;
-            })
-        let dir_decision;
-         switch (self.scrollDir) { // Set animFrom value, depending on the index i of the item
-          case 0:
-            dir_decision = (+this_item[0].id - 1);
-            break; // 
-          case 1:
-            dir_decision = (+this_item[0].id + 1);
-            break;
-        }
-
-
-
-      const to_item = self.items.filter((value, index, array) => {
-              return value.id == dir_decision;
-            })
-
-      // console.log("this_item",this_item)
-      // console.log("to_item", to_item[0]);
-      self.$router.push(to_item[0].event);
-
-      // rotate timeline
-      if(to_item[0].event !== null){
-        self.rotateTimeline(to_item[0].event);
-      }
-});
+//       // this.$router.push(this.encyclopedia.event)
+//       // console.log(self.$route.params.id)
+//       // console.log(self)
+//       const this_item = self.items.filter((value, index, array) => {
+//               return value.spot_id == self.$route.params.id;
+//             })
+//         let dir_decision;
+//          switch (self.scrollDir) { // Set animFrom value, depending on the index i of the item
+//           case 0:
+//             dir_decision = (+this_item[0].id - 1);
+//             break; // 
+//           case 1:
+//             dir_decision = (+this_item[0].id + 1);
+//             break;
+//         }
 
 
-       $(window).scroll(function() {
+//     console.log(+this_item[0].id)
+//       const to_item = self.items.filter((value, index, array) => {
+//               return value.id == dir_decision;
+//             })
 
-var offset = $(window).scrollTop();
-let availOffset = $('#home-view').innerHeight() - $(window)[0].screen.availHeight
-let scrollDirection = offset - self.offset
-if (scrollDirection > 0){
-  // console.log("positive scroll direction")
-  self.scrollDir = 1;
+//       // console.log("this_item",this_item)
+//       // console.log("to_item", to_item[0]);
+//       self.$router.push(to_item[0].spot_id);
 
-} else {
-  // console.log("negative scroll direction")
-  self.scrollDir = 0;
-}
-self.offset = offset;
-	offset = offset * .1;
-  // add css transform with the offset variable
-  $('#leftgear').css({
-    '-moz-transform': 'rotate(' + offset + 'deg)',
-    '-webkit-transform': 'rotate(' + offset + 'deg)',
-    '-o-transform': 'rotate(' + offset + 'deg)',
-    '-ms-transform': 'rotate(' + offset + 'deg)',
-    'transform': 'rotate(' + offset + 'deg)',
-  });
-});
+//       // rotate timeline
+//       if(to_item[0].spot_id !== null){
+//         self.rotateTimeline(to_item[0].spot_id);
+//       }
+// });
+
+
+//        
   })
 
 

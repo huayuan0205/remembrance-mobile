@@ -96,7 +96,7 @@ export default {
     },
     activeStyle: function() {
       // console.log("active this",this)
-      if (this.encyclopedia.event == this.currentSpot){
+      if (this.encyclopedia.spot_id == this.currentSpot){
         return {
           // display: `none`,
           visibility: `visible`,
@@ -238,7 +238,7 @@ export default {
     let self = this;
 
 
-
+    
     // this.currentSpot = this.$route.params.id
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();

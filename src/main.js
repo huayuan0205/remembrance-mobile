@@ -5,10 +5,13 @@ import 'semantic-ui-css/semantic.min.css'
 import router from './router'
 import VueScrollTo from 'vue-scrollto'
 import VueSlugify from 'vue-slugify'
+import VueFullPage from 'vue-fullpage.js'
+
 Vue.config.productionTip = false
 Vue.use(SuiVue);
 Vue.use(VueScrollTo)
 Vue.use(VueSlugify)
+Vue.use(VueFullPage);
 
 
 new Vue({
