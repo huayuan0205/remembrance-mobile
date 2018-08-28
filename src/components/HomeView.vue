@@ -2,8 +2,8 @@
   <div id="home-view">
     
     <div>
-      <img src="../assets/alluminium.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
-        <img src="../assets/alluminium_blurred_10.png" class="splash-img" alt id="leftgear" :style="fixStyle">
+      <img src="../assets/alluminium_halfres.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
+        <img src="../assets/alluminium_blurred_10_halfres.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       <svg id="svg">
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>

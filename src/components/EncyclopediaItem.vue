@@ -98,22 +98,19 @@ export default {
       // console.log("active this",this)
       if (this.encyclopedia.spot_id == this.currentSpot){
         return {
-          // display: `none`,
           '-webkit-transition': 'all 1s',/* Safari */
           transition: 'all 1s',
           // 'transition-delay': '0.5s',
           'transition-timing-function': 'ease',
-          //visibility: `visible`,
-          // transition: transform ease;
+          opacity: 1,
+          top: `0vh`,
+          position: `absolute`,
+          // rotation
           transform: 'rotate(0deg)',
           '-webkit-transform': 'rotate(0deg)',
           '-o-transform': 'rotate(0deg)',
-          '-webkit-transform-origin-x': '0vw',
-          opacity: 1,
-          // top: `${this.$parent.mainItemsStyles['top']}px`,
-          // top: `10vh`,
-          top: `0vh`,
-          position: `absolute`
+          '-webkit-transform-origin': '0vw 50vh',
+          '-moz-transform-origin': '0vw 50vh'
         }
       } else {
         if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
@@ -123,21 +120,15 @@ export default {
           transition: 'all 1s',
           'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
-          // display: `none`,
           opacity: 0,
-          // visibility: `visible`,
-          // visibility: `hidden`,
-          // top: `-5px`,
           top: `0vh`,
           position: `absolute`,
+          // rotation
           transform: 'rotate(-180deg)',
           '-webkit-transform': 'rotate(-180deg)',
           '-o-transform': 'rotate(-180deg)',
-          '-webkit-transform-origin-x': '0vw'
-          // transform: 'rotate(-45deg)',
-          // '-webkit-transform': 'rotate(-45deg)',
-          // '-o-transform': 'rotate(-45deg)',
-          // '-webkit-transform-origin-x': '-15vw'
+          '-webkit-transform-origin': '0vw 50vh',
+          '-moz-transform-origin': '0vw 50vh'
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
@@ -145,22 +136,15 @@ export default {
           transition: 'all 1s',
           'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
-          // display: `none`,
           opacity: 0,
-          // visibility: `visible`,
-          // visibility: `hidden`,
-          // top: `${this.$parent.mainItemsStyles['top']}px`,
-          // top: `25vh`,
           top: `0vh`,
           position: `absolute`,
+          // rotation
           transform: 'rotate(180deg)',
           '-webkit-transform': 'rotate(180deg)',
           '-o-transform': 'rotate(180deg)',
-          '-webkit-transform-origin-x': '0vw'
-          // transform: 'rotate(45deg)',
-          // '-webkit-transform': 'rotate(45deg)',
-          // '-o-transform': 'rotate(45deg)',
-          // '-webkit-transform-origin-x': '-10vw'
+          '-webkit-transform-origin': '0vw 50vh',
+          '-moz-transform-origin': '0vw 50vh'
         }
       }
 
@@ -175,10 +159,12 @@ export default {
           // top: `${this.$parent.mainItemsStyles['top']}px`,
           // top: `25vh`,
           top: `0vh`,
+          // rotation
           transform: 'rotate(180deg)',
           '-webkit-transform': 'rotate(180deg)',
           '-o-transform': 'rotate(180deg)',
-          '-webkit-transform-origin-x': '0vw'
+          '-webkit-transform-origin': '0vw 50vh',
+          '-moz-transform-origin': '0vw 50vh',
         }
       }
         

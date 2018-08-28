@@ -180,7 +180,7 @@ html{
   opacity: 0.8;
   -webkit-filter: blur(.1px); /* Safari 6.0 - 9.0 */
   filter: blur(.1px);
-  filter: /*sepia(30%) saturate(100%)*/ brightness(75%) /*hue-rotate(180deg)*/;
+  filter: brightness(75%);
   
   
   
