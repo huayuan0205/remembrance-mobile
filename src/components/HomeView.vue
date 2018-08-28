@@ -8,19 +8,7 @@
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
       
-      <!-- <div class="splash-txt"> -->
-        <!-- <h3>cambridge<br>memory<br>spot</h3> -->
-      <!-- </div> -->
-    <!-- </div> -->
-    
-    <!-- <div class="intro">
-      <p>
-
-      </p>
-      <p>
-        Installed in 2120, these spots serve to keep in memory significant climate events of the city's past.
-      </p>
-    </div> -->
+      
       <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
     </div>
   </div>
@@ -36,7 +24,6 @@ import * as $ from 'jquery'
 
 export default {
   name: 'HomeView',
-  // props: ["items"],
   components: {
     EncyclopediaView
   },
@@ -45,15 +32,6 @@ export default {
       // we have a local value that represents the user's selected region
       currentSpot: null,
     }},
-//     watch: {
-//   '$route.params.id': {
-//     handler () {
-//       this.currentSpot = this.$route.params.id;
-//       // this.style = this.activeStyle();
-//     },
-//     immediate: true,
-//   },
-// },
   methods: {
     afterLoad: function(){
       console.log("this.$children",this.$children)
@@ -68,8 +46,6 @@ export default {
       const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
       const dateArr = this.items;
       const domainExtent = [dateArr[0].id ,dateArr[dateArr.length-1].id];
-      // console.log(rangeExtent);
-      // console.log(domainExtent);
       scaleLinear
         .domain(domainExtent)
         .range(rangeExtent);
@@ -80,8 +56,7 @@ export default {
       const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
       const dateArr = this.items;
       const domainExtent = [dateArr[0].date.getFullYear(),dateArr[dateArr.length-1].date.getFullYear()];
-      // console.log(rangeExtent);
-      // console.log(domainExtent);
+
       scaleYear
         .domain(domainExtent)
         .range(rangeExtent);
@@ -206,7 +181,7 @@ export default {
     const thetaLinear = linscale(linearid);
     const degreeLinear = thetaLinear * 180 / Math.PI;
     // console.log(`year: 2045, radian: ${scale(2045)}`);
-    console.log(`year: ${year}, radian: ${theta}, degree: ${degree}, degreeLinear: ${degreeLinear}`);
+    // console.log(`year: ${year}, radian: ${theta}, degree: ${degree}, degreeLinear: ${degreeLinear}`);
     const rImg = this.$parent.r_img;
     const style = this.fixStyle;
     d3.select('#timeline')
@@ -217,20 +192,7 @@ export default {
         return `translate(0,${yShift}) rotate(${-degree})`;
         });
 
-// var offset = 
-// // let availOffset = $('#home-view').innerHeight() - $(window)[0].screen.availHeight
-// let scrollDirection = offset - self.offset
-// if (scrollDirection > 0){
-  // console.log("positive scroll direction")
-  // self.scrollDir = 1;
 
-// } else {
-  // console.log("negative scroll direction")
-  // self.scrollDir = -1;
-// }
-// self.offset = offset;
-	// offset = offset * .01 * self.scrollDir ;
-// console.log("offset",offset)
 
     $('#leftgear').css({
       transition: 'all 1s',
@@ -308,79 +270,13 @@ export default {
     }},
 
   },
-  // watch:{
-    
-  //    items: function(newItems,oldItems){
-  //     var self = this;
-  //     let dateArr = [];
-  //     self.$parent.items.forEach(function(event){
-  //         const value = new Date(event.date);
-  //         dateArr.push({
-  //               date: value,
-  //               coord_lat: event.coord_lat,
-  //               coord_lon: event.coord_lon,
-  //               event: event.event,
-  //               description: event.description,
-  //               id: event.id,
-  //               link: event.link,
-  //               linkText: event.linkText,
-  //               spot: event.spot
-              
-  //             });
-  //       })
-  //     dateArr = dateArr.sort(self.sortA);
-  //     console.log("soer?", dateArr)
-  //     return dateArr
-  //   }
-  //  },
+  
   
    mounted: function () {
      let self = this;
 
      this.$nextTick(function () {
-    // Code that will run only after the
-    // entire view has been rendered
-    
-      
-      // self.appendTimeline();
-      // self.rotateTimeline(self.$route.params.id); // I get event is undefined
-
-//       whenScroll('every 400px', function () {
-
-//       // this.$router.push(this.encyclopedia.event)
-//       // console.log(self.$route.params.id)
-//       // console.log(self)
-//       const this_item = self.items.filter((value, index, array) => {
-//               return value.spot_id == self.$route.params.id;
-//             })
-//         let dir_decision;
-//          switch (self.scrollDir) { // Set animFrom value, depending on the index i of the item
-//           case 0:
-//             dir_decision = (+this_item[0].id - 1);
-//             break; // 
-//           case 1:
-//             dir_decision = (+this_item[0].id + 1);
-//             break;
-//         }
-
-
-//     console.log(+this_item[0].id)
-//       const to_item = self.items.filter((value, index, array) => {
-//               return value.id == dir_decision;
-//             })
-
-//       // console.log("this_item",this_item)
-//       // console.log("to_item", to_item[0]);
-//       self.$router.push(to_item[0].spot_id);
-
-//       // rotate timeline
-//       if(to_item[0].spot_id !== null){
-//         self.rotateTimeline(to_item[0].spot_id);
-//       }
-// });
-
-
-//        
+   
   })
 
 
