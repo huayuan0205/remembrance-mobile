@@ -61,7 +61,7 @@ export default {
     handler () {
       this.currentSpot = this.$route.params.id;
       // let val = 
-      let val = this.activeStyle();
+      // let val = this.activeStyle();
       // this.mstyle = this.activeStyle();   
       this.$emit('updatemstyle', this.currentSpot)
     },

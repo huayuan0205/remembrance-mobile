@@ -63,6 +63,18 @@ export default {
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
     },
+    getLinearScale: function(){
+      const scaleLinear = d3.scaleLinear();
+      const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
+      const dateArr = this.items;
+      const domainExtent = [dateArr[0].id ,dateArr[dateArr.length-1].id];
+      // console.log(rangeExtent);
+      // console.log(domainExtent);
+      scaleLinear
+        .domain(domainExtent)
+        .range(rangeExtent);
+      return scaleLinear;
+    },
     getScale: function () {
       const scaleYear = d3.scaleTime();
       const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
@@ -182,13 +194,19 @@ export default {
     }
     // const date = 'd' + event.date.getFullYear() + '-' + event.date.getMonth() + '-' + event.date.getDate();
     const year = event.date.getFullYear();
+    const linearid = event.id;
     // const cx = d3.select(`#${date}`).attr('cx');
     // const cy = d3.select(`#${date}`).attr('cy');
+    
     const scale = this.getScale();
     const theta = scale(year);
     const degree = theta * 180 / Math.PI;
+
+    const linscale = this.getLinearScale();
+    const thetaLinear = linscale(linearid);
+    const degreeLinear = thetaLinear * 180 / Math.PI;
     // console.log(`year: 2045, radian: ${scale(2045)}`);
-    console.log(`year: ${year}, radian: ${theta}, degree: ${degree}`);
+    console.log(`year: ${year}, radian: ${theta}, degree: ${degree}, degreeLinear: ${degreeLinear}`);
     const rImg = this.$parent.r_img;
     const style = this.fixStyle;
     d3.select('#timeline')
@@ -199,13 +217,28 @@ export default {
         return `translate(0,${yShift}) rotate(${-degree})`;
         });
 
+// var offset = 
+// // let availOffset = $('#home-view').innerHeight() - $(window)[0].screen.availHeight
+// let scrollDirection = offset - self.offset
+// if (scrollDirection > 0){
+  // console.log("positive scroll direction")
+  // self.scrollDir = 1;
+
+// } else {
+  // console.log("negative scroll direction")
+  // self.scrollDir = -1;
+// }
+// self.offset = offset;
+	// offset = offset * .01 * self.scrollDir ;
+// console.log("offset",offset)
+
     $('#leftgear').css({
-      transition: 'all 2s',
-    '-moz-transform': 'rotate(' + degree + 'deg)',
-    '-webkit-transform': 'rotate(' + degree + 'deg)',
-    '-o-transform': 'rotate(' + degree + 'deg)',
-    '-ms-transform': 'rotate(' + degree + 'deg)',
-    'transform': 'rotate(' + degree + 'deg)',
+      transition: 'all 1s',
+    '-moz-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-webkit-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-o-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-ms-transform': 'rotate(' + degreeLinear + 'deg)',
+    'transform': 'rotate(' + degreeLinear + 'deg)',
   });
 
     d3.selectAll('.dots')

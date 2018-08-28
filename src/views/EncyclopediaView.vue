@@ -53,7 +53,7 @@ export default {
     
     return {
       mstyle: null,
-      sectionheight: 1500,
+      sectionheight: 3000,
       fullpaged: null
       
       
@@ -170,13 +170,18 @@ export default {
        return {
         // menu: '.section',
         lazyLoading: false,
-
+        lockAnchors: true,
         controlArrows: false,
-          scrollBar: false,
+          scrollBar: true,
           autoScrolling:true,
         anchors: self.anchors,
         onLeave: function(origin, destination, direction){
-          // console.log(origin,destination,direction)
+          // console.log(direction)
+          if (direction == "up"){
+            self.scrollDir = 1;
+          } else {
+            self.scrollDir = -1;
+          }
           self.$router.push(destination.anchor);
           self.$parent.rotateTimeline(self.$route.params.id);
         },
