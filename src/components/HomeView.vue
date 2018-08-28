@@ -8,20 +8,8 @@
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
       
-      <!-- <div class="splash-txt"> -->
-        <!-- <h3>cambridge<br>memory<br>spot</h3> -->
-      <!-- </div> -->
-    <!-- </div> -->
-    
-    <!-- <div class="intro">
-      <p>
-
-      </p>
-      <p>
-        Installed in 2120, these spots serve to keep in memory significant climate events of the city's past.
-      </p>
-    </div> -->
-      <encyclopedia-view ></encyclopedia-view>
+      
+      <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
     </div>
   </div>
 
@@ -31,10 +19,11 @@
 import EncyclopediaView from '@/views/EncyclopediaView.vue'
 import * as d3 from 'd3v4/build/d3.js'
 import * as whenScroll from 'when-scroll'
+import * as $ from 'jquery'
+
 
 export default {
   name: 'HomeView',
-  // props: ["items"],
   components: {
     EncyclopediaView
   },
@@ -43,19 +32,24 @@ export default {
       // we have a local value that represents the user's selected region
       currentSpot: null,
     }},
-//     watch: {
-//   '$route.params.id': {
-//     handler () {
-//       this.currentSpot = this.$route.params.id;
-//       // this.style = this.activeStyle();
-//     },
-//     immediate: true,
-//   },
-// },
   methods: {
-      
+    afterLoad: function(){
+      console.log("this.$children",this.$children)
+      // this.appendTimeline()
+      this.$children[0].afterLoad()
+    },
     sortA: function(a,b){
         return a.date - b.date; // doesn't work
+    },
+    getLinearScale: function(){
+      const scaleLinear = d3.scaleLinear();
+      const rangeExtent = [Math.PI/2,-Math.PI/2]; // semi-circle in radians, top to bottom
+      const dateArr = this.items;
+      const domainExtent = [dateArr[0].id ,dateArr[dateArr.length-1].id];
+      scaleLinear
+        .domain(domainExtent)
+        .range(rangeExtent);
+      return scaleLinear;
     },
     getScale: function () {
       const scaleYear = d3.scaleTime();
@@ -169,18 +163,24 @@ export default {
     if(id !== null){
       // find event in array that matches id
       const dateArr = this.items;
-      index = dateArr.map(function(d) { return d.event; }).indexOf(id);
+      index = dateArr.map(function(d) { return d.spot_id; }).indexOf(id);
       event = dateArr[index];
     }
     // const date = 'd' + event.date.getFullYear() + '-' + event.date.getMonth() + '-' + event.date.getDate();
     const year = event.date.getFullYear();
+    const linearid = event.id;
     // const cx = d3.select(`#${date}`).attr('cx');
     // const cy = d3.select(`#${date}`).attr('cy');
+    
     const scale = this.getScale();
     const theta = scale(year);
     const degree = theta * 180 / Math.PI;
+
+    const linscale = this.getLinearScale();
+    const thetaLinear = linscale(linearid);
+    const degreeLinear = thetaLinear * 180 / Math.PI;
     // console.log(`year: 2045, radian: ${scale(2045)}`);
-    console.log(`year: ${year}, radian: ${theta}, degree: ${degree}`);
+    // console.log(`year: ${year}, radian: ${theta}, degree: ${degree}, degreeLinear: ${degreeLinear}`);
     const rImg = this.$parent.r_img;
     const style = this.fixStyle;
     d3.select('#timeline')
@@ -190,6 +190,17 @@ export default {
         const yShift = rImg + parseInt(style.top, 10);
         return `translate(0,${yShift}) rotate(${-degree})`;
         });
+
+
+
+    $('#leftgear').css({
+      transition: 'all 1s',
+    '-moz-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-webkit-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-o-transform': 'rotate(' + degreeLinear + 'deg)',
+    '-ms-transform': 'rotate(' + degreeLinear + 'deg)',
+    'transform': 'rotate(' + degreeLinear + 'deg)',
+  });
 
     d3.selectAll('.dots')
       .transition()
@@ -258,101 +269,13 @@ export default {
     }},
 
   },
-  // watch:{
-    
-  //    items: function(newItems,oldItems){
-  //     var self = this;
-  //     let dateArr = [];
-  //     self.$parent.items.forEach(function(event){
-  //         const value = new Date(event.date);
-  //         dateArr.push({
-  //               date: value,
-  //               coord_lat: event.coord_lat,
-  //               coord_lon: event.coord_lon,
-  //               event: event.event,
-  //               description: event.description,
-  //               id: event.id,
-  //               link: event.link,
-  //               linkText: event.linkText,
-  //               spot: event.spot
-              
-  //             });
-  //       })
-  //     dateArr = dateArr.sort(self.sortA);
-  //     console.log("soer?", dateArr)
-  //     return dateArr
-  //   }
-  //  },
+  
+  
    mounted: function () {
      let self = this;
 
      this.$nextTick(function () {
-    // Code that will run only after the
-    // entire view has been rendered
-    
-      
-      // self.appendTimeline();
-      // self.rotateTimeline(self.$route.params.id); // I get event is undefined
-
-      whenScroll('every 300px', function () {
-
-      // this.$router.push(this.encyclopedia.event)
-      // console.log(self.$route.params.id)
-      // console.log(self)
-      const this_item = self.items.filter((value, index, array) => {
-              return value.event == self.$route.params.id;
-            })
-        let dir_decision;
-         switch (self.scrollDir) { // Set animFrom value, depending on the index i of the item
-          case 0:
-            dir_decision = (+this_item[0].id - 1);
-            break; // 
-          case 1:
-            dir_decision = (+this_item[0].id + 1);
-            break;
-        }
-
-
-
-      const to_item = self.items.filter((value, index, array) => {
-              return value.id == dir_decision;
-            })
-
-      // console.log("this_item",this_item)
-      // console.log("to_item", to_item[0]);
-      self.$router.push(to_item[0].event);
-
-      // rotate timeline
-      if(to_item[0].event !== null){
-        self.rotateTimeline(to_item[0].event);
-      }
-});
-
-
-       $(window).scroll(function() {
-
-var offset = $(window).scrollTop();
-let availOffset = $('#home-view').innerHeight() - $(window)[0].screen.availHeight
-let scrollDirection = offset - self.offset
-if (scrollDirection > 0){
-  // console.log("positive scroll direction")
-  self.scrollDir = 1;
-
-} else {
-  // console.log("negative scroll direction")
-  self.scrollDir = 0;
-}
-self.offset = offset;
-	offset = offset * .1;
-  // add css transform with the offset variable
-  $('#leftgear').css({
-    '-moz-transform': 'rotate(' + offset + 'deg)',
-    '-webkit-transform': 'rotate(' + offset + 'deg)',
-    '-o-transform': 'rotate(' + offset + 'deg)',
-    '-ms-transform': 'rotate(' + offset + 'deg)',
-    'transform': 'rotate(' + offset + 'deg)',
-  });
-});
+   
   })
 
 

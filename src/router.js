@@ -7,14 +7,14 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/encyclopedia-item/Trees Provide Relief' },
+    { path: '/', redirect: '/VAS-1' },
     {
       path: '/',
       name: 'home',
       component: Home,
       children:[
         {
-            path: '/encyclopedia-item/:id',
+            path: '/:id',
             name: 'encyclopedia-item',
             component: EncyclopediaItem,
             props: true 

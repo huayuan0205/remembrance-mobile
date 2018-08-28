@@ -1,23 +1,33 @@
-// kept file here for vue structure reference
-
 <template>
-  <a>{{linktext}}</a>
-
+ <section class="section" id="link-element"></section>
 </template>
 
 
 <script>
+import ScrollSnap from 'scroll-snap'
 
 export default {
   name: "LinkElement",
-  props: ["linkText","link"],
+  data(){
+    return {
+      
+    }
+  },
+  methods: {
+    
+  },
   computed: {
-      link: function(){
 
-          return this.$parent.encyclopedia.link;
-      },
-      linkText: function (){
-            return this.$parent.encyclopedia.linkText;
-      }
+        
+  },
+  
+  mounted: function(){
+   
   }}
 </script>
+<style scoped>
+.section{
+    position: relative;
+    text-align: center;
+}
+</style>

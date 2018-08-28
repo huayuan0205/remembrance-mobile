@@ -61,7 +61,7 @@ export default {
     handler () {
       this.currentSpot = this.$route.params.id;
       // let val = 
-      let val = this.activeStyle();
+      // let val = this.activeStyle();
       // this.mstyle = this.activeStyle();   
       this.$emit('updatemstyle', this.currentSpot)
     },
@@ -96,7 +96,7 @@ export default {
     },
     activeStyle: function() {
       // console.log("active this",this)
-      if (this.encyclopedia.event == this.currentSpot){
+      if (this.encyclopedia.spot_id == this.currentSpot){
         return {
           // display: `none`,
           '-webkit-transition': 'all 1s',/* Safari */
@@ -234,41 +234,13 @@ export default {
     formatYear: function(){
       return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY');
     },
-    // itemStyle: function() {
-    //   // console.log(this.$props.encyclopedia.id, this.$props.encyclopedia.style_param)
-    //   if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
-    //     // console.log(+this.$props.encyclopedia.id)
-    //     return {
-    //       // display: `none`,
-    //       visibility: `hidden`,
-    //       // top: `0px`,
-    //       top: `-100vh`,
-    //       position: `absolute`
-    //     }
-    //   } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
-    //      return {
-    //       // display: `none`,
-    //       visibility: `hidden`,
-    //       // top: `${this.$parent.mainItemsStyles['top']}px`,
-    //       top: `100vh`,
-    //       position: `absolute`
-    //     }
-    //   } else {
-    //     return {
-    //       // display: `block`,
-    //       visibility: `visible`,
-    //       // top: `${this.$parent.mainItemsStyles['top'] / 2}px`,
-    //       top: `0vh`,
-    //       position: `absolute`
-    //     }
-    //   }
-    // }
+    
   },
   mounted: function(){
     let self = this;
 
 
-
+    
     // this.currentSpot = this.$route.params.id
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();
@@ -278,33 +250,7 @@ export default {
 
       
     })
-    // const self = this;
-    // console.log(self);
-    // let element = self.$el
-    // let cancelScroll = this.$scrollTo(element, 4, options)
-    // let d3el = d3.select("#"+self.slug_event)
-    // // console.log(d3el)
-    // let formatedDate = self.formatDater(self.$props.encyclopedia.date)
-    // // console.log(formatedDate)
-    // // d3el.remove("text")
-    // d3el.append("text").text("")
-    // d3el.text(function(){
-    //   return formatedDate;
-    // })
-
-
-    // let t = d3.transition()
-    // .duration(1750)
-    // .ease(d3.easeLinear);
-
-
-    // let d3spotel = d3.select("#fix"+self.encyclopedia.id)
-    // // console.log(d3spotel)
-    // // d3spotel.style("opacity",.4)
-    // // d3spotel.transition(t);
-    // t.select("#fix"+self.encyclopedia.id).style("opacity",1)
-// to cancel scrolling you can call the returned function
-    // cancelScroll()
+   
   }
 
 }
