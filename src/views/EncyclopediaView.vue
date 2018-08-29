@@ -2,8 +2,8 @@
   <div class="container" >
 
   <div id="main-items" >
-            <encyclopedia-item
-            v-on:updatemstyle="metstyle()"
+        <encyclopedia-item
+        v-on:updatemstyle="metstyle()"
         v-for="item in encyclopedia"
         v-bind:encyclopedia="item"
         :key="item.id"

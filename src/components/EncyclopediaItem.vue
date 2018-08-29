@@ -8,7 +8,7 @@
       <div class="item-body">
         <div class="date">
           <h3 class="text-date" v-html="formatDate"></h3>
-          <h3 class="text-year" v-html="formatYear"></h3>
+          <!-- <h3 class="text-year" v-html="formatYear"></h3> -->
         </div>
         <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
       </div>
@@ -98,57 +98,74 @@ export default {
       // console.log("active this",this)
       if (this.encyclopedia.spot_id == this.currentSpot){
         return {
-          // display: `none`,
-          visibility: `visible`,
-          opacity:1,
-          // top: `${this.$parent.mainItemsStyles['top']}px`,
-          // top: `10vh`,
+          '-webkit-transition': 'transform 1s, opacity 1.5s',/* Safari */
+          transition: 'transform 1s, opacity 1.5s',
+          // 'transition-transform-delay': '0.5s',
+          'transition-opacity-delay': '1s',
+          'transition-timing-function': 'ease',
+          opacity: 1,
           top: `0vh`,
-          position: `absolute`
+          position: `absolute`,
+          // rotation
+          transform: 'rotate(0deg)',
+          '-webkit-transform': 'rotate(0deg)',
+          '-o-transform': 'rotate(0deg)',
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       } else {
         if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         // console.log(+this.$props.encyclopedia.id)
         return {
-          // display: `none`,
-          opacity:0.2,
-          // visibility: `visible`,
-          visibility: `hidden`,
-          // top: `-5px`,
+          '-webkit-transition': 'transform 1s, opacity 0.5s',/* Safari */
+          transition: 'transform 1s, opacity 0.5s',
+          // 'transition-delay': '0.1s',
+          'transition-timing-function': 'ease',
+          opacity: 0,
           top: `0vh`,
           position: `absolute`,
-          transform: 'rotate(-45deg)',
-          '-webkit-transform': 'rotate(-45deg)',
-          '-o-transform': 'rotate(-45deg)',
-          '-webkit-transform-origin-x': '-15vw'
+          // rotation
+          transform: 'rotate(-180deg)',
+          '-webkit-transform': 'rotate(-180deg)',
+          '-o-transform': 'rotate(-180deg)',
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
-          // display: `none`,
-          opacity:0.2,
-          // visibility: `visible`,
-          visibility: `hidden`,
-          // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `25vh`,
+          '-webkit-transition': 'transform 1s, opacity 0.5s',/* Safari */
+          transition: 'transform 1s, opacity 0.5s',
+          // 'transition-delay': '0.1s',
+          'transition-timing-function': 'ease',
+          opacity: 0,
+          top: `0vh`,
           position: `absolute`,
-          transform: 'rotate(45deg)',
-          '-webkit-transform': 'rotate(45deg)',
-          '-o-transform': 'rotate(45deg)',
-           '-webkit-transform-origin-x': '-10vw'
+          // rotation
+          transform: 'rotate(180deg)',
+          '-webkit-transform': 'rotate(180deg)',
+          '-o-transform': 'rotate(180deg)',
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       }
 
       else {
         return {
+          // '-webkit-transition': 'all 1s',/* Safari */
+          // transition: 'all 1s',
+          // 'transition-timing-function': 'ease',
           // display: `none`,
-          opacity:0.2,
-          visibility: `hidden`,
+          opacity: 0,
+          // visibility: `hidden`,
           // top: `${this.$parent.mainItemsStyles['top']}px`,
-          top: `25vh`,
-          transform: 'rotate(45deg)',
-          '-webkit-transform': 'rotate(45deg)',
-          '-o-transform': 'rotate(45deg)',
-           '-webkit-transform-origin-x': '-10vw'
+          // top: `25vh`,
+          top: `0vh`,
+          // rotation
+          transform: 'rotate(180deg)',
+          '-webkit-transform': 'rotate(180deg)',
+          '-o-transform': 'rotate(180deg)',
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh',
         }
       }
         
@@ -156,7 +173,7 @@ export default {
     },
     itemWidth: function() {
       let r_img = this.$parent.$parent.$parent.r_img;
-      console.log(r_img);
+      // console.log(r_img);
       return {
         width: `${r_img}px`
       }
