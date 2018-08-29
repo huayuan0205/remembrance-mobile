@@ -98,9 +98,9 @@ export default {
       // console.log("active this",this)
       if (this.encyclopedia.spot_id == this.currentSpot){
         return {
-          '-webkit-transition': 'all 1s',/* Safari */
-          transition: 'all 1s',
-          // 'transition-delay': '0.5s',
+          '-webkit-transition': 'transform .5s, opacity .2s',/* Safari */
+          transition: 'transform .5s, opacity 1.5s',
+          'transition-opacity-delay': '0.9s',
           'transition-timing-function': 'ease',
           opacity: 1,
           top: `0vh`,
@@ -116,8 +116,8 @@ export default {
         if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         // console.log(+this.$props.encyclopedia.id)
         return {
-          '-webkit-transition': 'all 1s',/* Safari */
-          transition: 'all 1s',
+          '-webkit-transition': 'transform 1s, opacity 0.2s',/* Safari */
+          transition: 'transform 1s, opacity 0.2s',
           'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
           opacity: 0,
@@ -132,8 +132,8 @@ export default {
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
-          '-webkit-transition': 'all 1s',/* Safari */
-          transition: 'all 1s',
+          '-webkit-transition': 'transform 1s, opacity 0.2s',/* Safari */
+          transition: 'transform 1s, opacity 0.2s',
           'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
           opacity: 0,
