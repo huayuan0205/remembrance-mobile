@@ -131,6 +131,12 @@ html{
   text-decoration: underline;
 }
 
+#app .label-text{
+  font-size: 10px;
+  font-family: 'Trade';
+  color: #000;
+}
+
 .home {
   /* overflow: hidden; */
   /* z-index: 9999; */

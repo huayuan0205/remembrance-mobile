@@ -8,7 +8,7 @@
       <div class="item-body">
         <div class="date">
           <h3 class="text-date" v-html="formatDate"></h3>
-          <h3 class="text-year" v-html="formatYear"></h3>
+          <!-- <h3 class="text-year" v-html="formatYear"></h3> -->
         </div>
         <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
       </div>
@@ -98,9 +98,10 @@ export default {
       // console.log("active this",this)
       if (this.encyclopedia.spot_id == this.currentSpot){
         return {
-          '-webkit-transition': 'transform .5s, opacity .2s',/* Safari */
-          transition: 'transform .5s, opacity 1.5s',
-          'transition-opacity-delay': '0.9s',
+          '-webkit-transition': 'transform 1s, opacity 1.5s',/* Safari */
+          transition: 'transform 1s, opacity 1.5s',
+          // 'transition-transform-delay': '0.5s',
+          'transition-opacity-delay': '1s',
           'transition-timing-function': 'ease',
           opacity: 1,
           top: `0vh`,
@@ -109,16 +110,16 @@ export default {
           transform: 'rotate(0deg)',
           '-webkit-transform': 'rotate(0deg)',
           '-o-transform': 'rotate(0deg)',
-          '-webkit-transform-origin': '0vw 50vh',
-          '-moz-transform-origin': '0vw 50vh'
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       } else {
         if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param - 1){
         // console.log(+this.$props.encyclopedia.id)
         return {
-          '-webkit-transition': 'transform 1s, opacity 0.2s',/* Safari */
-          transition: 'transform 1s, opacity 0.2s',
-          'transition-delay': '0.1s',
+          '-webkit-transition': 'transform 1s, opacity 0.5s',/* Safari */
+          transition: 'transform 1s, opacity 0.5s',
+          // 'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
           opacity: 0,
           top: `0vh`,
@@ -127,14 +128,14 @@ export default {
           transform: 'rotate(-180deg)',
           '-webkit-transform': 'rotate(-180deg)',
           '-o-transform': 'rotate(-180deg)',
-          '-webkit-transform-origin': '0vw 50vh',
-          '-moz-transform-origin': '0vw 50vh'
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       } else if (+this.$props.encyclopedia.id == +this.$props.encyclopedia.style_param + 1) {
          return {
-          '-webkit-transition': 'transform 1s, opacity 0.2s',/* Safari */
-          transition: 'transform 1s, opacity 0.2s',
-          'transition-delay': '0.1s',
+          '-webkit-transition': 'transform 1s, opacity 0.5s',/* Safari */
+          transition: 'transform 1s, opacity 0.5s',
+          // 'transition-delay': '0.1s',
           'transition-timing-function': 'ease',
           opacity: 0,
           top: `0vh`,
@@ -143,8 +144,8 @@ export default {
           transform: 'rotate(180deg)',
           '-webkit-transform': 'rotate(180deg)',
           '-o-transform': 'rotate(180deg)',
-          '-webkit-transform-origin': '0vw 50vh',
-          '-moz-transform-origin': '0vw 50vh'
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh'
         }
       }
 
@@ -163,8 +164,8 @@ export default {
           transform: 'rotate(180deg)',
           '-webkit-transform': 'rotate(180deg)',
           '-o-transform': 'rotate(180deg)',
-          '-webkit-transform-origin': '0vw 50vh',
-          '-moz-transform-origin': '0vw 50vh',
+          '-webkit-transform-origin': '0vw 60vh',
+          '-moz-transform-origin': '0vw 60vh',
         }
       }
         
@@ -172,7 +173,7 @@ export default {
     },
     itemWidth: function() {
       let r_img = this.$parent.$parent.$parent.r_img;
-      console.log(r_img);
+      // console.log(r_img);
       return {
         width: `${r_img}px`
       }

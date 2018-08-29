@@ -34,7 +34,7 @@ export default {
     }},
   methods: {
     afterLoad: function(){
-      console.log("this.$children",this.$children)
+      // console.log("this.$children",this.$children)
       // this.appendTimeline()
       this.$children[0].afterLoad()
     },
@@ -94,6 +94,17 @@ export default {
       else if(axis == 'y'){ position = r * Math.sin(theta); }
 
       return position;
+   },
+   createUniqueYearArray: function(array) {
+     let dates = [];
+     array.forEach(function(event){
+       const year = event.date.getFullYear();
+       const index = dates.indexOf(year);
+       if(index == -1){
+         dates.push(year);
+       }
+     })
+     return dates;
    },
    appendTimeline: function () {
       const self = this;
@@ -157,6 +168,34 @@ export default {
           .attr('r',2) // will change for active item
           .style('fill','white'); // will change for active items
         }
+
+        // append year labels
+        d3.select('#timeline')
+          .selectAll('.label')
+          .data(self.createUniqueYearArray(self.items))
+          .enter()
+          .append('g')
+          .attr('class','label')
+          .attr('id',d => 'label-'+d)
+          .style('opacity',0.5)
+          .append('text')
+          .attr('class','label-text')
+          .attr('transform',function(d){
+            const scale = self.getScale();
+            const radian = scale(d);
+            const degree = radian * 180 / Math.PI;
+            const x = rImg * Math.cos(radian);
+            const y = rImg * Math.sin(radian);
+            // if(d.angle > Math.PI/2 && d.angle < (3*Math.PI)/2){
+            //   return `translate(${x},${y}) rotate(180) rotate(${degree})`;
+            // }else{
+              return `translate(${x},${y}) rotate(${degree})`;
+            // }
+          })
+          .attr('dy', '.35em')
+          .attr('dx','-5px')
+          .style('text-anchor','end')
+          .text(d => d);
    },
    rotateTimeline: function(id){
     let index, event;
@@ -191,8 +230,6 @@ export default {
         return `translate(0,${yShift}) rotate(${-degree})`;
         });
 
-
-
     $('#leftgear').css({
       transition: 'all 1s',
     '-moz-transform': 'rotate(' + degreeLinear + 'deg)',
@@ -218,6 +255,40 @@ export default {
           return 'black';
         }else{ return 'white'; }
       });
+    
+    d3.selectAll('.label')
+      .transition()
+      .style('opacity',0.5)
+      .transition()
+      .delay(1000)
+      .style('opacity',function(d){
+        if(d == event.date.getFullYear()){
+          return 1;
+        }else{
+          return 0.5;
+        }
+      });
+
+    d3.selectAll('.label-text')
+      .transition()
+      .style('font-size','10px')
+      .style('font-weight','normal')
+      .transition()
+      .delay(1000)
+      .style('font-size',function(d){
+        if(d == event.date.getFullYear()){
+          return '20px';
+        }else{
+          return '10px';
+        }
+      })
+      .style('font-weight',function(d){
+        if(d == event.date.getFullYear()){
+          return 'bold';
+        }else{
+          return 'normal';
+        }
+      })
    }
   },
   computed:{
