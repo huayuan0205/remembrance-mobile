@@ -1,7 +1,7 @@
 <template>
   <div id="home-view">
-    
     <div>
+      <sui-icon class="info-icon" size="small" name="info" @click.native="toggle" />
       <img src="../assets/alluminium_halfres.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
         <img src="../assets/alluminium_blurred_10_halfres.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       <svg id="svg">
@@ -11,12 +11,27 @@
       
       <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
     </div>
+    
+    <sui-modal v-model="open">
+      <!-- <sui-modal-header>Select a Photo</sui-modal-header> -->
+      
+      <sui-modal-actions>
+        
+        <sui-button floated="left" negative @click.native="toggle">
+          X
+        </sui-button>
+        <about-modal></about-modal>
+      </sui-modal-actions>
+    </sui-modal>
+    
   </div>
 
 </template>
 <script>
 
 import EncyclopediaView from '@/views/EncyclopediaView.vue'
+import AboutModal from '@/components/AboutModal.vue'
+
 import * as d3 from 'd3v4/build/d3.js'
 import * as whenScroll from 'when-scroll'
 import * as $ from 'jquery'
@@ -25,14 +40,19 @@ import * as $ from 'jquery'
 export default {
   name: 'HomeView',
   components: {
-    EncyclopediaView
+    EncyclopediaView,
+    AboutModal
   },
    data () {
     return {
       // we have a local value that represents the user's selected region
       currentSpot: null,
+      open: false
     }},
   methods: {
+     toggle() {
+      this.open = !this.open;
+    },
     afterLoad: function(){
       // console.log("this.$children",this.$children)
       // this.appendTimeline()
@@ -271,22 +291,23 @@ export default {
 
     d3.selectAll('.label-text')
       .transition()
-      .style('font-size','10px')
+      .style('font-size','20px')
+      .style('opacity',0.5)
       .style('font-weight','normal')
       .transition()
       .delay(1000)
-      .style('font-size',function(d){
-        if(d == event.date.getFullYear()){
-          return '20px';
-        }else{
-          return '10px';
-        }
-      })
       .style('font-weight',function(d){
         if(d == event.date.getFullYear()){
           return 'bold';
         }else{
           return 'normal';
+        }
+      })
+      .style('opacity','0.5',function(d){
+        if(d == event.date.getFullYear()){
+          return 1;
+        }else{
+          return 0.5;
         }
       })
    }

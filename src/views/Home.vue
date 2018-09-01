@@ -1,6 +1,11 @@
 <template>
   <div class="home" id='home-d'>
+     
+    <!-- <sui-button compacat size="mini" fixed icon="info" @click.native="toggle"></sui-button> -->
     <home-view/>
+    
+    
+    
   </div>
 </template>
 
@@ -8,6 +13,7 @@
 
 // @ is an alias to /src
 import HomeView from '@/components/HomeView.vue'
+
 import * as $ from 'jquery'
 import * as d3 from 'd3v4/build/d3.js'
 import ScrollSnap from 'scroll-snap'
@@ -16,10 +22,13 @@ window['jQuery'] = window['$'] = $;
 export default {
   name: 'home',
   components: {
-    HomeView
+    HomeView,
+    
   },
   data: function(){
-    return {items:[]}
+    return {
+      items:[]
+    }
   },
   computed:{
     r_img_bk: function(){
@@ -32,6 +41,9 @@ export default {
     }
   },
   methods:{
+    toggle() {
+      this.open = !this.open;
+    }
    
   },
   mounted(){
@@ -51,3 +63,11 @@ export default {
   
 }
 </script>
+<style scoped>
+.info-icon {
+  display: flex;
+  /* position: fixed;  */
+  top:0.5vh;
+  left: 0.5vw;
+}
+</style>

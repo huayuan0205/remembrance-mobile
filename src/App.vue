@@ -87,7 +87,7 @@ html{
   right: 0;
   height: 100vh;
   /* width: 100vw; */
-  color: #fff; 
+  color: rgb(0, 0, 0); 
   background-attachment: fixed;
   /* background-size:50%; */
   background-repeat: no-repeat;
