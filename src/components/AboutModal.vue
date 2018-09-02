@@ -28,7 +28,12 @@ export default {
 }
 </script>
 <style scoped>
+#about-modal {
+    padding-bottom: 14px; /* to account for no default padding at bottom in #actions */
+}
 p {
+    text-align: left;
     color: black !important;
+    font-size: 16px;
 }
 </style>

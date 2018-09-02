@@ -1,24 +1,19 @@
 <template>
   <div class="container" >
-
-  <div id="main-items" >
-        <encyclopedia-item
-        v-on:updatemstyle="metstyle()"
-        v-for="item in encyclopedia"
-        v-bind:encyclopedia="item"
-        :key="item.id"
-        
-        > </encyclopedia-item>
-  </div>
-
-<full-page ref="fullpage" :options="options" id="fullpage">
-  <div class="section" id="phantom-list">
-  </div>
-      <link-element v-for="item in encyclopedia" :key="item.id" v-bind:id="item.spot_id" :style="phSectionStyles"></link-element>
-</full-page>
-
-
-
+    <div id="main-items" >
+          <encyclopedia-item
+          v-on:updatemstyle="metstyle()"
+          v-for="item in encyclopedia"
+          v-bind:encyclopedia="item"
+          :key="item.id"
+          
+          > </encyclopedia-item>
+    </div>
+    <full-page ref="fullpage" :options="options" id="fullpage">
+      <div class="section" id="phantom-list">
+      </div>
+          <link-element v-for="item in encyclopedia" :key="item.id" v-bind:id="item.spot_id" :style="phSectionStyles"></link-element>
+    </full-page>
 
   </div>
 </template>

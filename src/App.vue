@@ -162,15 +162,10 @@ html{
   padding: 40px 20px 80px 60px;
 }
 
-.encyclopedia{
-  /* height: 100vh; */
-  /* overflow-x: hidden; */
-  /* overflow-y: scroll; */
-  /* scroll-snap-destination: 0vw 0vh; */
-  /* -webkit-scroll-snap-type: mandatory; */
-  /* -ms-scroll-snap-type: mandatory; */
-  /* scroll-snap-type: mandatory; */
-	/* scroll-behavior: smooth; */
+#icon-div{
+  position: fixed;
+  top: 5px;
+  right: 5px;
 }
 
 .splash-img { 

@@ -1,25 +1,27 @@
 <template>
   <div id="home-view">
     <div>
-      <sui-icon class="info-icon" size="small" name="info" @click.native="toggle" />
       <img src="../assets/alluminium_halfres.png" class="backgear-img" alt id="backgear"  :style="fixStyleBack">
-        <img src="../assets/alluminium_blurred_10_halfres.png" class="splash-img" alt id="leftgear" :style="fixStyle">
+      <img src="../assets/alluminium_blurred_10_halfres.png" class="splash-img" alt id="leftgear" :style="fixStyle">
       <svg id="svg">
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
-      
-      
       <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
+      <div id="icon-div">
+        <sui-icon class="info icon" size="small" name="info" @click.native="toggle" />
+      </div>
     </div>
     
     <sui-modal v-model="open">
       <!-- <sui-modal-header>Select a Photo</sui-modal-header> -->
       
       <sui-modal-actions>
-        
-        <sui-button floated="left" negative @click.native="toggle">
+        <div id="close-div">
+        <sui-icon class="window close icon" size="large" name="close" @click.native="toggle" />
+        </div>
+        <!-- <sui-button floated="right" negative @click.native="toggle">
           X
-        </sui-button>
+        </sui-button>  -->
         <about-modal></about-modal>
       </sui-modal-actions>
     </sui-modal>
@@ -50,7 +52,7 @@ export default {
       open: false
     }},
   methods: {
-     toggle() {
+    toggle() {
       this.open = !this.open;
     },
     afterLoad: function(){
@@ -114,7 +116,7 @@ export default {
       else if(axis == 'y'){ position = r * Math.sin(theta); }
 
       return position;
-   },
+    },
    createUniqueYearArray: function(array) {
      let dates = [];
      array.forEach(function(event){
@@ -257,7 +259,7 @@ export default {
     '-o-transform': 'rotate(' + degreeLinear + 'deg)',
     '-ms-transform': 'rotate(' + degreeLinear + 'deg)',
     'transform': 'rotate(' + degreeLinear + 'deg)',
-  });
+    });
 
     d3.selectAll('.dots')
       .transition()

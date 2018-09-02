@@ -63,11 +63,3 @@ export default {
   
 }
 </script>
-<style scoped>
-.info-icon {
-  display: flex;
-  /* position: fixed;  */
-  top:0.5vh;
-  left: 0.5vw;
-}
-</style>
