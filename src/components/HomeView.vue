@@ -12,12 +12,12 @@
       </div>
     </div>
     
-    <sui-modal animation="fade" dimmer="inverted" v-model="open" v-on:clickAwayModal="toggleClose">
+    <sui-modal size="fullscreen" animation="fade" dimmer="inverted" v-model="open" v-on:clickAwayModal="toggleClose">
       <!-- <sui-modal-header>Select a Photo -->
       <sui-modal-header>
       <sui-modal-actions>
         <div id="close-div">
-        <sui-icon class="window close icon" size="large" name="close" @click.native="toggleClose" />
+        <sui-icon class="window close icon" size="small" name="close" @click.native="toggleClose" />
         </div>
         <!-- <sui-button floated="right" negative @click.native="toggle">
           X
