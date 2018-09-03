@@ -48,7 +48,7 @@ export default {
 p {
     text-align: left;
     color: black !important;
-    font-size: 22px;
-    line-height: 2.7em
+    font-size: 16px;
+    line-height: 1.6em
 }
 </style>
