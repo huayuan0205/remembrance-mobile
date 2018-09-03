@@ -8,22 +8,28 @@
       </svg>
       <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
       <div id="icon-div">
-        <sui-icon class="info icon" size="small" name="info" @click.native="toggle" />
+        <sui-icon class="info icon" size="small" name="info" @click.native="toggleOpen" />
       </div>
     </div>
     
-    <sui-modal v-model="open">
-      <!-- <sui-modal-header>Select a Photo</sui-modal-header> -->
-      
+    <sui-modal animation="fade" dimmer="inverted" v-model="open" v-on:clickAwayModal="toggleClose">
+      <!-- <sui-modal-header>Select a Photo -->
+      <sui-modal-header>
       <sui-modal-actions>
         <div id="close-div">
-        <sui-icon class="window close icon" size="large" name="close" @click.native="toggle" />
+        <sui-icon class="window close icon" size="large" name="close" @click.native="toggleClose" />
         </div>
         <!-- <sui-button floated="right" negative @click.native="toggle">
           X
         </sui-button>  -->
-        <about-modal></about-modal>
+        
       </sui-modal-actions>
+      </sui-modal-header>
+      <sui-modal-content scrolling>
+        <sui-modal-description>
+        <about-modal></about-modal>
+        </sui-modal-description>
+        </sui-modal-content>
     </sui-modal>
     
   </div>
@@ -35,7 +41,6 @@ import EncyclopediaView from '@/views/EncyclopediaView.vue'
 import AboutModal from '@/components/AboutModal.vue'
 
 import * as d3 from 'd3v4/build/d3.js'
-import * as whenScroll from 'when-scroll'
 import * as $ from 'jquery'
 
 
@@ -52,7 +57,16 @@ export default {
       open: false
     }},
   methods: {
-    toggle() {
+    toggleOpen() {
+      console.log(this.$children[0].$refs.fullpage)
+      this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
+      this.$children[0].$refs.fullpage.api.setKeyboardScrolling(false);
+      this.open = !this.open;
+    },
+     toggleClose() {
+      console.log(this.$children[0].$refs.fullpage)
+      this.$children[0].$refs.fullpage.api.setAllowScrolling(true);
+      this.$children[0].$refs.fullpage.api.setKeyboardScrolling(true);
       this.open = !this.open;
     },
     afterLoad: function(){

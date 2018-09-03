@@ -1,7 +1,20 @@
 <template>
     <div id="about-modal">
-        <p>{{aboutP1}}</p>
+        <div class="ui very padded compact section grid">
+            <div class="row">
+                <div class="two wide column">
+        
+                </div>
+                <div class="twelve wide column">
+                    <p>{{aboutP1}}</p>
         <p>{{aboutP2}}</p>
+        
+                </div>
+                 <div class="two wide column">
+        
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -31,9 +44,11 @@ export default {
 #about-modal {
     padding-bottom: 14px; /* to account for no default padding at bottom in #actions */
 }
+
 p {
     text-align: left;
     color: black !important;
-    font-size: 16px;
+    font-size: 22px;
+    line-height: 2.7em
 }
 </style>
