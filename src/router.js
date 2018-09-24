@@ -21,6 +21,14 @@ export default new Router({
           }
       ]
     },
+    {
+      name: 'climatechangecambridge',
+      path: 'www.cambridgema.gov/CDD/climateandenergy/climatechangeplanning',
+      beforeEnter(){
+        location.href = 'http://www.cambridgema.gov/CDD/climateandenergy/climatechangeplanning'
+      }
+
+    }
 
   ]
 })

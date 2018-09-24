@@ -8,11 +8,11 @@
       </svg>
       <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
       <div id="icon-div">
-        <sui-icon class="info icon" size="small" name="info" @click.native="toggleOpen" />
+        <sui-icon class="info circle icon" size="large" name="info" @click.native="toggleOpen" />
       </div>
     </div>
     
-    <sui-modal size="fullscreen" animation="fade" dimmer="inverted" v-model="open" v-on:clickAwayModal="toggleClose">
+    <sui-modal size='fullscreen' animation="fade"  v-model="open" v-on:clickAwayModal="toggleClose">
       <!-- <sui-modal-header>Select a Photo -->
       <sui-modal-header>
       <sui-modal-actions>
@@ -26,8 +26,11 @@
       </sui-modal-actions>
       </sui-modal-header>
       <sui-modal-content scrolling>
+
         <sui-modal-description>
-        <about-modal></about-modal>
+        <about-modal>
+          
+        </about-modal>
         </sui-modal-description>
         </sui-modal-content>
     </sui-modal>
@@ -59,9 +62,11 @@ export default {
   methods: {
     toggleOpen() {
       console.log(this.$children[0].$refs.fullpage)
+      // console.log(this,$('.ui.fullscreen.modal'))
       this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
-      this.$children[0].$refs.fullpage.api.setKeyboardScrolling(false);
+      // this.$children[0].$refs.fullpage.api.setKeyboardScrolling(false);
       this.open = !this.open;
+      // $('.ui.fullscreen.modal').modal('refresh');
     },
      toggleClose() {
       console.log(this.$children[0].$refs.fullpage)
@@ -393,3 +398,35 @@ export default {
 }
 
 </script>
+<style>
+.ui.modal {
+    
+    position: absolute;
+    display: block;
+    overflow: auto;
+    top: 1em;
+    bottom: 1em;
+    right: 1em;
+    left: 1em;
+    width: 100%;
+    background: black;
+
+  }
+
+  
+
+.ui.modal>.content {
+    display: block;
+    padding: 1rem!important;
+    background: transparent;
+}
+.ui.modal>.header:not(.ui) {
+    background: transparent;
+}
+#app p {
+  color: white !important;
+  -webkit-filter: blur(0px); /* Safari 6.0 - 9.0 */
+    filter: blur(0px) !important;
+}
+</style>
+

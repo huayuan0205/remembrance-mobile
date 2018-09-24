@@ -99,7 +99,7 @@ export default {
         lazyLoading: true,
         lockAnchors: true,
         controlArrows: false,
-          scrollBar: false,
+          scrollBar: true,
           autoScrolling:true,
         anchors: self.anchors,
         onLeave: function(origin, destination, direction){
