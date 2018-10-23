@@ -1,6 +1,6 @@
 <template>
     <div id="about-modal">
-      <img src="../assets/alluminium.jpeg" class="modal-img" alt id="backgear" >
+      <img src="../assets/alluminium_halfres.png" class="modal-img" alt id="backgear" >
         <div class="ui very padded compact section grid">
             <div class="row">
                 <div class="two wide column">

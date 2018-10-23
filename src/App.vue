@@ -49,7 +49,6 @@ body{
 html{
   /* height: 100%; */
   
-  /* background-image: url("./assets/alluminium.png"); */
   /* height: 100vh; */
   /* width: 400px; */
   /* background-position: center; */
