@@ -19,6 +19,7 @@
     "semantic-ui-vue": "^0.2.10",
     "serve-static": "^1.13.2",
     "vue": "^2.5.16",
+    "vue-analytics": "^5.16.0",
     "vue-fullpage.js": "0.0.5",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.11.0",

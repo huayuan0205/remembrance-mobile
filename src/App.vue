@@ -11,9 +11,15 @@
 
 <script>
 
+// const VueAnalytics = require('vue-analytics').default
 
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    track () {
+      this.$ga.page('/')
+    }
+  }
 }
 
 </script>
