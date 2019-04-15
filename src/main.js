@@ -10,7 +10,7 @@ import VueAnalytics from 'vue-analytics'
 
 
 Vue.config.productionTip = false
-const isProd = process.env.NODE_ENV = 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 Vue.use(VueAnalytics, {
 	id : 'UA-79653789-2',

@@ -10,16 +10,17 @@
 </template>
 
 <script>
-
-// const VueAnalytics = require('vue-analytics').default
-
 export default {
   name: 'app',
   methods: {
     track () {
       this.$ga.page('/')
     }
-  }
+  },
+  created () {
+            document.title = "Remembrance Climate Futures"
+            
+        }
 }
 
 </script>

@@ -8,6 +8,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { path: '/', redirect: '/VAS-1' },
+
     {
       path: '/',
       name: 'home',
@@ -17,7 +18,9 @@ export default new Router({
             path: '/:id',
             name: 'encyclopedia-item',
             component: EncyclopediaItem,
-            props: true 
+
+            props: true,
+            
           }
       ]
     },

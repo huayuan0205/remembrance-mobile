@@ -9,7 +9,7 @@
                 <div class="twelve wide column">
                   <h2 class="text-head">{{aboutTitle}}</h2>
                     <p>{{aboutP1}}
-                    <router-link tag="a" :to="{ name: 'climatechangecambridge'}" :target="_blank">
+                    <router-link tag="a" :to="{ name: 'climatechangecambridge'}">
                       <a>plans to mitigate and adapt to the effects of climate change.</a>
                     </router-link>
                     </p>
