@@ -222,10 +222,11 @@ export default {
       return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('YYYY');
     },
     
-  },
+  } ,
   mounted: function(){
-    let self = this;
 
+    let self = this;
+    document.title = "Remembrance Climate Futures " + self.$route.params.id;
 
     
     // this.currentSpot = this.$route.params.id
