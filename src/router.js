@@ -14,7 +14,8 @@ const route =  new Router({
   
         // let match = false
         let host = window.location.host.toUpperCase()
-        let re16 = /(\w+)\.(climatefutures\.us)\/(\#)\/([\d\w]+)/g;
+        // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
+        let re16 = /(\w+)\.(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
         let host_params = re16.exec(host);
         console.log("toname", host,host_params)
         next({name:"encyclopedia-item",params:{"subdomain":"essex",id:"1"}})
