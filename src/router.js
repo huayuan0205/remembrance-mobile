@@ -13,11 +13,11 @@ const route =  new Router({
  
   
         // let match = false
-        let host = window.location.host
+        let host_url = window.location.host;
         // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
-        let re16 = /(\w+)\.(staging)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
-        let host_params = re16.exec(host);
-        console.log("toname", host,host_params)
+        // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
+        let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace(".","");
+        console.log("toname", host_url,host_params)
         next({name:"encyclopedia-item",params:{"subdomain":"essex",id:"1"}})
         // if (to.name === 'general.notfound') {
         //   next()
