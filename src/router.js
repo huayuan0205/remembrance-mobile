@@ -16,7 +16,7 @@ const route =  new Router({
         let host_url = window.location.host;
         // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
         // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
-        let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace(".","");
+        let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
         console.log("toname", host_url,host_params)
         next({name:"encyclopedia-item",params:{"subdomain":"essex",id:"1"}})
         // if (to.name === 'general.notfound') {
