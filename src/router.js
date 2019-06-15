@@ -5,14 +5,64 @@ import EncyclopediaItem from './components/EncyclopediaItem.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const route =  new Router({
   routes: [
-    { path: '/', redirect: '/VAS-1' },
+    { path: '/', 
+      // redirect: '/VAS-1',
+      beforeEnter: (to, from, next) => {
+ 
+  
+        // let match = false
+        let host = window.location.host.toUpperCase()
+        console.log("toname",to.params, host)
+        next({name:"encyclopedia-item",params:{"subdomain":"essex",id:"1"}})
+        // if (to.name === 'general.notfound') {
+        //   next()
+        // }
+        
+        // //Sub-domain routing
+        // let host = window.location.host.toUpperCase()
+      
+        // //Routing for root domain
+        // if (host.toUpperCase() === 'localhost'){
+        //   next({name: 'landing.welcome'})
+        // }
+      
+        // console.log("host",host)
+      
+        // for (let i = 0; i < to.matched.length; i++){
+      
+        //   console.log("to.matched",to.matched[i])
+      
+        //   if (to.matched[i].meta.domains){
+      
+        //     if (host.includes(to.matched[i].meta.domains.toUpperCase())){
+      
+        //       console.log("Im Here!")
+      
+        //       match = true
+      
+        //       next()
+        //     }
+      
+        //   }
+      
+        // }
+      
+        // if (!match){
+        //   next({name: 'general.notfound', params: { '0': to.path } })
+      
+        // }
+      
+      },
+
+      },
 
     {
       path: '/',
       name: 'home',
       component: Home,
+      
       children:[
         {
             path: '/:id',
@@ -20,6 +70,7 @@ export default new Router({
             component: EncyclopediaItem,
 
             props: true,
+            
             
           }
       ]
@@ -35,3 +86,5 @@ export default new Router({
 
   ]
 })
+
+export default route;

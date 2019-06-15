@@ -48,8 +48,11 @@ export default {
   },
   mounted(){
     var self = this;
+    console.log(self.$router.history.current.params.subdomain)
       // const dateArr = [];
-      d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
+      let subdomain = self.$router.history.current.params.subdomain;
+      let datafile = subdomain + ".csv"
+      d3.queue().defer(d3.csv,datafile).await(function(err,d){
         self.items = d
        
       })
