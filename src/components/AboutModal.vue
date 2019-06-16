@@ -42,7 +42,7 @@ export default {
     data(){
         return {
 
-          sd: "cambridge",
+          // sd: "cambridge",
           aboutP1Essex:"The Paris Climate Accord of 2015 was a remarkable achievement \
           but it made clear the limit of greenhouse gas reduction to which nations were committed. \
           The withdrawal of the United States further indicated that there would be limits to commitment itself. \
