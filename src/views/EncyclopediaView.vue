@@ -96,6 +96,7 @@ export default {
      options:  function(){
        let self = this;
        return {
+         licenseKey:'BE832C25-5A2F42F4-BB9260BD-0B59B2E9',
         lazyLoading: true,
         lockAnchors: true,
         controlArrows: false,

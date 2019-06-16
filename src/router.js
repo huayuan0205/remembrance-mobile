@@ -31,6 +31,14 @@ export default new Router({
         location.href = 'http://www.cambridgema.gov/CDD/climateandenergy/climatechangeplanning'
       }
 
+    },
+    {
+      name: 'essexma',
+      path: 'www.essexma.org/board-selectmen/pages/coastal-resilience-resources',
+      beforeEnter(){
+        location.href = 'https://www.essexma.org/board-selectmen/pages/coastal-resilience-resources'
+      }
+
     }
 
   ]
