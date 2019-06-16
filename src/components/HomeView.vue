@@ -77,6 +77,7 @@ export default {
     afterLoad: function(){
       // console.log("this.$children",this.$children)
       // this.appendTimeline()
+      
       this.$children[0].afterLoad()
     },
     sortA: function(a,b){
@@ -336,10 +337,19 @@ export default {
   computed:{
     items: function(){
       var self = this;
+      let host_url = window.location.host;
+        // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
+        // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
+        let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
+        console.log("toname", host_url,host_params)
+        console.log("selfselfself",self)
+        console.log("selfselfself",self.$route.params.subdomain)
+        let sd = "essex"
       let dateArr = [];
       self.$parent.items.forEach(function(event){
           const value = new Date(event.date);
-          dateArr.push({
+          if (event.subdomain == sd) {
+            dateArr.push({
                 date: value,
                 coord_lat: event.coord_lat,
                 coord_lon: event.coord_lon,
@@ -352,6 +362,10 @@ export default {
                 spot_id: event.spot_id
               
               });
+
+
+          }
+          
         })
       dateArr = dateArr.sort(self.sortA);
       for (var j=0;j < dateArr.length; j=j+1){

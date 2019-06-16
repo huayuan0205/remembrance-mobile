@@ -48,11 +48,17 @@ export default {
   },
   mounted(){
     var self = this;
-    console.log(self.$router.history.current.params.subdomain)
+    // console.log(self.$router.history.current.params.subdomain)
       // const dateArr = [];
-      let subdomain = self.$router.history.current.params.subdomain;
-      let datafile = subdomain + ".csv"
-      d3.queue().defer(d3.csv,datafile).await(function(err,d){
+      // let host_url = window.location.host;
+      //   // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
+      //   // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
+      //   let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
+      //   console.log("toname", host_url,host_params)
+      // let subdomain = self.$router.history.current.params.subdomain;
+      // let datafile = subdomain + ".csv"
+      d3.queue().defer(d3.csv,"data.csv").await(function(err,d){
+        // console.log
         self.items = d
        
       })

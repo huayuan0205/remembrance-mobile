@@ -9,55 +9,62 @@ const route =  new Router({
   routes: [
     { path: '/', 
       // redirect: '/VAS-1',
-      beforeEnter: (to, from, next) => {
+      // beforeEnter: (to, from, next) => {
  
-  
-        // let match = false
-        let host_url = window.location.host;
-        // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
-        // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
-        let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
-        console.log("toname", host_url,host_params)
-        next({name:"encyclopedia-item",params:{"subdomain":"cambridge",id:"1"}})
-        // if (to.name === 'general.notfound') {
-        //   next()
-        // }
+      //   console.log("to", to)
+      //   console.log("from", from)
+      //   // let match = false
+      //   let host_url = window.location.host;
+      //   // let re16 = /(\w+)\.(climatefutures\.us)\/(#)\/([\d\w]+)/g;
+      //   // let re16 = /(\w*)(\.\w+\.*)+(climatefutures\.us)/g;
+      //   let host_params = host_url.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
+      //   console.log("toname", host_url,host_params)
+      //   host_params = "cambridge"
+      //   if (host_params == "essex"){
+      //     next({name:"encyclopedia-item",params:{"subdomain":host_params,id:"1"}})
+      //   } else if (host_params == "cambridge"){
+      //     next({name:"encyclopedia-item",params:{"subdomain":host_params,id:"VAS-1"}})
+      //   }
         
-        // //Sub-domain routing
-        // let host = window.location.host.toUpperCase()
+      //   // if (to.name === 'general.notfound') {
+      //   //   next()
+      //   // }
+        
+      //   // //Sub-domain routing
+      //   // let host = window.location.host.toUpperCase()
       
-        // //Routing for root domain
-        // if (host.toUpperCase() === 'localhost'){
-        //   next({name: 'landing.welcome'})
-        // }
+      //   // //Routing for root domain
+      //   // if (host.toUpperCase() === 'localhost'){
+      //   //   next({name: 'landing.welcome'})
+      //   // }
       
-        // console.log("host",host)
+      //   // console.log("host",host)
       
-        // for (let i = 0; i < to.matched.length; i++){
+      //   // for (let i = 0; i < to.matched.length; i++){
       
-        //   console.log("to.matched",to.matched[i])
+      //   //   console.log("to.matched",to.matched[i])
       
-        //   if (to.matched[i].meta.domains){
+      //   //   if (to.matched[i].meta.domains){
       
-        //     if (host.includes(to.matched[i].meta.domains.toUpperCase())){
+      //   //     if (host.includes(to.matched[i].meta.domains.toUpperCase())){
       
-        //       console.log("Im Here!")
+      //   //       console.log("Im Here!")
       
-        //       match = true
+      //   //       match = true
       
-        //       next()
-        //     }
+      //   //       next()
+      //   //     }
       
-        //   }
+      //   //   }
       
-        // }
+      //   // }
       
-        // if (!match){
-        //   next({name: 'general.notfound', params: { '0': to.path } })
+      //   // if (!match){
+      //   //   next({name: 'general.notfound', params: { '0': to.path } })
       
-        // }
+      //   // }
       
-      },
+      // },
 
       },
 

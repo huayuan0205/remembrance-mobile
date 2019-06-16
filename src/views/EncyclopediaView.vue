@@ -12,7 +12,7 @@
     <full-page ref="fullpage" :options="options" id="fullpage">
       <div class="section" id="phantom-list">
       </div>
-          <link-element v-for="item in encyclopedia" :key="item.id" v-bind:id="item.spot_id" :style="phSectionStyles"></link-element>
+          <link-element v-for="item in encyclopedia" :key="item.id" v-bind:id="item.id" :style="phSectionStyles"></link-element>
     </full-page>
 
   </div>
@@ -96,6 +96,7 @@ export default {
      options:  function(){
        let self = this;
        return {
+         licenseKey:'BE832C25-5A2F42F4-BB9260BD-0B59B2E9',
         lazyLoading: true,
         lockAnchors: true,
         controlArrows: false,
