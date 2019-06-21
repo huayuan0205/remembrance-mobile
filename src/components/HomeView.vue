@@ -344,9 +344,9 @@ export default {
         // console.log("toname", host_url,host_params)
         // console.log("selfselfself",self)
         // console.log("selfselfself",self.$route.params.subdomain)
-        let sd = "essex";
+        // let sd = "essex";
       let dateArr = [];
-      // let sd = self.sd;
+      let sd = self.sd;
       self.$parent.items.forEach(function(event){
           const value = new Date(event.date);
           // let sd = "cambridge"

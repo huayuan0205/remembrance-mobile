@@ -216,8 +216,12 @@ export default {
       }
     },
     formatDate: function(){
+      
       // console.log("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY'))
-      if (("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY') == '30092057') || ("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY') == '30062034')){
+      if (
+        // ['30092057','30062034'].includes("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY'))
+        ("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY') == '30092057') || ("idistwm_all", moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('DDMMYYYY') == '30062034')
+        ){
         return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('MMM');
       } else {
         return moment(this.$props.encyclopedia.date, 'MM/DD/YYYY').format('MMM DD');
