@@ -11,7 +11,7 @@ id,subdomain,date,event,spot,spot_id,description,link,linkText,coord_lat,coord_l
 10,cambridge,8/5/2030,Heat Wave,Vassal Lane Climate Resilience Trail,VAS-4,A 12-day heat wave hung over the city with humidity levels making the heat feel like 102 degrees Fahrenheit.,,,42.12,-71.02
 11,cambridge,5/7/2020,Trees Provide Relief,Vassal Lane Climate Resilience Trail,VAS-1,Vassal Lane was turned into a cool corridor when trees planted grew to shade the street.,,,42.12,-71.02
 12,cambridge,10/9/2040,Road Reduction,Vassal Lane Climate Resilience Trail,VAS-5,Car ownership decreased enough to allow the residential streets to be slimmed down to reduce pavement and create more green space.,,,42.12,-71.02
-13,essex,1/4/2018,ROADWAY UNDER WATER,Essex 2,2,Flooding closes Main Street for first time after roadway raised 8 inches.,,,,
+13,essex,1/4/2018,ROADWAY UNDER WATER,Essex 2,2,Storm surge flooding closes Main Street.,,,,
 14,essex,7/30/2025,FLOOD RISK REDUCED,Essex 6,6,Apple Street culvert enlarged to prevent chronic climate related overflow.,,,,
 15,essex,6/30/2034,RELIEVING HIGHER TIDES,Essex 4,4,Ebben Creek culvert enlarged to accommodate tidal flow from sea-level rise.,,,,
 16,essex,9/30/2057,ROADWAY RAISED,Essex 3,3,Causeway elevated 5 feet to keep above continuing sea-level rise.,,,,
