@@ -100,6 +100,14 @@ const route =  new Router({
         location.href = 'https://www.essexma.org/board-selectmen/pages/coastal-resilience-resources'
       }
 
+    },
+    {
+      name: 'durhamma',
+      path: 'www.ci.durham.nh.us/administration/responding-climate-change',
+      beforeEnter(){
+        location.href = 'https://www.ci.durham.nh.us/administration/responding-climate-change'
+      }
+
     }
 
   ]

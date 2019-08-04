@@ -16,7 +16,7 @@
                     </router-link>
                     </p>
                     <p v-else-if="sd === 'seacoast'">{{aboutP1Seacoast}}
-                    <router-link tag="a" :to="{ name: 'seacoast'}">
+                    <router-link tag="a" :to="{ name: 'durhamma'}">
                       <a>plans to mitigate and adapt to the effects of climate change.</a>
                     </router-link>
                     </p>
