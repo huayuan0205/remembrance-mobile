@@ -78,7 +78,8 @@ export default {
       // console.log("thiisihdio",this)
       // console.log(this.$children[0].$refs.fullpage)
       // console.log(this,$('.ui.fullscreen.modal'))
-
+      console.log("Sfsf")
+      console.log(this.$refs.subref.$refs.fullpage)
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
       // this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
       
@@ -459,7 +460,8 @@ export default {
   }
 
 #main-items {
-  z-index: 444;
+  position: fixed;
+  z-index:333;
 }  
 
 .ui.modal>.content {

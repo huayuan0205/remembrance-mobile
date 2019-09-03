@@ -148,9 +148,7 @@ html{
   /* z-index: 9999; */
 }
 
-#main-items {
-  position: fixed;
-}
+
 .splash-txt{
   position: absolute;
   top: 50%;

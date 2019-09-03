@@ -1,7 +1,8 @@
 <template>
   <!-- <div id="link-element"></div> -->
   <div class="container" >
-    <link-element></link-element>
+
+    
     <div id="main-items" >
           <encyclopedia-item
           v-on:showextra="showExtra()"
@@ -28,7 +29,6 @@ import LinkElement from '@/components/LinkElement.vue'
 
 import * as $ from 'jquery'
 import * as d3 from 'd3v4/build/d3.js'
-import ScrollSnap from 'scroll-snap'
 
 window['jQuery'] = window['$'] = $;
 
@@ -55,6 +55,7 @@ export default {
     },
     afterLoad() {
           let self = this;
+
     
     this.encyclopedia.forEach(function(d)
     {
@@ -101,13 +102,17 @@ export default {
    computed: {
      options:  function(){
        let self = this;
+       let scrollOptions = {click: false,  wheelStep: 20};
        return {
          licenseKey:'BE832C25-5A2F42F4-BB9260BD-0B59B2E9',
         lazyLoading: true,
         lockAnchors: true,
         controlArrows: false,
           scrollBar: false,
-          autoScrolling:true,
+          autoScrolling:false,
+          touchSensitivity:5,
+          scrollOverflow: true,
+          scrollOverflowOptions: scrollOptions,
         anchors: self.anchors,
         onLeave: function(origin, destination, direction){
           if (direction == "up"){

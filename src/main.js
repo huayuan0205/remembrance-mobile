@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 import router from './router'
 import VueScrollTo from 'vue-scrollto'
 import VueSlugify from 'vue-slugify'
+import 'fullpage.js/vendors/scrolloverflow'
 import VueFullPage from 'vue-fullpage.js'
 import VueAnalytics from 'vue-analytics'
 
