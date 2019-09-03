@@ -119,8 +119,8 @@ if (window.location.host.replace("climatefutures.us","").replace("www.","").repl
   top: .40vh;
   left: -160vw;
   z-index: 0;
-  -webkit-filter: blur(4px) brightness(10%); /* Safari 6.0 - 9.0 */
-    filter: blur(4px) brightness(10%);
+  -webkit-filter: blur(4px) brightness(1%); /* Safari 6.0 - 9.0 */
+    filter: blur(4px) brightness(1%);
 }
 #extra-content {
 	padding-top: 10vh;

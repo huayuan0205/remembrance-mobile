@@ -103,7 +103,9 @@ export default {
       return slug;
     },
     onClick: function(event){
-      console.log("on",this.encyclopedia.spot_id)
+      // console.log("on",this.encyclopedia.spot_id)
+      // console.log(this)
+      if (this.$parent.$parent.sd === "seacoast"){
       if (this.showModal == true) {
         this.showModal = false;
       }
@@ -112,6 +114,7 @@ export default {
       }
       // this.$router.push(this.encyclopedia.event)
     this.$emit('showextra', this.currentSpot)
+    }
     },
     activeStyle: function() {
       // console.log("active this",this)

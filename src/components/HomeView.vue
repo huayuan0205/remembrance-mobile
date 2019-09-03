@@ -71,12 +71,12 @@ export default {
       this.showExtraPage=false
     },
     showExtra() {
-      console.log("show extra")
+      // console.log("show extra")
       this.showExtraPage=true
     },
     toggleOpen() {
-      console.log("thiisihdio",this)
-      console.log(this.$children[0].$refs.fullpage)
+      // console.log("thiisihdio",this)
+      // console.log(this.$children[0].$refs.fullpage)
       // console.log(this,$('.ui.fullscreen.modal'))
 
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
@@ -89,7 +89,7 @@ export default {
       // $('.ui.fullscreen.modal').modal('refresh');
     },
      toggleClose() {
-      console.log(this.$children[0].$refs.fullpage)
+      // console.log(this.$children[0].$refs.fullpage)
       // this.$children[0].$refs.fullpage.api.setAllowScrolling(true);
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(true);
       this.$refs.subref.$refs.fullpage.api.setKeyboardScrolling(true);
@@ -486,7 +486,7 @@ export default {
 
 .fade-enter,
 .fade-leave-active {
-  opacity: 0
+  opacity: 0.01
 }
 </style>
 
