@@ -12,7 +12,7 @@
                   <p v-html="extraText"></p>
 
                   <p>
-                  	<router-link tag="a" :to="{ name: 'essexma'}">
+                  	<router-link tag="a" :to="{ name: 'durhamma'}">
                       <a>Learn more about how Durham is addressing climate change here.</a>
                     </router-link>
                   	 
