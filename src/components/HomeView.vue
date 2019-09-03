@@ -6,13 +6,17 @@
       <svg id="svg">
         <!-- <circle class="backgear-cr" alt id="leftgear" cx="0" cy="50vh" r="50vh" /> -->
       </svg>
-      <encyclopedia-view v-on:updatescrolls="afterLoad()"></encyclopedia-view>
+      <transition name="fade" mode="out-in">
+      <extra-content v-on:removeextra="removeExtra()" v-if="showExtraPage"></extra-content>
+      <encyclopedia-view ref="subref" v-else v-on:updatescrolls="afterLoad()" v-on:showextra="showExtra()"></encyclopedia-view>
+      </transition>
+      
       <div id="icon-div">
         <sui-icon class="info circle icon" size="large" name="info" @click.native="toggleOpen" />
       </div>
     </div>
     
-    <sui-modal size='fullscreen' animation="fade"  v-model="open" v-on:clickAwayModal="toggleClose">
+    <sui-modal size='fullscreen' animation="fade"  v-model="open" height="auto" :scrollable="true" v-on:clickAwayModal="toggleClose">
       <!-- <sui-modal-header>Select a Photo -->
       <sui-modal-header>
       <sui-modal-actions>
@@ -28,11 +32,11 @@
       <sui-modal-content scrolling>
 
         <sui-modal-description>
-        <about-modal>
-          
-        </about-modal>
+          <about-modal>
+            
+          </about-modal>
         </sui-modal-description>
-        </sui-modal-content>
+      </sui-modal-content>
     </sui-modal>
     
   </div>
@@ -42,6 +46,7 @@
 
 import EncyclopediaView from '@/views/EncyclopediaView.vue'
 import AboutModal from '@/components/AboutModal.vue'
+import ExtraContent from '@/components/ExtraContent.vue'
 
 import * as d3 from 'd3v4/build/d3.js'
 import * as $ from 'jquery'
@@ -51,27 +56,44 @@ export default {
   name: 'HomeView',
   components: {
     EncyclopediaView,
-    AboutModal
+    AboutModal,
+    ExtraContent
   },
    data () {
     return {
       // we have a local value that represents the user's selected region
       currentSpot: null,
-      open: false
+      open: false,
+      showExtraPage:false
     }},
   methods: {
+    removeExtra(){
+      this.showExtraPage=false
+    },
+    showExtra() {
+      console.log("show extra")
+      this.showExtraPage=true
+    },
     toggleOpen() {
+      console.log("thiisihdio",this)
       console.log(this.$children[0].$refs.fullpage)
       // console.log(this,$('.ui.fullscreen.modal'))
-      this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
+
+      this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
+      // this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
+      
+
+
       // this.$children[0].$refs.fullpage.api.setKeyboardScrolling(false);
       this.open = !this.open;
       // $('.ui.fullscreen.modal').modal('refresh');
     },
      toggleClose() {
       console.log(this.$children[0].$refs.fullpage)
-      this.$children[0].$refs.fullpage.api.setAllowScrolling(true);
-      this.$children[0].$refs.fullpage.api.setKeyboardScrolling(true);
+      // this.$children[0].$refs.fullpage.api.setAllowScrolling(true);
+      this.$refs.subref.$refs.fullpage.api.setAllowScrolling(true);
+      this.$refs.subref.$refs.fullpage.api.setKeyboardScrolling(true);
+      // this.$children[0].$refs.fullpage.api.setKeyboardScrolling(true);
       this.open = !this.open;
     },
     afterLoad: function(){
@@ -336,7 +358,12 @@ export default {
   },
   computed:{
     sd: function(){
-      return window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
+
+      if (window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","") === "localhost:8080"){
+          return "seacoast"
+
+      }
+      else  { return window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");}
     },
     items: function(){
       var self = this;
@@ -361,7 +388,11 @@ export default {
                 link: event.link,
                 linkText: event.linkText,
                 spot: event.spot,
-                spot_id: event.spot_id
+                spot_id: event.spot_id,
+                extra_text: event.extra_text,
+                footnote1: event.footnote1,
+                footnote2: event.footnote2,
+                footnote3: event.footnote3
               
               });
           }
@@ -413,7 +444,8 @@ export default {
 </script>
 <style>
 .ui.modal {
-    
+      
+
     position: absolute;
     display: block;
     overflow: auto;
@@ -421,14 +453,17 @@ export default {
     bottom: 1em;
     right: 1em;
     left: 1em;
-    width: 100%;
+    width: auto;
     background: black;
 
   }
 
-  
+#main-items {
+  z-index: 444;
+}  
 
 .ui.modal>.content {
+
     display: block;
     padding: 1rem!important;
     background: transparent;
@@ -440,6 +475,18 @@ export default {
   color: white !important;
   -webkit-filter: blur(0px); /* Safari 6.0 - 9.0 */
     filter: blur(0px) !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.15s;
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
 }
 </style>
 

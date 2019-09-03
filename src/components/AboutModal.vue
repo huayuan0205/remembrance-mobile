@@ -1,6 +1,6 @@
 <template>
     <div id="about-modal">
-      <img src="../assets/alluminium_halfres.png" class="modal-img" alt id="backgear" >
+      <img src="../assets/alluminium_halfres.png" class="modal-img" alt id="backgear" :style="abstyle" >
         <div class="ui very padded compact section grid">
             <div class="row">
                 <div class="two wide column">
@@ -80,6 +80,7 @@ export default {
           fight against its effects on the city.",
           aboutTitle: "cambridge climate trail",
           aboutTitleEssex: "essex remembrance trail",
+          aboutTitleSeacoast: "seacoast remembrance trail",
           credsEssex: "The Essex Remembrance Trail is a public art installation that connects viewers to the challenges communities face from climate change and the ongoing local efforts to address them.",
           creds: "The Cambridge Climate Trail is a public art installation that connects viewers to the challenges communities face from climate change and the ongoing local efforts to address them.",
           
@@ -87,16 +88,29 @@ export default {
         }
     },
     computed: {
+      abstyle: function(){
+        console.log("about this",$(window)[0].screen.availHeight)
+        let hr = $(window)[0].screen.availHeight/1.2;
+        return {
+          height: `${hr}px`
+        }
+      },
       sd: function(){
-      return window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");
-    },
+if (window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","") === "localhost:8080"){
+          return "seacoast"
+
+      }
+      else  { return window.location.host.replace("climatefutures.us","").replace("www.","").replace("staging.","").replace(".","");}
+        },
     }
 }
 </script>
 <style scoped>
 #about-modal {
+
     padding-bottom: 14px; /* to account for no default padding at bottom in #actions */
 }
+
 
 p {
     text-align: left;
@@ -105,6 +119,7 @@ p {
     line-height: 1.6em
 }
 .modal-img { 
+  
   position: fixed; 
   /* width: 15%; */
   /* height: auto;  */
@@ -123,3 +138,5 @@ p>a {
   font-family: 'Trade';
 }
 </style>
+
+

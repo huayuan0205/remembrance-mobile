@@ -1,7 +1,10 @@
 <template>
+  <!-- <div id="link-element"></div> -->
   <div class="container" >
+    <link-element></link-element>
     <div id="main-items" >
           <encyclopedia-item
+          v-on:showextra="showExtra()"
           v-on:updatemstyle="metstyle()"
           v-for="item in encyclopedia"
           v-bind:encyclopedia="item"
@@ -47,6 +50,9 @@ export default {
     
     
   methods: {
+    showExtra(event) {
+      this.$emit('showextra', event)    
+    },
     afterLoad() {
           let self = this;
     

@@ -78,8 +78,29 @@ const route =  new Router({
             path: '/:id',
             name: 'encyclopedia-item',
             component: EncyclopediaItem,
-
             props: true,
+            meta: {
+              showModal: false
+            },
+            
+            children:[
+              {
+                path:'/:id/:linktexts',
+                name: 'linkstexts',
+                beforeEnter(to, from, next){
+              console.log(to, from, next);
+            // if ( from.name == null && to.name == "productModal" ) { 
+            //     router.push({ name: 'productPage', params: { id: to.params.id, slug: to.params.slug }})
+            // } else {
+            //     next();
+            // }
+
+            route.push({ name: 'encyclopedia-item', params: { id: from.params.id}})
+              // next();
+              // location.href = 'https://www.essexma.org/board-selectmen/pages/coastal-resilience-resources'
+            },
+              }
+            ]
             
             
           }

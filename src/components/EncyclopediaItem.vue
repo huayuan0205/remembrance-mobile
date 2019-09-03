@@ -1,18 +1,29 @@
 <template>
   <div class="item" v-bind:style="activeStyle()" >
-    <div v-on:click="onClick" class="encyclopedia-item" v-bind:style="itemWidth()" >
+    <div class="encyclopedia-item" v-bind:style="itemWidth()" >
       <div class="item-head" v-bind:style="headStyle()">
         <h2 class="text-id">{{ encyclopedia.spot_id }}</h2>
         <h1 class="text-head">{{ encyclopedia.event }}</h1>
       </div>
+      
+
       <div class="item-body">
         <div class="date">
           <h3 class="text-date" v-html="formatDate"></h3>
           <!-- <h3 class="text-year" v-html="formatYear"></h3> -->
         </div>
-        <p class="text-desc" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
+        <!-- <link-element v-if="showModal" transition="fade" v-bind:showModal="showModal" v-bind:extra_text="encyclopedia.extra_text"></link-element> -->
+
+        <!-- <p v-if="showModal" class="text-desc" v-bind:id="fixid"><span v-html="extra_text"></span></p> -->
+        <p v-on:click="onClick"  class="text-desc" transition="fade" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
+        
+
       </div>
-        <!-- <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="true" :inverted="true"/>
+
+
+      <!-- <p class="text-desc" v-bind:id="fixid"><span v-html="extra_text"></span></p> -->
+      
+<!--         <sui-dimmer v-if="encyclopedia.event==this.$route.params.id" :active="ffalse" :inverted="false"/>
         <sui-dimmer v-else active :inverted="true"/> -->
 
     </div>
@@ -54,7 +65,8 @@ export default {
   data () {
     return {
       // we have a local value that represents the user's selected region
-      currentSpot: null//this.$parent.currentSpot,
+      currentSpot: null,//this.$parent.currentSpot,
+      showModal: this.$route.meta.showModal
     }},
     watch: {
   '$route.params.id': {
@@ -91,8 +103,15 @@ export default {
       return slug;
     },
     onClick: function(event){
-      // console.log(this.encyclopedia.title)
-      this.$router.push(this.encyclopedia.event)
+      console.log("on",this.encyclopedia.spot_id)
+      if (this.showModal == true) {
+        this.showModal = false;
+      }
+      else {
+      this.showModal = true;
+      }
+      // this.$router.push(this.encyclopedia.event)
+    this.$emit('showextra', this.currentSpot)
     },
     activeStyle: function() {
       // console.log("active this",this)
@@ -204,10 +223,13 @@ export default {
     fixid: function (){
       return "fix"+this.encyclopedia.id;
     },
+    extra_text: function(){
+      return this.$props.encyclopedia.extra_text;
+    },
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
         let  index = this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link);
-        const spanStart = '<a href="'+this.$props.encyclopedia.linkText+'"> ';
+        const spanStart = '<a href="'+'/#/'+ this.currentSpot+'/'+this.$props.encyclopedia.linkText+'"> ';
         const spanEnd = '</a>';
         let newDesc = [this.$props.encyclopedia.description.slice(0, index), spanStart, this.$props.encyclopedia.description.slice(index, index+this.$props.encyclopedia.link.length), spanEnd, this.$props.encyclopedia.description.slice(index+this.$props.encyclopedia.link.length)].join('');
         return newDesc
@@ -326,6 +348,7 @@ export default {
   width: 100%;
   display: inline-block;
 }
+
 
 .text-date{
   float: left;
