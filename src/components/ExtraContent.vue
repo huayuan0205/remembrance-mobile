@@ -1,5 +1,5 @@
 <template>
-	<div v-on:click="clickOut" id="extra-content">
+	<div id="extra-content"> <!-- v-on:click="clickOut"  -->
 
       <img src="../assets/alluminium_halfres.png" class="extra-img" alt id="backgear" >
       <div class="ui very padded compact section grid">
@@ -21,7 +21,12 @@
                   <br>
                   <hr v-if="extraFoot1">
                   <p class="footnote1">
-                  	<span v-if="extraFoot1">(1)</span> {{extraFoot1}}
+                  	<span v-if="extraFoot1">(1)</span> {{extraFoot1}} 
+                  	<span v-if="extraFootlink1">
+                  		<router-link tag="a" :to="{ name: item_e_id}" >
+                  			<a>{{extraFootlink1}}</a>
+                  		</router-link>
+                  	</span>
                   </p>
                   <p class="footnote2">
                   	<span v-if="extraFoot2">(2)</span> {{extraFoot2}}
@@ -60,6 +65,10 @@
 		extraFoot3: function(){
 			let t = this.getExtraItem();
 			return t.footnote3;
+		},
+		extraFootlink1: function(){
+			let t = this.getExtraItem();
+			return t.footnotelink1;
 		},
 		exteraItems: function(){
 			return this.$parent.items;

@@ -107,6 +107,54 @@ const route =  new Router({
       ]
     },
     {
+      name: 'durham-11',
+      path: 'www.ucsusa.org/global-warming/global-warming-impacts/killer-heat-in-united-states',
+      beforeEnter(){
+        location.href = 'https://www.ucsusa.org/global-warming/global-warming-impacts/killer-heat-in-united-states'
+      }
+
+    },
+    {
+      name: 'durham-5',
+      path: 'science2017.globalchange.gov/chapter/13/',
+      beforeEnter(){
+        location.href = 'https://science2017.globalchange.gov/chapter/13/'
+      }
+
+    },
+    {
+      name: 'durham-3',
+      path: 'http://strafford.org/cmsAdmin/uploads/CRiseMaps/Durham/Map_2_Extent_Flooding_SS_Reduced.pdf',
+      beforeEnter(){
+        location.href = 'http://strafford.org/cmsAdmin/uploads/CRiseMaps/Durham/Map_2_Extent_Flooding_SS_Reduced.pdf'
+      }
+
+    },
+    {
+      name: 'durham-8',
+      path: 'nca2018.globalchange.gov/chapter/18/',
+      beforeEnter(){
+        location.href = 'https://nca2018.globalchange.gov/chapter/18/'
+      }
+
+    },
+    {
+      name: 'durham-4',
+      path: 'strafford.org/cmsAdmin/uploads/CRiseMaps/Durham/Map_1_Extent_Flooding_Reduced.pdf',
+      beforeEnter(){
+        location.href = 'http://strafford.org/cmsAdmin/uploads/CRiseMaps/Durham/Map_1_Extent_Flooding_Reduced.pdf'
+      }
+
+    },
+    {
+      name: 'durham-9',
+      path: 'www.ucsusa.org/global-warming/global-warming-impacts/killer-heat-in-united-states',
+      beforeEnter(){
+        location.href = 'https://www.ucsusa.org/global-warming/global-warming-impacts/killer-heat-in-united-states'
+      }
+
+    },
+    {
       name: 'climatechangecambridge',
       path: 'www.cambridgema.gov/CDD/climateandenergy/climatechangeplanning',
       beforeEnter(){

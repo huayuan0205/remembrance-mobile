@@ -12,7 +12,9 @@
       </transition>
       
       <div id="icon-div">
-        <sui-icon class="info circle icon" size="large" name="info" @click.native="toggleOpen" />
+        
+        <sui-icon v-if="showExtraPage" class="left arrow circle icon" size="large" name="info" @click.native="removeExtra()" />
+        <sui-icon  v-else class="info circle icon" size="large" name="info" @click.native="toggleOpen" />
       </div>
     </div>
     
@@ -20,8 +22,8 @@
       <!-- <sui-modal-header>Select a Photo -->
       <sui-modal-header>
       <sui-modal-actions>
-        <div id="close-div">
-        <sui-icon class="window close icon" size="small" name="close" @click.native="toggleClose" />
+        <div id="close-div" v-if="showExtraPage">
+        <sui-icon  class="window close icon" size="small" name="close" @click.native="toggleClose" />
         </div>
         <!-- <sui-button floated="right" negative @click.native="toggle">
           X
@@ -69,16 +71,21 @@ export default {
   methods: {
     removeExtra(){
       this.showExtraPage=false
+      // $("#icon-div").show();
+      $(".dots").show();
     },
     showExtra() {
       // console.log("show extra")
       this.showExtraPage=true
+      // $("#icon-div").hide();
+      $(".dots").hide();
     },
     toggleOpen() {
       // console.log("thiisihdio",this)
       // console.log(this.$children[0].$refs.fullpage)
       // console.log(this,$('.ui.fullscreen.modal'))
       console.log("Sfsf")
+      console.log(this)
       console.log(this.$refs.subref.$refs.fullpage)
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
       // this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
@@ -393,8 +400,10 @@ export default {
                 extra_text: event.extra_text,
                 footnote1: event.footnote1,
                 footnote2: event.footnote2,
-                footnote3: event.footnote3
-              
+                footnote3: event.footnote3,
+                footnotelink1: event.footnotelink1,
+                footnotelink2: event.footnotelink2,
+                footnotelink3: event.footnotelink3,
               });
           }
         })
