@@ -102,15 +102,15 @@ export default {
    computed: {
      options:  function(){
        let self = this;
-       let scrollOptions = {click: false,  wheelStep: 10};
+       let scrollOptions = {click: false,  wheelStep: 20};
        return {
          licenseKey:'BE832C25-5A2F42F4-BB9260BD-0B59B2E9',
         lazyLoading: true,
         lockAnchors: true,
         controlArrows: false,
           scrollBar: false,
-          autoScrolling:false,
-          touchSensitivity:1,
+          autoScrolling:true,
+          // touchSensitivity:1,
           scrollOverflow: true,
           scrollOverflowOptions: scrollOptions,
         anchors: self.anchors,

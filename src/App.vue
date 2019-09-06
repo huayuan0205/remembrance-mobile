@@ -168,8 +168,13 @@ html{
 
 #icon-div{
   position: fixed;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
+}
+.icon-div{
+  position: fixed;
+  top: 10px;
+  right: 10px;
 }
 
 .splash-img { 

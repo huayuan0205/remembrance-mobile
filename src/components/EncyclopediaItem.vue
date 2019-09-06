@@ -15,7 +15,7 @@
         <!-- <link-element v-if="showModal" transition="fade" v-bind:showModal="showModal" v-bind:extra_text="encyclopedia.extra_text"></link-element> -->
 
         <!-- <p v-if="showModal" class="text-desc" v-bind:id="fixid"><span v-html="extra_text"></span></p> -->
-        <p v-on:click="onClick"  class="text-desc" transition="fade" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
+        <p  class="text-desc" transition="fade" v-bind:id="fixid"><span v-html="descWithLink"></span></p>
         
 
       </div>
@@ -232,8 +232,8 @@ export default {
     descWithLink: function() {
       if (this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link) > 0){
         let  index = this.$props.encyclopedia.description.indexOf(this.$props.encyclopedia.link);
-        const spanStart = '<a href="'+'/#/'+ this.currentSpot+'/'+this.$props.encyclopedia.linkText+'"> ';
-        const spanEnd = '</a>';
+        const spanStart = '<span href="'+'/#/'+ this.currentSpot+'/'+this.$props.encyclopedia.linkText+'"> ';
+        const spanEnd = '</span>';
         let newDesc = [this.$props.encyclopedia.description.slice(0, index), spanStart, this.$props.encyclopedia.description.slice(index, index+this.$props.encyclopedia.link.length), spanEnd, this.$props.encyclopedia.description.slice(index+this.$props.encyclopedia.link.length)].join('');
         return newDesc
       } else {

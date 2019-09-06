@@ -74,7 +74,7 @@
 			return this.$parent.items;
 		},
 		abstyle: function(){
-        console.log("about this",$(window)[0].screen.availHeight)
+        // console.log("about this",$(window)[0].screen.availHeight)
         let hr = $(window)[0].screen.availHeight/1.2;
         return {
           height: `${hr}px`
@@ -93,15 +93,15 @@ if (window.location.host.replace("climatefutures.us","").replace("www.","").repl
 	},
 	methods:{
 		getExtraItem: function(){
-			console.log("func is getExtra")
+			// console.log("func is getExtra")
 			const this_item = this.$parent.items.filter((value, index, array) => {
               return value.spot_id == this.$route.params.id;
             })
-            console.log(this_item);
+            // console.log(this_item);
             return this_item[0];
 		},
 		clickOut: function(){
-			console.log("click in extra", this)
+			// console.log("click in extra", this)
 			// this.$router.go(-1)
 			 this.$emit('removeextra', event)    
 

@@ -12,9 +12,13 @@
       </transition>
       
       <div id="icon-div">
-        
-        <sui-icon v-if="showExtraPage" class="left arrow circle icon" size="large" name="info" @click.native="removeExtra()" />
-        <sui-icon  v-else class="info circle icon" size="large" name="info" @click.native="toggleOpen" />
+        <transition name="fade" mode="out-in">
+        <sui-icon  id="extra-icon" v-if class="plus circle inverted icon" size="large" name="extra" @click.native="showExtra" />
+      </transition>
+      <transition name="fade" mode="out-in">
+        <sui-icon v-if="showExtraPage" class="left chevron circle inverted icon" size="large" name="info" @click.native="removeExtra()" />
+        <sui-icon  v-else class="info circle  inverted icon" size="large" name="info" @click.native="toggleOpen" />
+</transition>
       </div>
     </div>
     
@@ -22,7 +26,7 @@
       <!-- <sui-modal-header>Select a Photo -->
       <sui-modal-header>
       <sui-modal-actions>
-        <div id="close-div" v-if="showExtraPage">
+        <div id="close-div">
         <sui-icon  class="window close icon" size="small" name="close" @click.native="toggleClose" />
         </div>
         <!-- <sui-button floated="right" negative @click.native="toggle">
@@ -71,22 +75,22 @@ export default {
   methods: {
     removeExtra(){
       this.showExtraPage=false
-      // $("#icon-div").show();
+      $("#extra-icon").show();
       $(".dots").show();
     },
     showExtra() {
       // console.log("show extra")
       this.showExtraPage=true
-      // $("#icon-div").hide();
+      $("#extra-icon").hide();
       $(".dots").hide();
     },
     toggleOpen() {
       // console.log("thiisihdio",this)
       // console.log(this.$children[0].$refs.fullpage)
       // console.log(this,$('.ui.fullscreen.modal'))
-      console.log("Sfsf")
-      console.log(this)
-      console.log(this.$refs.subref.$refs.fullpage)
+      // console.log("Sfsf")
+      // console.log(this)
+      // console.log(this.$refs.subref.$refs.fullpage)
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
       // this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
       
@@ -411,7 +415,7 @@ export default {
       for (var j=0;j < dateArr.length; j=j+1){
         dateArr[j].id = j;
       }
-      console.log("soer?", dateArr)
+      // console.log("soer?", dateArr)
       return dateArr
     },
     fixStyleBack: function(){
@@ -470,7 +474,7 @@ export default {
 
 #main-items {
   position: fixed;
-  z-index:333;
+  
 }  
 
 .ui.modal>.content {
@@ -488,16 +492,12 @@ export default {
     filter: blur(0px) !important;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition-duration: 0.15s;
-  transition-property: opacity;
-  transition-timing-function: ease-in-out;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease-out;
 }
 
-.fade-enter,
-.fade-leave-active {
-  opacity: 0.01
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
 

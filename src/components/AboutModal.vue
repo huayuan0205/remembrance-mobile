@@ -89,7 +89,7 @@ export default {
     },
     computed: {
       abstyle: function(){
-        console.log("about this",$(window)[0].screen.availHeight)
+        // console.log("about this",$(window)[0].screen.availHeight)
         let hr = $(window)[0].screen.availHeight/1.2;
         return {
           height: `${hr}px`
