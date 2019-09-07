@@ -12,7 +12,7 @@
       </transition>
       
       <div id="icon-div">
-        <transition name="fade" mode="out-in">
+        <transition name="fade" mode="out-in" v-if="sd === 'seacoast'">
         <sui-icon  id="extra-icon" v-if class="plus circle inverted icon" size="large" name="extra" @click.native="showExtra" />
       </transition>
       <transition name="fade" mode="out-in">
