@@ -402,6 +402,7 @@ export default {
                 spot: event.spot,
                 spot_id: event.spot_id,
                 extra_text: event.extra_text,
+                descriptionlink: event.descriptionlink,
                 footnote1: event.footnote1,
                 footnote2: event.footnote2,
                 footnote3: event.footnote3,

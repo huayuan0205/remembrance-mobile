@@ -123,6 +123,14 @@ const route =  new Router({
 
     },
     {
+      name: 'extralink-durham-5',
+      path: 'www.ci.durham.nh.us/sites/default/files/fileattachments/planning/page/21491/article_xv.pdf',
+      beforeEnter(){
+        location.href = 'https://www.ci.durham.nh.us/sites/default/files/fileattachments/planning/page/21491/article_xv.pdf'
+      }
+
+    },
+    {
       name: 'durham-3',
       path: 'http://strafford.org/cmsAdmin/uploads/CRiseMaps/Durham/Map_2_Extent_Flooding_SS_Reduced.pdf',
       beforeEnter(){
@@ -135,6 +143,14 @@ const route =  new Router({
       path: 'nca2018.globalchange.gov/chapter/18/',
       beforeEnter(){
         location.href = 'https://nca2018.globalchange.gov/chapter/18/'
+      }
+
+    },
+    {
+      name: 'durham-2',
+      path: 'www.ci.durham.nh.us/boc_energy',
+      beforeEnter(){
+        location.href = 'https://www.ci.durham.nh.us/boc_energy'
       }
 
     },

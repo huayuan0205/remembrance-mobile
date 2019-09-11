@@ -12,6 +12,7 @@
                   <p v-html="extraText"></p>
 
                   <p>
+                    
                   	<router-link tag="a" :to="{ name: 'durhamma'}">
                       <a>Learn more about how Durham is addressing climate change here.</a>
                     </router-link>
@@ -20,16 +21,27 @@
                   <p>#seacoastremembranceproject</p>
                   <br>
                   <hr v-if="extraFoot1">
+                  <hr v-else-if="extraFootlink1">
                   <p class="footnote1">
                   	<span v-if="extraFoot1">(1)</span> {{extraFoot1}} 
-                  	<span v-if="extraFootlink1">
+                  	
+                    <span v-if="extraFootlink1">
                   		<router-link tag="a" :to="{ name: item_e_id}" >
                   			<a>{{extraFootlink1}}</a>
                   		</router-link>
                   	</span>
+                    >
                   </p>
                   <p class="footnote2">
-                  	<span v-if="extraFoot2">(2)</span> {{extraFoot2}}
+                  	<span v-if="extraFoot2">(2)
+
+                    </span> {{extraFoot2}}
+                    
+                    <span v-if="extraFootlink2"> (2)
+                      <router-link tag="a" :to="{ name: item_extlink_id}" >
+                        <a>{{extraFootlink2}}</a>
+                      </router-link>
+                    </span
                   </p>
                   <p class="footnote3">
                   	<span v-if="extraFoot3">(3)</span> {{extraFoot3}}
@@ -54,6 +66,10 @@
 			let t = this.getExtraItem();
 			return t.extra_text;
 		},
+    descLink: function(){
+      let t = this.getExtraItem();
+      return t.descriptionlink;
+    },
 		extraFoot1: function(){
 			let t = this.getExtraItem();
 			return t.footnote1;
@@ -70,6 +86,10 @@
 			let t = this.getExtraItem();
 			return t.footnotelink1;
 		},
+    extraFootlink2: function(){
+      let t = this.getExtraItem();
+      return t.footnotelink2;
+    },
 		exteraItems: function(){
 			return this.$parent.items;
 		},
@@ -79,6 +99,10 @@
         return {
           height: `${hr}px`
         }
+      },
+
+      item_extlink_id: function(){
+        return "extralink-" + this.$route.params.id;
       },
       item_e_id: function(){
       	return this.$route.params.id;
