@@ -23,14 +23,14 @@
                   <hr v-if="extraFoot1">
                   <hr v-else-if="extraFootlink1">
                   <p class="footnote1">
-                  	<span v-if="extraFoot1">(1)</span> {{extraFoot1}} 
-                  	
+                  	<span v-if="extraFoot1">(1) {{extraFoot1}} </span> 
+                  	<span v-else-if="extraFootlink1">(1) </span>
                     <span v-if="extraFootlink1">
                   		<router-link tag="a" :to="{ name: item_e_id}" >
                   			<a>{{extraFootlink1}}</a>
                   		</router-link>
                   	</span>
-                    >
+                    
                   </p>
                   <p class="footnote2">
                   	<span v-if="extraFoot2">(2)
