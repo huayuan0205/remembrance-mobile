@@ -12,11 +12,16 @@
       </transition>
       
       <div id="icon-div">
+        
         <transition name="fade" mode="out-in" v-if="sd === 'seacoast'">
+          <!-- <span  id="extra-icon" v-if class="about-s" @click="showExtra" >MORE  </span> -->
+
         <sui-icon  id="extra-icon" v-if class="plus circle inverted icon" size="large" name="extra" @click.native="showExtra" />
       </transition>
+
       <transition name="fade" mode="out-in">
         <sui-icon v-if="showExtraPage" class="left chevron circle inverted icon" size="large" name="info" @click.native="removeExtra()" />
+        <!-- <span v-else @click="toggleOpen" class="about-s">  ABOUT</span> -->
         <sui-icon  v-else class="info circle  inverted icon" size="large" name="info" @click.native="toggleOpen" />
 </transition>
       </div>
@@ -38,7 +43,7 @@
       <sui-modal-content scrolling>
 
         <sui-modal-description>
-          <about-modal>
+          <about-modal ref="aboutref">
             
           </about-modal>
         </sui-modal-description>
@@ -74,9 +79,16 @@ export default {
     }},
   methods: {
     removeExtra(){
+
       this.showExtraPage=false
       $("#extra-icon").show();
       $(".dots").show();
+      // console.log(this.currentSpot,this.$refs);
+      // this.$refs.subref.$refs.fullpage.api.moveTo()
+      // this.$router.go(0);
+      // this.$router.go(this.currentSpot);
+      
+
     },
     showExtra() {
       // console.log("show extra")
@@ -111,6 +123,7 @@ export default {
     afterLoad: function(){
       // console.log("this.$children",this.$children)
       // this.appendTimeline()
+
       
       this.$children[0].afterLoad()
     },
@@ -278,6 +291,7 @@ export default {
     if(id !== null){
       // find event in array that matches id
       const dateArr = this.items;
+      console.log("dateArr", dateArr, this)
       index = dateArr.map(function(d) { return d.spot_id; }).indexOf(id);
       event = dateArr[index];
     }
@@ -445,9 +459,9 @@ export default {
   
    mounted: function () {
      let self = this;
-
+     console.log("hime",this)
      this.$nextTick(function () {
-   
+    this.$refs.subref.$refs.fullpage.api.moveTo(this.currentSpot, 1);
   })
 
 
@@ -494,7 +508,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease-out;
+  transition: opacity 0.0s ease-out;
 }
 
 .fade-enter, .fade-leave-to {

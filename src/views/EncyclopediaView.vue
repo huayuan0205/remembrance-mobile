@@ -167,6 +167,14 @@ export default {
             
               
        },
+       thisEncyclopedia: function (){
+            const this_item = this.$parent.items.filter((value, index, array) => {
+              return value.spot_id == this.$route.params.id;
+            })
+           return this_item;
+            
+              
+       },
         encyclopediaph: function (){
             
      return this.$parent.items;

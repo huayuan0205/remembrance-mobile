@@ -45,7 +45,7 @@ Run the node server with:
 npm start serve
 ```
 
-Check out the application live on `localhost:8080` in your browser.
+Check out the application live on `localhost:8080/#/durham-1` in your browser.
 
 
 

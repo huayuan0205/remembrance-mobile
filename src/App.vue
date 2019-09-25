@@ -110,6 +110,14 @@ html{
   z-index: 9999;
 
 }
+
+.about-s {
+  ont-family: 'CaslonSC';
+  color: #fff;
+  font-weight: normal;
+  text-transform: lowercase;
+  font-size: 18px !important;
+}
 #app h1{
   font-family: 'CaslonSC';
   color: #fff;
