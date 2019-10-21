@@ -8,7 +8,7 @@
       </svg>
       <transition name="fade" mode="out-in">
       <extra-content v-on:removeextra="removeExtra()" v-if="showExtraPage"></extra-content>
-      <encyclopedia-view ref="subref" v-else v-on:updatescrolls="afterLoad()" v-on:showextra="showExtra()"></encyclopedia-view>
+      <encyclopedia-view ref="subref"></encyclopedia-view>
       </transition>
       
       <div id="icon-div">
@@ -16,13 +16,15 @@
         <transition name="fade" mode="out-in" v-if="sd === 'seacoast'">
           <!-- <span  id="extra-icon" v-if class="about-s" @click="showExtra" >MORE  </span> -->
 
-        <sui-icon  id="extra-icon" v-if class="plus circle inverted icon" size="large" name="extra" @click.native="showExtra" />
+          <sui-button inverted compact id="extra-icon" v-if size="mini" name="extra" @click.native="showExtra">MORE</sui-button>
       </transition>
 
       <transition name="fade" mode="out-in">
         <sui-icon v-if="showExtraPage" class="left chevron circle inverted icon" size="large" name="info" @click.native="removeExtra()" />
         <!-- <span v-else @click="toggleOpen" class="about-s">  ABOUT</span> -->
-        <sui-icon  v-else class="info circle  inverted icon" size="large" name="info" @click.native="toggleOpen" />
+        <sui-button id="about-button" inverted compact v-else size="mini" name="info" @click.native="toggleOpen">
+          ABOUT
+        </sui-button>
 </transition>
       </div>
     </div>
@@ -105,7 +107,7 @@ export default {
       // console.log(this.$refs.subref.$refs.fullpage)
       this.$refs.subref.$refs.fullpage.api.setAllowScrolling(false);
       // this.$children[0].$refs.fullpage.api.setAllowScrolling(false);
-      
+
 
 
       // this.$children[0].$refs.fullpage.api.setKeyboardScrolling(false);
@@ -291,7 +293,7 @@ export default {
     if(id !== null){
       // find event in array that matches id
       const dateArr = this.items;
-      console.log("dateArr", dateArr, this)
+      //console.log("dateArr", dateArr, this)
       index = dateArr.map(function(d) { return d.spot_id; }).indexOf(id);
       event = dateArr[index];
     }
@@ -459,9 +461,9 @@ export default {
   
    mounted: function () {
      let self = this;
-     console.log("hime",this)
+     //console.log("hime",this)
      this.$nextTick(function () {
-    this.$refs.subref.$refs.fullpage.api.moveTo(this.currentSpot, 1);
+    //this.$refs.subref.$refs.fullpage.api.moveTo(this.currentSpot, 1);
   })
 
 

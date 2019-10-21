@@ -4,9 +4,9 @@
         <div class="ui very padded compact section grid">
             <div class="row">
                 <div class="two wide column">
-        
+
                 </div>
-                <div class="twelve wide column">
+                <div id="about-modal-columns" class="twelve wide column">
                   <h2 v-if="sd ==='cambridge'" class="text-head">{{aboutTitle}}</h2>
                   <h2 v-else-if="sd ==='seacoast'" class="text-head">{{aboutTitleSeacoast}}</h2>
                   <h2 v-else-if="sd ==='essex'" class="text-head">{{aboutTitleEssex}}</h2>
@@ -37,7 +37,7 @@
                     <p v-else-if="sd === 'seacoast'">{{credsSeacoast}}</p>
                 </div>
                  <div class="two wide column">
-        
+
                 </div>
             </div>
         </div>
@@ -106,6 +106,7 @@ if (window.location.host.replace("climatefutures.us","").replace("www.","").repl
 }
 </script>
 <style scoped>
+
 #about-modal {
 
     padding-bottom: 14px; /* to account for no default padding at bottom in #actions */
@@ -132,6 +133,9 @@ p {
   -webkit-filter: blur(4px) brightness(60%); /* Safari 6.0 - 9.0 */
     filter: blur(4px) brightness(60%);
 }
+
+
+
 p>a {
   color: #fff;
   text-decoration: underline;

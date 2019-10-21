@@ -91,11 +91,7 @@ export default {
    mounted: function(){
      let self = this;
    
-     this.$nextTick(function () {
-    
-      
-     
-})
+
     
   },
    

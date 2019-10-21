@@ -269,6 +269,7 @@ export default {
     this.$nextTick(function () {
       self.$parent.$parent.appendTimeline();
       // console.log(self.$route.params.id);
+      console.log("hi");
       self.$parent.$parent.rotateTimeline(self.$route.params.id);
       //  this.mstyle = this.activeStyle();
 

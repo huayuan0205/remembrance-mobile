@@ -17,7 +17,7 @@ Vue.use(VueAnalytics, {
 	id : 'UA-79653789-2',
 	router,
 	debug:{
-		enbaled: !isProd,
+		enabled: !isProd,
 		sendHitTask: isProd
 	}
 })

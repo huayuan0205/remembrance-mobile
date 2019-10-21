@@ -70,10 +70,11 @@ html{
 }
 
 #app {
-  font-family: 'PlayfairSC', 'Trade', Arial, sans-serif;
+  font-family: 'PlayfairSC', 'Trade', Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
+  height: 100%;
   /* color: #2c3e50; */
   
   scroll-snap-destination: 0vw 0vh;
@@ -231,6 +232,29 @@ svg {
   -webkit-filter: blur(4px); /* Safari 6.0 - 9.0 */
     filter: blur(4px);
 }
+
+  #extra-icon, #about-button{
+    font-family: Trade;
+    font-weight: bold;
+    padding: 0.5em;
+    padding-top: 0.6em;
+    //color: white;
+    border-radius: 2px;
+    border: none;
+    box-shadow: none!important;
+    background-color: rgba(0, 0, 0, 0.1);
+
+  }
+
+#extra-icon:hover, #about-button:hover{
+  background-color: rgba(255, 255, 255, 0.5);
+
+}
+  #extra-content{
+    /*column-count: 2;
+    column-gap: 0;
+    background-color: rgba(0, 0, 0, 0.5);*/
+  }
 
 
  
