@@ -164,8 +164,8 @@
     /* for real browsers */
       box-shadow: 0 0 0 100vmax rgba(0,0,0,.3);
       background-color: rgba(0,0,0,0.5);
-      height: 1300px;
-      position: fixed;
+      height: auto;
+      position: relative;
       overflow-y: hidden;
 
 
